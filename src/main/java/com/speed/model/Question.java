@@ -26,17 +26,11 @@ public class Question {
 
         CategoryTemp c1 = new CategoryTemp("c1", "LCD");
 
-
-
         // creates a hash map
         Map<String, List<CategoryTemp>> questionMap = new HashMap<>();
 
-
-
-
         // put elements (answers and matching categories) to the map
         questionMap.put("tak", Arrays.asList(c1));
-
 
         //alternatywnie
 
@@ -44,15 +38,12 @@ public class Question {
 
         //uzupenianie listy kategorii
         List<CategoryTemp> list = questionMap.get("tak");
+
         list.add(catFrom("c1", "LCD"));
         list.add(catFrom("c2", "LCD"));
         list.add(catFrom("c3", "LCD"));
-        list.add(catFrom("c4", "LCD"));
-        list.add(catFrom("c1", "LCD"));
-        list.add(catFrom("c1", "LCD"));
-        list.add(catFrom("c1", "LCD"));
-        list.add(catFrom("c1", "LCD"));
 
-//        System.out.println("Added");
+
+
     }
 }
