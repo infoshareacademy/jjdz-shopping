@@ -6,6 +6,8 @@ import com.google.zxing.NotFoundException;
 import com.google.zxing.Result;
 import com.speed.model.Product;
 
+import java.awt.image.BufferedImage;
+import java.io.File;
 import java.util.Scanner;
 
 /**
@@ -28,8 +30,8 @@ public class ProductApp {
     }
 
     private BinaryBitmap GetBitMapfromFile(String fileName) {
- //       1. convert filobject to bitmap
- //       2. convert bitmap to binarybitmap
+ //      convert filobject to ???? > ???? > binarybitmap
+
 
         return null;
     }
