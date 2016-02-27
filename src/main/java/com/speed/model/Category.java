@@ -1,5 +1,8 @@
 package com.speed.model;
 
+
+import java.util.HashMap;
+
 /**
  * Created by slaw on 13.02.16.
  */
@@ -75,5 +78,4 @@ public class Category {
         return new CategoryTemp(c1, lcd);
     }
 }
-
 
