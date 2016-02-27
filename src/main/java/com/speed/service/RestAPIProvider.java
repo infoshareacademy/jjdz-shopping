@@ -22,11 +22,10 @@ public class RestAPIProvider {
         this.RestRequestAddres = RestRequestAddres;
         this.params = params;
     }
-    public RestAPIProvider(Map<String, String> params){
-        this.RestRequestAddres = "http://api3.produktywsieci.pl/PublicService.svc/rest/xml/GetProductByGTIN";
-        this.params = params;
-    }
 
+    public RestAPIProvider(String RestRequestAddres) {
+        this.RestRequestAddres = RestRequestAddres;
+    }
 
     public void setRestRequestAddres(String restRequestAddres) {
         RestRequestAddres = restRequestAddres;
