@@ -19,3 +19,7 @@ jboss/server/minimal/work/**/*
 *.DEPLOYED
 
 .idea
+
+*.iml
+
+target/
