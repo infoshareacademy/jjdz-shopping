@@ -6,8 +6,8 @@ package com.speed.model;
  * Created by ewaw on 13.02.16.
  */
 public class Product {
-    public String ProductName;
-    public String ProductNumber;
+    private String ProductName;
+    private String ProductNumber;
 
 
     public String getProductName() {

@@ -1,0 +1,42 @@
+Co ma robić klasa Question?
+
+//Obiekt
+
+- obiekt Question powinien zawierać:
+	a) identyfikator
+	b) treść pytania
+	c) powiązaną z nim mapę pytań precyzujących
+	b) powiązaną z nim mapę kategorii, na które wskazuje w przypadku pozytywnej odpowiedzi
+
+//Zmienne
+
+- ma posiadać zmienną userSearchedProduct typu String przechowującą podaną z klawiatury nazwę szukanego 
+  produktu
+- ma posiadać zmienną question typu String przechowującą podane z klawiatury pytanie
+- ma posiadać mapę pytań wraz zich identyfikatorami
+- ma posiadać mapę identyfikatorów pytań wraz z pasującymi do nich kategoriami w przypadku pozytywnej odpowiedzi- dotyczy pytań 
+  najniższego poziomu
+- ma posiadać mapę pytań (ich identyfikatorów) wraz z powiązanymi do nich pytaniami (ich identyfikatorami) o większej szczegółowości
+- mapa głównych kategorii z przypisanymi do nimi identyfikatorami pytań (nie wiem czy to tu czy w klasie Kategoria)
+
+//Metody
+
+- ma zawierać metodę pozwalającą dodać pytanie do listy pytań służące sprecyzowaniu kategorii produktu.
+	Pytanie może być pobrane z klawiatury;
+	Powinno posiadać identyfikator i treść pytania;
+	Metoda powinna dawać możliwość przypisania do pytania pasujących kategorii zwracanych w zależności 
+	od odpowiedzi;
+	Metoda powinna dawać możliwość przypisania do pytania powiązanych pytań o większej szczegółowości;
+
+- ma zawierać metodę pobierającą pytanie z listy pytań i wyświetlającą ją na ekranie.
+
+- ma zawierać metodę pozwalającą na pobranie pytania wraz z jego identyfikatorem.
+
+- ma zawierać metodę wyświetlająca pytanie o nazwę szukanego produktu oraz pozwalającą na pobranie z 	
+	klawiatury odpowiedzi użytkownika.
+	Odpowiedź ma być zapisywana do zmiennej
+
+- ma zawierać metodę wyświetlającą listę głównych gałęzi kategorii(początkowo przypisanych na sztywno - później pobieranych z klasy 
+  kategorii). Na podstawie wyboru dobierane będa 
+  pytania precyzujące podkategorię, w której trzeba będzie szukac produktu
+	 
