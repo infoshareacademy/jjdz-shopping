@@ -14,11 +14,6 @@ import java.util.Map;
  * Created by ewa on 2/23/16.
  */
 public class RestAPIProvider {
-    /*
-    1. adres do zapytan restowych - pole String "http://api3.produktywsieci.pl/PublicService.svc/rest/xml/GetProductByGTIN"
-    2. slownik zmiennych z parametrami
-    3. metoda sentRestApiRequest (przyklad http://rest.elkstein.org/2008/02/using-rest-in-java.html), w pierwszej linjce metody createURLPath z obiektow 1 i 2
-     */
 
     private Map<String, String> params = new HashMap<String, String>();
     private String RestRequestAddres = new String();
@@ -42,16 +37,22 @@ public class RestAPIProvider {
 
     private String CreateParameters() {
         //tworzenie lancucha z parametrow podanych w mapie param
-        return null;
+
+        String adresPar = "?";
+
+        for (Map.Entry<String, String> entry :
+                params.entrySet()) {
+            adresPar += entry.getKey()+"="+entry.getValue()+"&";
+        }
+
+        return adresPar .substring(0, adresPar.length()-1);
     }
-    String urlParam;
 
-    //stworzyc urlStr bazujac na 1 i 2, http://api3.produktywsieci.pl/PublicService.svc/rest/xml/GetProductByGTIN?gs1Key=*****&gtin=*****&ip=*****&geoloc=*****&longitude=*****&latitude=*****
+    //stworzyc url bazujac na 1 i 2, http://api3.produktywsieci.pl/PublicService.svc/rest/xml/GetProductByGTIN?gs1Key=*****&gtin=*****&ip=*****&geoloc=*****&longitude=*****&latitude=*****
 
-    public static String sendRestApiRequest() throws IOException {
+    public String sendRestApiRequest() throws IOException {
 
-        String urlStr = null;
-        URL url = new URL(urlStr);
+        URL url = new URL(this.RestRequestAddres + CreateParameters());
 
         HttpURLConnection conn = (HttpURLConnection) url.openConnection();
 
@@ -63,18 +64,23 @@ public class RestAPIProvider {
         }
 
         // Buffer the result into a string
-        InputStream inputStream = conn.getInputStream();
-        InputStreamReader reader = new InputStreamReader(inputStream);
-        BufferedReader buffer = new BufferedReader(reader);
         StringBuilder bufferStr = new StringBuilder();
 
-        String line;
+        try(InputStream inputStream = conn.getInputStream();
+        InputStreamReader reader = new InputStreamReader(inputStream);
+        BufferedReader buffer = new BufferedReader(reader)) {
 
-        // all lines to bufferStr
-        while ((line = buffer.readLine()) != null) {
-            bufferStr.append(line);
+            String line;
+
+            // all lines to bufferStr
+            while ((line = buffer.readLine()) != null) {
+                bufferStr.append(line);
+            }
+            buffer.close();
         }
-        buffer.close();
+        catch(IOException e){
+            throw new IOException("Error during reading REST information from URL "+url+". Inner message: "+e.getMessage());
+        }
 
         conn.disconnect();
         return bufferStr.toString();
