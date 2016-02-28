@@ -48,6 +48,7 @@ public class ProductApp {
         r.addParam("gtin",result.getText());
 
         String stringWithRestResponse = r.sendRestApiRequest();
+
         return product;
     }
 
