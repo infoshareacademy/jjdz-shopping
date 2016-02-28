@@ -82,7 +82,7 @@ public class RestAPIProvider {
             buffer.close();
         }
         catch(IOException e){
-            throw new IOException("Error during reading REST information from URL "+url+". Inner message: "+e.getMessage());
+            throw new IOException("Error during reading REST information from URL " + url + ". Inner message: "+ e.getMessage());
         }
 
         conn.disconnect();
