@@ -40,25 +40,20 @@ public class RestAPIProvider {
 
     private String CreateParameters() {
         //tworzenie lancucha z parametrow podanych w mapie param
-
         String adresPar = "?";
 
         for (Map.Entry<String, String> entry :
                 params.entrySet()) {
             adresPar += entry.getKey() + "=" + entry.getValue() + "&";
         }
-
         return adresPar .substring(0, adresPar.length()-1);
     }
 
     //url http://api3.produktywsieci.pl/PublicService.svc/rest/xml/GetProductByGTIN?gs1Key=*****&gtin=*****&ip=*****&geoloc=*****&longitude=*****&latitude=*****
-
     public String sendRestApiRequest() throws IOException {
 
         URL url = new URL(this.RestRequestAddres + CreateParameters());
-
         HttpURLConnection conn = (HttpURLConnection) url.openConnection();
-
         int responseCode = conn.getResponseCode();
 
         // if connections failed
