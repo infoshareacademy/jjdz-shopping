@@ -9,12 +9,12 @@ import java.util.Scanner;
 public class AppEntryPoint {
 
     private final PrintStream out;
-    private final InputStream in;
+    private final Scanner scanner;
 
-    public AppEntryPoint(Shop shop, PrintStream out, InputStream in) {
+    public AppEntryPoint(Shop shop, PrintStream out, Scanner scanner) {
         this.shop = shop;
         this.out = out;
-        this.in = in;
+        this.scanner = scanner;
     }
 
     private final Shop shop;
@@ -33,7 +33,7 @@ public class AppEntryPoint {
                 "2 - Plazma\n" +
                 "3 - Kineskop");
 
-        Scanner sc = new Scanner(in);
+        Scanner sc = scanner;
         String choice = sc.next();
 
         switch(choice){
