@@ -7,6 +7,7 @@ import com.speed.model.TV;
 import java.net.URI;
 import java.util.Arrays;
 import java.util.List;
+import java.util.Scanner;
 
 public class App {
     public static void main(String[] args) {
@@ -21,7 +22,7 @@ public class App {
             }
         };
 
-        AppEntryPoint appEntryPoint = new AppEntryPoint(shop, System.out, System.in);
+        AppEntryPoint appEntryPoint = new AppEntryPoint(shop, System.out, new Scanner(System.in));
         System.out.println(appEntryPoint.searchShops());
     }
 
