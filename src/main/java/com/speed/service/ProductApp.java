@@ -6,6 +6,7 @@ import com.google.zxing.NotFoundException;
 import com.google.zxing.Result;
 import com.google.zxing.client.j2se.BufferedImageLuminanceSource;
 import com.google.zxing.common.HybridBinarizer;
+import com.speed.model.Product;
 //import com.speed.model.Product;
 
 import javax.imageio.ImageIO;
@@ -21,7 +22,8 @@ public class ProductApp {
 
     private Scanner sc = new Scanner(System.in);
 
-    public String /*Product*/ getProduct(){
+    public /*String */ Product getProduct() throws IOException {
+        //decode picture to code
         String fileName = getFilePath();
         BinaryBitmap myMap = GetBitMapfromFile(fileName);
         MultiFormatReader reader = new MultiFormatReader();
@@ -33,11 +35,18 @@ public class ProductApp {
         }
         if (result == null) throw new AssertionError();
 
+        Product product = new Product();
         String gtin = result.getText();  //toString????
+        product.setProductNumber(gtin);
 
         //druga czesc - wyciagniecie info z API
+        RestAPIProvider r = new RestAPIProvider("http://api3.produktywsieci.pl/PublicService.svc/rest/xml/GetProductByGTIN");
 
-        return gtin;
+        r.addParam("gs1Key","KiedysDodam");
+        r.addParam("gtin",result.getText());
+
+        String stringWithRestResponse = r.sendRestApiRequest();
+        return product;
     }
 
     private BinaryBitmap GetBitMapfromFile(String fileName) {
