@@ -23,7 +23,9 @@ public class ProductApp {
     private Scanner sc = new Scanner(System.in);
 
     public /*String */ Product getProduct() throws IOException {
+
         //decode picture to code
+
         String fileName = getFilePath();
         BinaryBitmap myMap = GetBitMapfromFile(fileName);
         MultiFormatReader reader = new MultiFormatReader();
