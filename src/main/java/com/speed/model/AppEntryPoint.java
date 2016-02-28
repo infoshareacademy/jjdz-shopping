@@ -3,15 +3,16 @@ package com.speed.model;
 import java.io.InputStream;
 import java.io.PrintStream;
 import java.net.URI;
+import java.util.Iterator;
 import java.util.List;
 import java.util.Scanner;
 
 public class AppEntryPoint {
 
     private final PrintStream out;
-    private final Scanner scanner;
+    private final Iterator<String> scanner;
 
-    public AppEntryPoint(Shop shop, PrintStream out, Scanner scanner) {
+    public AppEntryPoint(Shop shop, PrintStream out, Iterator<String> scanner) {
         this.shop = shop;
         this.out = out;
         this.scanner = scanner;
@@ -33,8 +34,7 @@ public class AppEntryPoint {
                 "2 - Plazma\n" +
                 "3 - Kineskop");
 
-        Scanner sc = scanner;
-        String choice = sc.next();
+        String choice = scanner.next();
 
         switch(choice){
             case "1":
