@@ -34,6 +34,10 @@ public class RestAPIProvider {
         this.params = params;
     }
 
+    public void addParam(String key, String value) {
+        this.params.put(key,value);
+    }
+
     private String CreateParameters() {
         //tworzenie lancucha z parametrow podanych w mapie param
 
@@ -41,13 +45,13 @@ public class RestAPIProvider {
 
         for (Map.Entry<String, String> entry :
                 params.entrySet()) {
-            adresPar += entry.getKey()+"="+entry.getValue()+"&";
+            adresPar += entry.getKey() + "=" + entry.getValue() + "&";
         }
 
         return adresPar .substring(0, adresPar.length()-1);
     }
 
-    //stworzyc url bazujac na 1 i 2, http://api3.produktywsieci.pl/PublicService.svc/rest/xml/GetProductByGTIN?gs1Key=*****&gtin=*****&ip=*****&geoloc=*****&longitude=*****&latitude=*****
+    //url http://api3.produktywsieci.pl/PublicService.svc/rest/xml/GetProductByGTIN?gs1Key=*****&gtin=*****&ip=*****&geoloc=*****&longitude=*****&latitude=*****
 
     public String sendRestApiRequest() throws IOException {
 
