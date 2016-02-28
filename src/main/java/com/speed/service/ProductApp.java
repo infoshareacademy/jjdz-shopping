@@ -7,12 +7,15 @@ import com.google.zxing.Result;
 import com.google.zxing.client.j2se.BufferedImageLuminanceSource;
 import com.google.zxing.common.HybridBinarizer;
 import com.speed.model.Product;
+import com.speed.model.Shop;
 //import com.speed.model.Product;
 
 import javax.imageio.ImageIO;
 import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.IOException;
+import java.io.PrintStream;
+import java.util.Iterator;
 import java.util.Scanner;
 
 /**
