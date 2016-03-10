@@ -1,13 +1,16 @@
 package com.speed.model;
 
 
-
 /**
  * Created by ewaw on 13.02.16.
  */
+
 public class Product {
+
+
     private String ProductName;
     private String ProductNumber;
+    private String ProducentName;
 
 
     public String getProductName() {
@@ -26,5 +29,11 @@ public class Product {
         ProductNumber = productNumber;
     }
 
+    public String getProducentName() {
+        return ProducentName;
+    }
 
+    public void setProducentName(String producentName) {
+        ProducentName = producentName;
+    }
 }
