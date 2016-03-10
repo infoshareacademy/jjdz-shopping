@@ -15,7 +15,7 @@ import java.util.Map;
  */
 public class RestAPIProvider {
 
-    private Map<String, String> params = new HashMap<String, String>();
+    private Map<String, String> params = new HashMap<>();
     private String RestRequestAddres = new String();
 
     public RestAPIProvider(Map<String, String> params, String RestRequestAddres){
@@ -74,7 +74,6 @@ public class RestAPIProvider {
             while ((line = buffer.readLine()) != null) {
                 bufferStr.append(line);
             }
-            buffer.close();
         }
         catch(IOException e){
             throw new IOException("Error during reading REST information from URL " + url + ". Inner message: "+ e.getMessage());
