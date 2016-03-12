@@ -15,10 +15,26 @@ import java.util.Set;
 
 public class Category {
 
-    public void findCategory(){
+    int id;
+    int parentId;
+    String categoryName;
 
-    };
+    public Category(int id, int parentId, String categoryName) {
+        this.id = id;
+        this.parentId = parentId;
+        this.categoryName = categoryName;
+    }
 
+    public int getId() {
+        return id;
+    }
 
+    public int getParentId() {
+        return parentId;
+    }
+
+    public String getCategoryName() {
+        return categoryName;
+    }
 }
 
