@@ -15,7 +15,7 @@ import java.io.*;
  */
 public class ReadXMLFile {
 
-    public Product parseXML(String xmlStr, Product product) throws IOException {
+    public Product parseXML(String xmlStr, Product product) throws IOException, ParserConfigurationException, SAXException {
 
         try (PrintWriter pw = new PrintWriter("XML.xml", "UTF-8")) {
             pw.println(xmlStr);
@@ -26,22 +26,9 @@ public class ReadXMLFile {
         File file = new File("XML.xml");
 
         DocumentBuilderFactory dbFactory = DocumentBuilderFactory.newInstance();
-        DocumentBuilder dBuilder = null;
+        DocumentBuilder dBuilder = dbFactory.newDocumentBuilder();
 
-        try {
-            dBuilder = dbFactory.newDocumentBuilder();
-        } catch (ParserConfigurationException e) {
-            e.printStackTrace();
-        }
-        Document doc = null;
-
-        try {
-            doc = dBuilder.parse(file);
-        } catch (IOException e) {
-            throw new IOException("Error during reading root for XML-file. Inner message: "+ e.getMessage());
-        } catch (SAXException e) {
-            e.printStackTrace();
-        }
+        Document doc = dBuilder.parse(file);
 
         if (doc != null) {
             doc.getDocumentElement().normalize();
