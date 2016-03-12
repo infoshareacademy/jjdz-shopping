@@ -9,10 +9,21 @@ import java.util.HashMap;
 //Klasa bazowa telewizora
 public class TV {
 
+
+    //własności podstawowe dla wszystkich telewizorów//---------------------------
+    private double cena;     //kwota zł (max/min)
+    private boolean nowy;                //nowe/uzywane /true/false
+    private HashMap<String, Integer> format;   //4:3/16:9/Inny
+    private Integer ID;
+    //---------------------------------------------------
+
+
+
     //Konstruktor domyślny bez parametrów
     public TV() {
         this.cena = 0;
         this.nowy = false;
+        this.ID = 1;
 
         this.format = new HashMap<>();
         this.format.put("4:3",0);
@@ -21,10 +32,11 @@ public class TV {
     }
 
     //Konstuktor przyjmujacy gotowa HashMape formatów
-    public TV(double cena, boolean nowy, HashMap<String, Integer> format) {
+    public TV(double cena, boolean nowy, HashMap<String, Integer> format, Integer ID) {
         this.cena = cena;
         this.nowy = nowy;
         this.format = format;
+        this.ID = ID;
     }
 
     //Konstuktor ustawiający wszystkie parametry
@@ -35,14 +47,16 @@ public class TV {
         this.format.put(keyFormat,valueFormat);             //przypisanie zadanych wartości
     }
 
-    //własności podstawowe dla wszystkich telewizorów//---------------------------
-    private double cena;     //kwota zł (max/min)
-    private boolean nowy;                //nowe/uzywane /true/false
-    private HashMap<String, Integer> format;   //4:3/16:9/Inny
-    //---------------------------------------------------
-
-
     //standardowe gety/sety
+
+
+    public Integer getID() {
+        return ID;
+    }
+
+    public void setID(Integer ID) {
+        this.ID = ID;
+    }
 
     public double getCena() {
         return cena;
@@ -65,6 +79,10 @@ public class TV {
         return format;
     }
 
+    public void setFormat(HashMap<String, Integer> format) {
+        this.format = format;
+    }
+
     //Indywidualne
     public void setFormat(String key, Integer value) {
         this.format.put(key, value);
@@ -77,6 +95,26 @@ public class TV {
 
 //Klasa rozszeżająca do LCD
 class LCD extends TV {
+
+
+    //wławności dla LCD//---------------------------
+    private HashMap<String, Integer> odswiezanie; //50/100/200 Hz
+    private HashMap<String, Integer> TunerDVBT; //MPEG-2/4/brak
+    private HashMap<String, Integer> zlacza;       //Kompozyt/Euro/S-Video/Component/HDMI/DVI/D-SUB/USB
+
+    private int przekatna;               //cale (max/min)
+
+    private  boolean fullHD;              //tak/nie
+    private  boolean podswietlenieLED;    //tak/nie
+    private  boolean is3D;                // tak/nie
+    private  double jasnosc;      //cd/m2 (max/min)
+    private  double kontrast;     //x:1 (max/min)
+
+    private Integer ID;
+    //---------------------------------------------------
+
+
+
 
     public LCD() {
 
@@ -103,22 +141,16 @@ class LCD extends TV {
 
     }
 
-    //wławności dla LCD//---------------------------
-    private HashMap<String, Integer> odswiezanie; //50/100/200 Hz
-    private HashMap<String, Integer> TunerDVBT; //MPEG-2/4/brak
-    private HashMap<String, Integer> zlacza;       //Kompozyt/Euro/S-Video/Component/HDMI/DVI/D-SUB/USB
-
-    private int przekatna;               //cale (max/min)
-
-    private  boolean fullHD;              //tak/nie
-    private  boolean podswietlenieLED;    //tak/nie
-    private  boolean is3D;                // tak/nie
-    private  double jasnosc;      //cd/m2 (max/min)
-    private  double kontrast;     //x:1 (max/min)
-    //---------------------------------------------------
-
 
     //standardowe gety/sety
+
+    public Integer getID() {
+        return ID;
+    }
+
+    public void setID(Integer ID) {
+        this.ID = ID;
+    }
 
     public double getKontrast() {
         return kontrast;
@@ -211,6 +243,19 @@ class LCD extends TV {
 class Plazma extends TV {
 
 
+    //wławności dla Plazma//---------------------------
+    private HashMap<String, Integer> TunerDVBT; //MPEG-2/4/brak
+    private HashMap<String, Integer> zlacza;       //Kompozyt/Euro/S-Video/Component/HDMI/DVI/D-SUB/USB
+
+    private  int przekatna;               //cale (max/min)
+    private  boolean fullHD;              //tak/nie
+    private  double jasnosc;      //cd/m2 (max/min)
+    private  double kontrast;     //x:1 (max/min)
+
+    private Integer ID;
+    //---------------------------------------------------
+
+
     public Plazma() {
 
         this.TunerDVBT = new HashMap<String, Integer>();
@@ -231,15 +276,6 @@ class Plazma extends TV {
 
     }
 
-    //wławności dla Plazma//---------------------------
-    private HashMap<String, Integer> TunerDVBT; //MPEG-2/4/brak
-    private HashMap<String, Integer> zlacza;       //Kompozyt/Euro/S-Video/Component/HDMI/DVI/D-SUB/USB
-
-    private  int przekatna;               //cale (max/min)
-    private  boolean fullHD;              //tak/nie
-    private  double jasnosc;      //cd/m2 (max/min)
-    private  double kontrast;     //x:1 (max/min)
-    //---------------------------------------------------
 
     //standardowe gety/sety
     public HashMap<String, Integer> getTunerDVBT() {
@@ -290,6 +326,14 @@ class Plazma extends TV {
         this.kontrast = kontrast;
     }
 
+    public Integer getID() {
+        return ID;
+    }
+
+    public void setID(Integer ID) {
+        this.ID = ID;
+    }
+
     //Indywidualne
     public void setTunerDVBT(String key, Integer value) {
         this.TunerDVBT.put(key, value);
@@ -303,6 +347,12 @@ class Plazma extends TV {
 
 class Kineskop extends TV {
 
+    //wławności dla Kineskop//---------------------------
+    private HashMap<String, Integer> odswiezanie; //50/100/200 Hz
+
+    private Integer ID;
+    //---------------------------------------------------
+
     public Kineskop() {
 
         this.odswiezanie = new HashMap<String, Integer>();
@@ -312,9 +362,7 @@ class Kineskop extends TV {
         this.odswiezanie.put("200Hz",0);
     }
 
-    //wławności dla Kineskop//---------------------------
-    private HashMap<String, Integer> odswiezanie; //50/100/200 Hz
-    //---------------------------------------------------
+
 
     public HashMap<String, Integer> getOdswiezanie() {
         return odswiezanie;
@@ -327,5 +375,13 @@ class Kineskop extends TV {
     //Indywidualne
     public void setOdswiezanie(String key, Integer value) {
         this.odswiezanie.put(key, value);
+    }
+
+    public Integer getID() {
+        return ID;
+    }
+
+    public void setID(Integer ID) {
+        this.ID = ID;
     }
 }
