@@ -118,6 +118,7 @@ class LCD extends TV {
 
     public LCD() {
 
+        this.ID = 2;
         this.odswiezanie = new HashMap<String, Integer>();
         this.TunerDVBT = new HashMap<String, Integer>();
         this.zlacza = new HashMap<String, Integer>();
@@ -273,6 +274,7 @@ class Plazma extends TV {
         this.zlacza.put("DVI",0);
         this.zlacza.put("D-SUB",0);
         this.zlacza.put("USB",0);
+        this.ID = 3;
 
     }
 
@@ -360,6 +362,8 @@ class Kineskop extends TV {
         this.odswiezanie.put("50Hz",0);
         this.odswiezanie.put("100Hz",0);
         this.odswiezanie.put("200Hz",0);
+
+        this.ID = 4;
     }
 
 
