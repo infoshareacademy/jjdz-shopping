@@ -3,11 +3,22 @@ package com.speed.model;
 import java.util.Map;
 
 public class CategoryTree {
-    public CategoryTree(Map<Integer, Category> categoryMap) {
+    Map<Integer, Category> categoryMap;
 
+    public CategoryTree(Map<Integer, Category> categoryMap) {
+        this.categoryMap = categoryMap;
     }
 
-    public Category findCategoryByID(int id){
-        return null;
+    public String findCategoryByID(int id) {
+        String catName = "";
+
+        for ( int i=1; i <= categoryMap.size(); i++ ) {
+            Category value = categoryMap.get(i);
+            if(value.getId() == id){
+                catName  = value.getCategoryName();
+            }
+        }
+     return catName;
+//        return categoryMap.get(id);
     }
 }

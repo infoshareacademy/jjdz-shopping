@@ -36,5 +36,26 @@ public class Category {
     public String getCategoryName() {
         return categoryName;
     }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+
+        Category category = (Category) o;
+
+        if (id != category.id) return false;
+        if (parentId != category.parentId) return false;
+        return categoryName.equals(category.categoryName);
+
+    }
+
+    @Override
+    public int hashCode() {
+        int result = id;
+        result = 31 * result + parentId;
+        result = 31 * result + categoryName.hashCode();
+        return result;
+    }
 }
 
