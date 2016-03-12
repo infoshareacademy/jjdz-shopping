@@ -35,6 +35,7 @@ public class ProductApp {
             throw new IOException("Error during reading and parsing from file. Reason: " + e.getMessage(), e);
         }
 
+        // Potrzebne?
         if (result == null) {
             throw new AssertionError();
         }
@@ -55,7 +56,7 @@ public class ProductApp {
             String stringWithRestResponse = r.sendRestApiRequest();
             ReadXMLFile rxm = new ReadXMLFile();
             product = rxm.parseXML(stringWithRestResponse, product);
-        } catch (IOException | SAXException | ParserConfigurationException e) {
+        } catch (IOException | SAXException | ParserConfigurationException | NullPointerException e) {
             throw new IOException("Error during getting product information. Reason: "+ e.getMessage(),e);
         }
 

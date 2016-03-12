@@ -36,21 +36,27 @@ public class ProductAppTest {
 //        System.out.println(actual.getProductNumber() + actual.getProductName() + actual.getManufacturerName());
     }
 
-    @Test(expected = IOException.class)
-    public void testFindProductNoFile() throws Exception {
-        //given
-        String expectedGTIN = "08717644419595";
-        String expectedProductName = "TIMOTEI SZAMPON PPRZECIWŁUPIEŻOWY DLA MĘŻCZYZN 250ml";
-        String expectedManucafturerName = "Unilever Polska Sp. z o.o.";
 
-        String fileNameNotOK = "";
+    @Test (expected = IOException.class)
+    public void testFindProductWrongFile() throws IOException {
+        //given
+        String fileNameNotOK = "/home/ewaw/Workspace/jjdz-shopping/src/main/resources/files/barecode.png";
 
         //when
         Product actual = cut.findProduct(fileNameNotOK);
 
-        //then
-        assertEquals("Probelm with GTIN", actual.getProductNumber(), expectedGTIN);
-        assertEquals("Problem with product name", actual.getProductName(), expectedProductName);
-        assertEquals("Problem with product name", actual.getManufacturerName(), expectedManucafturerName);
+        //then throws IOException
     }
+
+    @Test (expected = IOException.class)
+    public void testFindProductNotInDatabese() throws IOException {
+        //given
+        String fileNameNotOK = "/home/ewaw/Workspace/jjdz-shopping/src/main/resources/files/zxing_barcode_test.jpg";
+
+        //when
+        Product actual = cut.findProduct(fileNameNotOK);
+
+        //then throws IOException
+    }
+
 }
