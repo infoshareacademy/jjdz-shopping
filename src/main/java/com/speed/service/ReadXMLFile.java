@@ -41,13 +41,13 @@ public class ReadXMLFile {
             String productName = productElement.getElementsByTagName("b:Name").item(0).getTextContent();
 
             if (ownerName == null) {
-                product.setProducentName("No information about manufacturer");
+                product.setManufacturerName("No information about manufacturer");
             } else {
-                product.setProducentName(ownerName);
+                product.setManufacturerName(ownerName);
             }
 
             if (productName == null) {
-                product.setProducentName("No information about product name");
+                product.setManufacturerName("No information about product name");
             } else {
                 product.setProductName(productName);
             }
