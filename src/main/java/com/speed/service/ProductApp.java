@@ -20,11 +20,11 @@ import java.io.IOException;
  */
 public class ProductApp {
 
-    public Product getProduct() throws IOException {
+    public Product findProduct(String fileName) throws IOException {
 
         //decode picture to code
 
-        String fileName = getFilePath();
+//        String fileName = getFilePath();
         Result result;
         try {
             BinaryBitmap myMap = GetBitMapfromFile(fileName);
@@ -77,8 +77,8 @@ public class ProductApp {
     }
 
 
-    public String getFilePath() {
-        return "/home/ewa/Documents/Programming/IdeaProjects/jjdz-shopping/src/main/java/com/speed/service/IMG_0528.JPG";
-    }
+//    public String getFilePath() {
+//        return "/home/ewaw/Workspace/jjdz-shopping/src/main/resources/files/barcode.png";
+//    }
 }
 
