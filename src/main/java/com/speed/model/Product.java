@@ -10,7 +10,7 @@ public class Product {
 
     private String ProductName;
     private String ProductNumber;
-    private String ProducentName;
+    private String ManufacturerName;
 
 
     public String getProductName() {
@@ -29,11 +29,11 @@ public class Product {
         ProductNumber = productNumber;
     }
 
-    public String getProducentName() {
-        return ProducentName;
+    public String getManufacturerName() {
+        return ManufacturerName;
     }
 
-    public void setProducentName(String producentName) {
-        ProducentName = producentName;
+    public void setManufacturerName(String manufacturerName) {
+        ManufacturerName = manufacturerName;
     }
 }
