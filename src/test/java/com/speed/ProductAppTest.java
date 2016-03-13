@@ -25,7 +25,6 @@ public class ProductAppTest {
         String fileNameNotOK = getClass().getResource("/barcode_tv.png").getPath();
 
         //when
-
         Product actual = cut.findProduct(fileNameNotOK);
 
         //then throws IOException
@@ -58,9 +57,5 @@ public class ProductAppTest {
         //then throws IOException
     }
 
-    @Test
-    public void testFindProduct() throws IOException {
-
-    }
 
 }
