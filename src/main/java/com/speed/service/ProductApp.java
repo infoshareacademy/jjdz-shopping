@@ -22,9 +22,7 @@ public class ProductApp {
 
     public Product findProduct(String fileName) throws IOException {
 
-        //decode picture to code
-
-//        String fileName = getFilePath();
+        //decode picture to number
         Result result;
         try {
             BinaryBitmap myMap = GetBitMapfromFile(fileName);
@@ -35,17 +33,11 @@ public class ProductApp {
             throw new IOException("Error during reading and parsing from file. Reason: " + e.getMessage(), e);
         }
 
-        // Potrzebne?
-        if (result == null) {
-            throw new AssertionError();
-        }
-
         Product product = new Product();
-        String gtin = result.getText();  //toString????
-        //        String gtin = "05900352000602";
+        String gtin = result.getText();
         product.setProductNumber(gtin);
 
-        //druga czesc - wyciagniecie info z API
+        //part 2 - REST API request
         RestAPIProvider r = new RestAPIProvider("http://api3.produktywsieci.pl/PublicService.svc/rest/xml/GetProductByGTIN");
         String APIkey = "bd9HdzJMoMvpkn@JuVfp@Czozrpc_UM4gvmn";
 
@@ -66,7 +58,7 @@ public class ProductApp {
 
     private BinaryBitmap GetBitMapfromFile(String fileName) throws IOException {
         File img = new File(fileName);
-        BufferedImage bufferedImage = null;
+        BufferedImage bufferedImage;
         bufferedImage = ImageIO.read(img);
 
         if (bufferedImage == null) {
