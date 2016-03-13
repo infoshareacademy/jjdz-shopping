@@ -2,7 +2,7 @@ package com.speed.model;
 
 import java.util.Map;
 
-public class CategoryTree {
+public class CategoryTree{
     Map<Integer, Category> categoryMap;
 
     public CategoryTree(Map<Integer, Category> categoryMap) {
@@ -14,8 +14,8 @@ public class CategoryTree {
 
         for ( int i=1; i <= categoryMap.size(); i++ ) {
             Category value = categoryMap.get(i);
-            if(value.getId() == id){
-                catName  = value.getCategoryName();
+            if(value.getCatId() == id){
+                catName  = value.getCatName();
             }
         }
      return catName;
