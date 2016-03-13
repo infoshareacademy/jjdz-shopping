@@ -36,7 +36,7 @@ public class ProductAppTest {
 
 
     @Test (expected = IOException.class)
-    public void testFindProductWrongFile() throws IOException {
+    public void testFindProductWrongFilePath() throws IOException {
         //given
         String fileNameNotOK = "";
 
