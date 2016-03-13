@@ -31,7 +31,7 @@ public class ProductAppTest {
         assertEquals("Probelm with GTIN", actual.getProductNumber(), expectedGTIN);
         assertEquals("Problem with product name", actual.getProductName(),expectedProductName);
         assertEquals("Problem with product name", actual.getManufacturerName(),expectedManucafturerName);
-        System.out.println(actual.getProductNumber() + actual.getProductName() + actual.getManufacturerName());
+        System.out.println("GTIN: " + actual.getProductNumber() + ", Product: " + actual.getProductName() + ", Manufacturer: " + actual.getManufacturerName());
     }
 
 
