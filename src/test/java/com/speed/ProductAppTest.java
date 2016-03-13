@@ -7,7 +7,6 @@ import org.junit.Test;
 
 import java.io.IOException;
 
-import static org.junit.Assert.*;
 import static org.junit.Assert.assertEquals;
 
 /**
@@ -40,7 +39,7 @@ public class ProductAppTest {
     @Test (expected = IOException.class)
     public void testFindProductWrongFile() throws IOException {
         //given
-        String fileNameNotOK = "/home/ewaw/Workspace/jjdz-shopping/src/main/resources/files/barecode.png";
+        String fileNameNotOK = "";
 
         //when
         Product actual = cut.findProduct(fileNameNotOK);
