@@ -15,67 +15,47 @@ import java.util.Set;
 
 public class Category {
 
+    int id;
+    int parentId;
+    String categoryName;
 
-
-    public static void main(String[] args) {
-        //displays available categories with their IDs
-
-       /* TV tv1= new TV();
-
-        tv1.setCena(1500);
-        tv1.setNowy(true);
-        tv1.setFormat("16:9",1);*/
-
-        TV tv2 = new TV(2500,true,"4:3",1);
-        LCD lcd1 = new LCD();
-
-        lcd1.setCena(900);
-        lcd1.setOdswiezanie("100Hz",1);
-
-
-    }
-
-
-    //category properitis
-    private String categoryID;
-    private String categoryName;
-
-    //Construktor
-    public Category(String categoryID, String categoryName){
-
-        this.categoryID = categoryID;
+    public Category(int id, int parentId, String categoryName) {
+        this.id = id;
+        this.parentId = parentId;
         this.categoryName = categoryName;
     }
 
-    //gets
-    public String getCategoryID() {return categoryID;}
-    public String getCategoryName() {return categoryName;}
+    public int getId() {
+        return id;
+    }
 
-    //Temporaty method for adding category
-    public static void addCategoryToMap(){
+    public int getParentId() {
+        return parentId;
+    }
 
-        HashMap hmCategory = new HashMap();
+    public String getCategoryName() {
+        return categoryName;
+    }
 
-        hmCategory.put("c1", "Kineskopowe");
-        hmCategory.put("c2", "LCD");
-        hmCategory.put("c3", "Plazmowe");
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
 
-        Set set = hmCategory.entrySet();
-        Iterator i = set.iterator();
+        Category category = (Category) o;
 
-        while(i.hasNext()){
-            Map.Entry entry = (Map.Entry)i.next();
-            System.out.println(entry.getKey() + ": ");
-            System.out.println(entry.getValue());
-        }
-
+        if (id != category.id) return false;
+        if (parentId != category.parentId) return false;
+        return categoryName.equals(category.categoryName);
 
     }
 
-
-    //static factory method
-    public static CategoryTemp catFrom(String c1, String lcd) {
-        return new CategoryTemp(c1, lcd);
+    @Override
+    public int hashCode() {
+        int result = id;
+        result = 31 * result + parentId;
+        result = 31 * result + categoryName.hashCode();
+        return result;
     }
 }
 

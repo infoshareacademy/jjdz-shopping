@@ -15,12 +15,12 @@ import java.io.*;
  */
 public class ReadXMLFile {
 
-    public Product parseXML(String xmlStr, Product product) throws IOException, ParserConfigurationException, SAXException {
+    public Product parseXML(String xmlStr, Product product) throws IOException, ParserConfigurationException, SAXException, NullPointerException {
 
         try (PrintWriter pw = new PrintWriter("XML.xml", "UTF-8")) {
             pw.println(xmlStr);
         } catch (FileNotFoundException | UnsupportedEncodingException e) {
-            e.printStackTrace();
+            throw e;
         }
 
         File file = new File("XML.xml");
@@ -34,22 +34,27 @@ public class ReadXMLFile {
             doc.getDocumentElement().normalize();
             Element dataElement = (Element) doc.getElementsByTagName("Data").item(0);
 
-            Element ownerElement = (Element) dataElement.getElementsByTagName("a:Owner").item(0);
-            String ownerName = ownerElement.getElementsByTagName("b:Name").item(1).getTextContent();
 
-            Element productElement = (Element) dataElement.getElementsByTagName("a:Product").item(0);
-            String productName = productElement.getElementsByTagName("b:Name").item(0).getTextContent();
+            try {
+                Element ownerElement = (Element) dataElement.getElementsByTagName("a:Owner").item(0);
+                Element productElement = (Element) dataElement.getElementsByTagName("a:Product").item(0);
 
-            if (ownerName == null) {
-                product.setProducentName("No information about manufacturer");
-            } else {
-                product.setProducentName(ownerName);
-            }
+                String productName = productElement.getElementsByTagName("b:Name").item(0).getTextContent();
+                String ownerName = ownerElement.getElementsByTagName("b:Name").item(1).getTextContent();
 
-            if (productName == null) {
-                product.setProducentName("No information about product name");
-            } else {
-                product.setProductName(productName);
+                if (ownerName == null) {
+                    product.setManufacturerName("No information about manufacturer");
+                } else {
+                    product.setManufacturerName(ownerName);
+                }
+
+                if (productName == null) {
+                    product.setManufacturerName("No information about product name");
+                } else {
+                    product.setProductName(productName);
+                }
+            } catch (NullPointerException e) {
+                throw e;
             }
         }
 

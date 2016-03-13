@@ -20,11 +20,11 @@ import java.io.IOException;
  */
 public class ProductApp {
 
-    public Product getProduct() throws IOException {
+    public Product findProduct(String fileName) throws IOException {
 
         //decode picture to code
 
-        String fileName = getFilePath();
+//        String fileName = getFilePath();
         Result result;
         try {
             BinaryBitmap myMap = GetBitMapfromFile(fileName);
@@ -35,6 +35,7 @@ public class ProductApp {
             throw new IOException("Error during reading and parsing from file. Reason: " + e.getMessage(), e);
         }
 
+        // Potrzebne?
         if (result == null) {
             throw new AssertionError();
         }
@@ -55,7 +56,7 @@ public class ProductApp {
             String stringWithRestResponse = r.sendRestApiRequest();
             ReadXMLFile rxm = new ReadXMLFile();
             product = rxm.parseXML(stringWithRestResponse, product);
-        } catch (IOException | SAXException | ParserConfigurationException e) {
+        } catch (IOException | SAXException | ParserConfigurationException | NullPointerException e) {
             throw new IOException("Error during getting product information. Reason: "+ e.getMessage(),e);
         }
 
@@ -77,8 +78,8 @@ public class ProductApp {
     }
 
 
-    public String getFilePath() {
-        return "/home/ewa/Documents/Programming/IdeaProjects/jjdz-shopping/src/main/java/com/speed/service/IMG_0528.JPG";
-    }
+//    public String getFilePath() {
+//        return "/home/ewaw/Workspace/jjdz-shopping/src/main/resources/files/barcode.png";
+//    }
 }
 
