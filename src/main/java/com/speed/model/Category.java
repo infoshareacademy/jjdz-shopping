@@ -21,7 +21,7 @@ public class Category {
     private int catPosition;
     private int catIsProductCatalogueEnabled;
 
-    public Category(int catId,  int catParent, String catName) {
+    public Category(int catId, int catParent, String catName) {
         this.catId = catId;
         this.catName = catName;
         this.catParent = catParent;

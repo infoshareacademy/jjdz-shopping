@@ -19,34 +19,35 @@ public class ParseXML {
     public static void main(String[] args) throws XMLStreamException {
 
 
-//    public List<Category> readXML(String xmlName) throws XMLStreamException {
+    }
+
+
+    public void parsStax() throws XMLStreamException {
+
+
         XMLInputFactory factory = XMLInputFactory.newFactory();
         XMLStreamReader parser = factory.createXMLStreamReader(ClassLoader.getSystemResourceAsStream("files/allegro.xml"));
 
 
-        List<Category> categoryList = new ArrayList<>();
-
-
+        List<Category> categoryList = null;
+        Category category = null;
+        String text = null;
         boolean inItem = false;
-        String currentTag = "";
+        String currentTag = null;
 
         while (parser.hasNext()) {
             int event = parser.next();
-            Category category = new Category();
+
             switch (event) {
                 case XMLStreamConstants.START_ELEMENT:
                     String tagName = parser.getLocalName();
                     if (tagName.equals("item")) {
                         inItem = true;
 
-                        int catIdeEvent = parser.next();
-                        parser.getLocalName();
-                        System.out.println(catIdeEvent);
+                        categoryList = new ArrayList<>();
+                        category = new Category();
 
-                        int attrCount = parser.getAttributeCount();
-                        System.out.println(attrCount);
 
-                        //zaczynamy zbierac
                     }
                     if (inItem) {
                         currentTag = tagName;
@@ -55,37 +56,51 @@ public class ParseXML {
 
                 case XMLStreamConstants.CHARACTERS:
                     if (inItem) {
-                        String text = parser.getText().trim();
-                        if (!text.isEmpty()) {
-                            System.out.println(currentTag + " - " + text);
-                        }
-
-
-//                        switch (currentTag){
+                        text = parser.getText().trim();
+                        break;
 //
-//                            case "catID":
-//                                category.setCatId();
-//
-//                        }
 
                     }
-                    break;
+
                 case XMLStreamConstants.END_ELEMENT:
-                    if (parser.getLocalName().equals("item")) {
-                        //zebrane uzywamy do stworzenia kategorii
-                        inItem = false;
-                    }
-                    break;
-                case XMLStreamConstants.ATTRIBUTE:
+                    if (!text.isEmpty()) {
+                        if (parser.getLocalName().equals("item")) {
+                            switch (currentTag) {
+                                case "item":
+                                    categoryList.add(category);
+                                    break;
+                                case "catId":
+                                    category.setCatParent(Integer.valueOf(text));
+                                    break;
+                                case "catName":
+                                    category.setCatName(text);
+                                    break;
 
+                                case "catParent":
+                                    category.setCatParent(Integer.valueOf(text));
+                                    break;
+                                case "catPosition":
+                                    category.setCatPosition(Integer.valueOf(text));
+                                    break;
+                                case "catIsProductCatalogueEnabled":
+                                    category.setCatIsProductCatalogueEnabled(Integer.valueOf(text));
+                                    break;
+
+                            }
+                            inItem = false;
+                        }
+                        break;
+                    }
+
+                case XMLStreamConstants.ATTRIBUTE:
                     break;
 
 
             }
         }
+    }
 
-                }
+    }
 
 
 
-}
