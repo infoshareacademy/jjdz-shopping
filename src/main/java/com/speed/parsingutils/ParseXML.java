@@ -1,5 +1,6 @@
 package com.speed.parsingutils;
 
+import com.google.zxing.common.StringUtils;
 import com.speed.model.Category;
 
 import javax.xml.stream.XMLInputFactory;
@@ -7,7 +8,9 @@ import javax.xml.stream.XMLStreamConstants;
 import javax.xml.stream.XMLStreamException;
 import javax.xml.stream.XMLStreamReader;
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
+import java.util.Locale;
 
 
 /**
@@ -16,91 +19,94 @@ import java.util.List;
 public class ParseXML {
 
 
-    public static void main(String[] args) throws XMLStreamException {
+    public List<Category> parsStax(final String fileName) {
 
-
-    }
-
-
-    public void parsStax() throws XMLStreamException {
-
+        if (fileName == null || fileName.trim().equals("")){
+            return Collections.emptyList();
+        }
 
         XMLInputFactory factory = XMLInputFactory.newFactory();
-        XMLStreamReader parser = factory.createXMLStreamReader(ClassLoader.getSystemResourceAsStream("files/allegro.xml"));
+        XMLStreamReader parser = null;
+        try {
+            parser = factory.createXMLStreamReader(ClassLoader.getSystemResourceAsStream(fileName));
+        } catch (XMLStreamException e) {
+            e.printStackTrace();
+        }
 
-
-        List<Category> categoryList = null;
-        Category category = null;
+        List<Category> categoryList = new ArrayList<>();
+        Category category;
         String text = null;
-        boolean inItem = false;
+        boolean inItem;
         String currentTag = null;
 
-        while (parser.hasNext()) {
-            int event = parser.next();
+        try {
+            while (parser.hasNext()) {
+                int event = parser.next();
 
-            switch (event) {
-                case XMLStreamConstants.START_ELEMENT:
-                    String tagName = parser.getLocalName();
-                    if (tagName.equals("item")) {
-                        inItem = true;
+                switch (event) {
+                    case XMLStreamConstants.START_ELEMENT:
+                        String tagName = parser.getLocalName();
+                        if (tagName.equals("item")) {
+                            inItem = true;
 
-                        categoryList = new ArrayList<>();
-                        category = new Category();
+//                            categoryList = new ArrayList<>();
+                             category = new Category();
 
+                            while (parser.hasNext()) {
+                                int innerEvent = parser.next();
+                                switch (innerEvent) {
 
-                    }
-                    if (inItem) {
-                        currentTag = tagName;
-                    }
-                    break;
+                                    case XMLStreamConstants.CHARACTERS:
+                                        if (inItem) {
+                                            text = parser.getText().trim();
+                                            break;
+                                        }
 
-                case XMLStreamConstants.CHARACTERS:
-                    if (inItem) {
-                        text = parser.getText().trim();
-                        break;
-//
+                                    case XMLStreamConstants.END_ELEMENT:
+                                        if (!text.isEmpty()) {
+                                            if (parser.getLocalName().equals("item")) {
+                                                switch (currentTag) {
+                                                    case "catId":
+                                                        category.setCatParent(Integer.valueOf(text));
+                                                        break;
+                                                    case "catName":
+                                                        category.setCatName(text);
+                                                        break;
 
-                    }
+                                                    case "catParent":
+                                                        category.setCatParent(Integer.valueOf(text));
+                                                        break;
+                                                    case "catPosition":
+                                                        category.setCatPosition(Integer.valueOf(text));
+                                                        break;
+                                                    case "catIsProductCatalogueEnabled":
+                                                        category.setCatIsProductCatalogueEnabled(Integer.valueOf(text));
+                                                        break;
+                                                    case "item":
+                                                        categoryList.add(category);
+                                                        break;
+                                                }
+                                                inItem = false;
 
-                case XMLStreamConstants.END_ELEMENT:
-                    if (!text.isEmpty()) {
-                        if (parser.getLocalName().equals("item")) {
-                            switch (currentTag) {
-                                case "item":
-                                    categoryList.add(category);
-                                    break;
-                                case "catId":
-                                    category.setCatParent(Integer.valueOf(text));
-                                    break;
-                                case "catName":
-                                    category.setCatName(text);
-                                    break;
+                                                break;
+                                            }
+                                        }
 
-                                case "catParent":
-                                    category.setCatParent(Integer.valueOf(text));
-                                    break;
-                                case "catPosition":
-                                    category.setCatPosition(Integer.valueOf(text));
-                                    break;
-                                case "catIsProductCatalogueEnabled":
-                                    category.setCatIsProductCatalogueEnabled(Integer.valueOf(text));
-                                    break;
-
+                                    case XMLStreamConstants.ATTRIBUTE:
+                                        break;
+                                }
                             }
-                            inItem = false;
+                            if (inItem) {
+                                currentTag = tagName;
+                            }
+
                         }
-                        break;
-                    }
-
-                case XMLStreamConstants.ATTRIBUTE:
-                    break;
-
-
+                }
             }
+        } catch (XMLStreamException e) {
+            e.printStackTrace();
+
         }
+        return categoryList;
     }
-
-    }
-
-
-
+}
