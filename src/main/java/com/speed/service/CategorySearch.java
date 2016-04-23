@@ -2,6 +2,7 @@ package com.speed.service;
 
 import com.speed.model.Category;
 
+import javax.ejb.Stateless;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
@@ -9,6 +10,7 @@ import java.util.List;
 /**
  * Created by damian on 22.04.16.
  */
+@Stateless
 public class CategorySearch {
 
     private List<Category> categoryList;
@@ -45,6 +47,8 @@ public class CategorySearch {
 //        System.out.println("Search for product: ");
 //        Scanner userInput = new Scanner(System.in);
 //        String searchedProduct = userInput.nextLine();
+
+
 
 
         for (Category cat:categoryList) {
