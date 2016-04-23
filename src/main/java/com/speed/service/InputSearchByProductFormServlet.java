@@ -23,22 +23,13 @@ public class InputSearchByProductFormServlet extends HttpServlet {
 
         String searchedProduct = req.getParameter("searchedProduct");
 
-        String result = categorySearch.searchCategoryByGivenProduct(searchedProduct);
-        System.out.println(result);
+        StringBuilder result = categorySearch.searchCategoryByGivenProduct(searchedProduct);
 
         req.setAttribute("result", result);
 
-        RequestDispatcher dispatcher = req.getRequestDispatcher("index.jsp");
+        RequestDispatcher dispatcher = req.getRequestDispatcher("foundCategories.jsp");
         dispatcher.forward(req, resp);
 
 
     }
-
-//    @Override
-//    protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-//
-//
-//        RequestDispatcher dispatcher = req.getRequestDispatcher("index.jsp");
-//        dispatcher.forward(req, resp);
-//    }
 }
