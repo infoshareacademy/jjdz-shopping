@@ -13,25 +13,25 @@ import java.util.List;
 @Stateless
 public class CategorySearch {
 
-    private List<Category> categoryList;
+    private List<Category> categories;
     private String foundCategory = "";
 
-    public CategorySearch(){
-        this.categoryList = new ArrayList<Category>(Arrays.<Category>asList());
+    public CategorySearch() {
+        this.categories = new ArrayList<Category>(Arrays.<Category>asList());
 
-        categoryList.add(new Category(26013,0,"Rowery"));
-        categoryList.add(new Category(98553,0,"Telewizory"));
-        categoryList.add(new Category(64477,0,"Odzież"));
-        categoryList.add(new Category(12345,64477,"Spodnie"));
-        categoryList.add(new Category(22334,26013,"Rowery miejskie"));
+        categories.add(new Category(26013, 0, "Rowery"));
+        categories.add(new Category(98553, 0, "Telewizory"));
+        categories.add(new Category(64477, 0, "Odzież"));
+        categories.add(new Category(12345, 64477, "Spodnie"));
+        categories.add(new Category(22334, 26013, "Rowery miejskie"));
     }
 
-    public List<Category> getCategoryList() {
-        return categoryList;
+    public List<Category> getCategories() {
+        return categories;
     }
 
-    public void setCategoryList(List<Category> categoryList) {
-        this.categoryList = categoryList;
+    public void setCategories(List<Category> categories) {
+        this.categories = categories;
     }
 
     public String getFoundCategory() {
@@ -42,25 +42,21 @@ public class CategorySearch {
         this.foundCategory = foundCategory;
     }
 
-    public String searchCategoryByGivenProduct(String searchedProduct){
+    public StringBuilder searchCategoryByGivenProduct(String searchedProduct) {
 
-//        System.out.println("Search for product: ");
-//        Scanner userInput = new Scanner(System.in);
-//        String searchedProduct = userInput.nextLine();
+        StringBuilder builder = new StringBuilder();
+        for (Category cat : categories) {
+            if (cat.getCatName().toLowerCase().contains(searchedProduct.toLowerCase())) {
+                builder.append("Product can be found in category: " + cat.getCatName() + "<br>");
 
-
-
-
-        for (Category cat:categoryList) {
-                if(cat.getCatName().toLowerCase().contains(searchedProduct.toLowerCase())){
-                    System.out.println("Product " + searchedProduct + " can be found in category: " + cat.getCatName());
-                    setFoundCategory(cat.getCatName());
-                }
+//                    TODO: insert found category name to database instead of below setFoundCategory
+                setFoundCategory(cat.getCatName());
             }
-        if(getFoundCategory().equals("")){
-            System.out.println("No category found for product: " + searchedProduct);
         }
-        return getFoundCategory();
+        if (getFoundCategory() == "") {
+            builder.append("No category found for product: " + searchedProduct);
         }
+        return builder;
     }
+}
 
