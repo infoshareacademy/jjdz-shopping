@@ -44,6 +44,7 @@ public class CategorySearch {
 
     public StringBuilder searchCategoryByGivenProduct(String searchedProduct) {
 
+        setFoundCategory("");
         StringBuilder builder = new StringBuilder();
         for (Category cat : categories) {
             if (cat.getCatName().toLowerCase().contains(searchedProduct.toLowerCase())) {
@@ -53,7 +54,7 @@ public class CategorySearch {
                 setFoundCategory(cat.getCatName());
             }
         }
-        if (getFoundCategory() == "") {
+        if (getFoundCategory().equals("")) {
             builder.append("No category found for product: " + searchedProduct);
         }
         return builder;
