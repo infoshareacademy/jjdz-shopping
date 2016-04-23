@@ -64,7 +64,7 @@
                 <div class="row">
                     <div class="col-md-12">
                         <div class="input-group">
-                            <form method="POST" action="InputSearchByProductForm">
+                            <form method="POST" action="SearchByProductServlet">
 
                                 <input type="text" name="searchedProduct" class="form-control" placeholder="Search for...">
                                 <!--<span class="input-group-btn">-->
