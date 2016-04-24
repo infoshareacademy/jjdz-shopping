@@ -1,8 +1,8 @@
 package com.speed;
 
 
-import com.speed.model.Product;
-import com.speed.service.ProductApp;
+import com.speed.model.ProductFromBarcode;
+import com.speed.service.ProductFromBarcodeApp;
 import org.junit.Test;
 
 import java.io.IOException;
@@ -11,9 +11,9 @@ import java.io.IOException;
 /**
  * Created by ewaw on 28.02.16.
  */
-public class ProductAppTest {
+public class ProductFromBarcodeAppTest {
 
-    private ProductApp cut = new ProductApp();
+    private ProductFromBarcodeApp cut = new ProductFromBarcodeApp();
 
     @Test
     public void testFindProductwithRightPicture() throws Exception {
@@ -22,10 +22,10 @@ public class ProductAppTest {
         String expectedProductName = "TIMOTEI SZAMPON PPRZECIWŁUPIEŻOWY DLA MĘŻCZYZN 250ml";
         String expectedManucafturerName = "Unilever Polska Sp. z o.o.";
 
-        String fileNameOK = "/home/ewaw/Workspace/jjdz-shopping/src/main/resources/files/barcode.png";
+        String fileNameOK = "/home/ewaw/Workspace/jjdz-shopping/src/test/resources/barcode.png";
 
         //when
-        Product actual = cut.findProduct(fileNameOK);
+        ProductFromBarcode actual = cut.findProduct(cut.GetBitMap(fileNameOK));
 
         //then
 //        assertEquals("Probelm with GTIN", actual.getProductNumber(), expectedGTIN);
@@ -38,10 +38,10 @@ public class ProductAppTest {
     @Test (expected = IOException.class)
     public void testFindProductWrongFile() throws IOException {
         //given
-        String fileNameNotOK = "/home/ewaw/Workspace/jjdz-shopping/src/main/resources/files/barecode.png";
+        String fileNameNotOK = "/home/ewaw/Workspace/jjdz-shopping/src/test/resources/barecode.png";
 
         //when
-        Product actual = cut.findProduct(fileNameNotOK);
+        ProductFromBarcode actual = cut.findProduct(cut.GetBitMap(fileNameNotOK));
 
         //then throws IOException
     }
@@ -49,10 +49,10 @@ public class ProductAppTest {
     @Test (expected = IOException.class)
     public void testFindProductNotInDatabese() throws IOException {
         //given
-        String fileNameNotOK = "/home/ewaw/Workspace/jjdz-shopping/src/main/resources/files/zxing_barcode_test.jpg";
+        String fileNameNotOK = "/home/ewaw/Workspace/jjdz-shopping/src/test/resources/files/zxing_barcode_test.jpg";
 
         //when
-        Product actual = cut.findProduct(fileNameNotOK);
+        ProductFromBarcode actual = cut.findProduct(cut.GetBitMap(fileNameNotOK));
 
         //then throws IOException
     }
