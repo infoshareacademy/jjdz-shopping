@@ -3,6 +3,9 @@ package com.speed.model;
 import com.speed.service.CategorySearch;
 import org.junit.Test;
 
+import javax.xml.stream.XMLStreamException;
+import java.util.List;
+
 import static org.junit.Assert.assertTrue;
 
 /**
@@ -10,39 +13,39 @@ import static org.junit.Assert.assertTrue;
  */
 public class CategorySearchTest {
     @Test
-    public void willReturnCategoryNameWhenLowerCaseProductFound() {
+    public void should_return_not_empty_list_of_found_categories() throws XMLStreamException {
         // given
         CategorySearch categorySearcher = new CategorySearch();
 
         // when
-        categorySearcher.searchCategoryByGivenProduct("rower");
+        List<Category> foundCategories = categorySearcher.searchCategoryByGivenProduct("rower");
 
         // then
-        assertTrue(categorySearcher.getFoundCategory(), true);
+        assertTrue(foundCategories.size() > 0);
     }
 
     @Test
-    public void willReturnCategoryNameWhenUpperCaseProductFound() {
+    public void willReturnCategoryNameWhenUpperCaseProductFound() throws XMLStreamException {
         // given
         CategorySearch categorySearcher = new CategorySearch();
 
         // when
-        categorySearcher.searchCategoryByGivenProduct("ROWER");
+        List<Category> foundCategories = categorySearcher.searchCategoryByGivenProduct("ROWER");
 
         // then
-        assertTrue(categorySearcher.getFoundCategory(), true);
+        assertTrue(foundCategories.size() > 0);
     }
 
     @Test
-    public void willReturnMessageWhenProductNotFound() {
+    public void willReturnMessageWhenProductNotFound() throws XMLStreamException {
         // given
         CategorySearch categorySearcher = new CategorySearch();
 
         // when
-        categorySearcher.searchCategoryByGivenProduct("telefon");
+        List<Category> foundCategories = categorySearcher.searchCategoryByGivenProduct("blabla");
 
         // then
-        assertTrue(categorySearcher.getFoundCategory(), true);
+        assertTrue(foundCategories.size() == 0);
     }
 
 
