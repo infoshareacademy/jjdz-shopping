@@ -53,30 +53,8 @@
           </div>
 
           <div class="inner cover">
-            <h3 class="cover-heading">Podaj adres pliku ze zdjęciem kodu kreskowego</h3>
-            <!--<p class="lead">Cover is a one-page template for building simple and beautiful home pages. Download, edit the text, and add your own fullscreen background photo to make it your own.</p>-->
-            <!--<p class="lead">-->
-              <!--&lt;!&ndash;<a href="#" class="btn btn-lg btn-default">Wprowadz kod kreskowy</a>&ndash;&gt;-->
-              <!--&lt;!&ndash;<a href="#" class="btn btn-lg btn-default">Wprowadz słowo kluczowe</a>&ndash;&gt;-->
-            <!--</p>-->
-
+            <p>${result}</p>
           </div>
-
-          <!--<form action="demo_form.asp">-->
-            <!--<input type="file" name="img">-->
-            <!--<input type="submit" class="btn-default ">-->
-          <!--</form>-->
-
-
-
-          <form class="navbar-form navbar-left" role="search">
-            <div class="form-group">
-              <input type="file" name="img">
-            </div>
-            <button type="submit" class="btn btn-default">Submit</button>
-          </form>
-
-
 
           <div class="mastfoot">
             <div class="inner">
