@@ -6,9 +6,10 @@ import com.google.zxing.NotFoundException;
 import com.google.zxing.Result;
 import com.google.zxing.client.j2se.BufferedImageLuminanceSource;
 import com.google.zxing.common.HybridBinarizer;
-import com.speed.model.Product;
+import com.speed.model.ProductFromBarcode;
 import org.xml.sax.SAXException;
 
+import javax.ejb.Stateless;
 import javax.imageio.ImageIO;
 import javax.xml.parsers.ParserConfigurationException;
 import java.awt.image.BufferedImage;
@@ -18,9 +19,12 @@ import java.io.IOException;
 /**
  * Created by ewa on 2/21/16.
  */
-public class ProductApp {
 
-    public Product findProduct(String fileName) throws IOException {
+
+@Stateless
+public class ProductFromBarcodeApp {
+
+    public ProductFromBarcode findProduct(String fileName) throws IOException {
 
         //decode picture to number
         Result result;
@@ -33,7 +37,7 @@ public class ProductApp {
             throw new IOException("Error during reading and parsing from file. Reason: " + e.getMessage(), e);
         }
 
-        Product product = new Product();
+        ProductFromBarcode product = new ProductFromBarcode();
         String gtin = result.getText();
         product.setProductNumber(gtin);
 

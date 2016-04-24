@@ -1,6 +1,6 @@
 package com.speed.service;
 
-import com.speed.model.Product;
+import com.speed.model.ProductFromBarcode;
 import org.w3c.dom.Document;
 import org.w3c.dom.Element;
 import org.xml.sax.SAXException;
@@ -15,7 +15,7 @@ import java.io.*;
  */
 public class ReadXMLFile {
 
-    public Product parseXML(String xmlStr, Product product) throws IOException, ParserConfigurationException, SAXException, NullPointerException {
+    public ProductFromBarcode parseXML(String xmlStr, ProductFromBarcode product) throws IOException, ParserConfigurationException, SAXException, NullPointerException {
 
         try (PrintWriter pw = new PrintWriter("XML.xml", "UTF-8")) {
             pw.println(xmlStr);
