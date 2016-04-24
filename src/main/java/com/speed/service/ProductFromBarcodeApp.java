@@ -15,6 +15,7 @@ import javax.xml.parsers.ParserConfigurationException;
 import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.IOException;
+import java.io.InputStream;
 
 /**
  * Created by ewa on 2/21/16.
@@ -24,15 +25,15 @@ import java.io.IOException;
 @Stateless
 public class ProductFromBarcodeApp {
 
-    public ProductFromBarcode findProduct(String fileName) throws IOException {
+
+    public ProductFromBarcode findProduct(BinaryBitmap myMap) throws IOException {
 
         //decode picture to number
         Result result;
         try {
-            BinaryBitmap myMap = GetBitMapfromFile(fileName);
             MultiFormatReader reader = new MultiFormatReader();
             result = reader.decode(myMap);
-        }catch (IOException  | NotFoundException e) {
+        }catch (NotFoundException e) {
             e.printStackTrace();
             throw new IOException("Error during reading and parsing from file. Reason: " + e.getMessage(), e);
         }
@@ -60,7 +61,18 @@ public class ProductFromBarcodeApp {
 
     }
 
-    private BinaryBitmap GetBitMapfromFile(String fileName) throws IOException {
+    public BinaryBitmap GetBitMap(InputStream stream) throws IOException {
+        BufferedImage bufferedImage = ImageIO.read(stream);
+
+        if (bufferedImage == null) {
+            throw new AssertionError();
+        }
+        HybridBinarizer hb = new HybridBinarizer(new BufferedImageLuminanceSource(bufferedImage));
+
+        return new BinaryBitmap(hb);
+    }
+
+    public BinaryBitmap GetBitMap(String fileName) throws IOException {
         File img = new File(fileName);
         BufferedImage bufferedImage;
         bufferedImage = ImageIO.read(img);
