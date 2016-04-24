@@ -17,7 +17,7 @@ public class CategorySearch {
     private String foundCategory = "";
 
     public CategorySearch() {
-        this.categories = new ArrayList<Category>(Arrays.<Category>asList());
+        this.categories = new ArrayList<Category>();
 
         categories.add(new Category(26013, 0, "Rowery"));
         categories.add(new Category(98553, 0, "Telewizory"));
@@ -50,7 +50,7 @@ public class CategorySearch {
             if (cat.getCatName().toLowerCase().contains(searchedProduct.toLowerCase())) {
                 builder.append("Product can be found in category: " + cat.getCatName() + "<br>");
 
-//                    TODO: insert found category name to database instead of below setFoundCategory
+//                    TODO: insert to database the name of found category instead of below setFoundCategory
                 setFoundCategory(cat.getCatName());
             }
         }
