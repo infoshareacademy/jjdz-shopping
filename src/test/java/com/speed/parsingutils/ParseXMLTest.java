@@ -15,7 +15,7 @@ import static org.junit.Assert.assertTrue;
 public class ParseXMLTest {
 
     @Test
-    public void willReturnEmptyListWhenParseNullObject()  {
+    public void willReturnEmptyListWhenParseNullObject() throws XMLStreamException {
         // given
         ParseXML parser = new ParseXML();
 
@@ -27,7 +27,7 @@ public class ParseXMLTest {
     }
 
     @Test
-    public void willReturnEmptyListWhenParseEmptyFileName()  {
+    public void willReturnEmptyListWhenParseEmptyFileName() throws XMLStreamException {
         // given
         ParseXML parser = new ParseXML();
 
@@ -39,7 +39,7 @@ public class ParseXMLTest {
     }
 
     @Test
-    public void willReturnEmptyListWhenParseBlankFileName() {
+    public void willReturnEmptyListWhenParseBlankFileName() throws XMLStreamException {
         // given
         ParseXML parser = new ParseXML();
 
@@ -51,7 +51,7 @@ public class ParseXMLTest {
     }
 
     @Test
-    public void willReturnEmptyListWhenFileIsEmpty()  {
+    public void willReturnEmptyListWhenFileIsEmpty() throws XMLStreamException {
         // given
         ParseXML parser = new ParseXML();
 
@@ -64,7 +64,7 @@ public class ParseXMLTest {
 
 
     @Test
-    public void willReturnCategoriesWhenFileIsValid() {
+    public void willReturnCategoriesWhenFileIsValid() throws XMLStreamException {
         // given
         ParseXML parser = new ParseXML();
 
