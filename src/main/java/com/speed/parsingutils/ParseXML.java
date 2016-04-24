@@ -16,17 +16,17 @@ public class ParseXML {
 
     final  static Logger loger = Logger.getLogger(ParseXML.class);
 
-    public static void main(String[] args) {
-        ParseXML xml = new ParseXML();
-        try {
-          List<Category> categories = xml.parsStax("files/allegro.xml");
-            System.out.println(categories);
-        } catch (XMLStreamException e) {
-            e.printStackTrace();
-        }
-
-
-    }
+//    public static void main(String[] args) {
+//        ParseXML xml = new ParseXML();
+//        try {
+//          List<Category> categories = xml.parsStax("files/allegro.xml");
+//            System.out.println(categories);
+//        } catch (XMLStreamException e) {
+//            e.printStackTrace();
+//        }
+//
+//
+//    }
 
     public List<Category> parsStax(final String fileName) throws XMLStreamException {
 
@@ -35,7 +35,8 @@ public class ParseXML {
         }
 
         XMLInputFactory factory = XMLInputFactory.newFactory();
-        XMLStreamReader parser = factory.createXMLStreamReader(ClassLoader.getSystemResourceAsStream(fileName));
+        XMLStreamReader parser = factory
+                .createXMLStreamReader(getClass().getClassLoader().getResourceAsStream(fileName));
 
 
         List<Category> categoryList = new ArrayList<>();
