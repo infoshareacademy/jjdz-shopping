@@ -1,5 +1,7 @@
 package com.speed.service;
 
+import com.speed.model.ProductFromBarcode;
+
 import javax.ejb.EJB;
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
@@ -28,10 +30,10 @@ public class SearchByBarcodeServlet extends HttpServlet {
         String fileName = filePart.getSubmittedFileName();
         InputStream fileContent = filePart.getInputStream();
 
-//        product.findProduct(fileName); //co zrobic z plikiem? przesylany jest InputStream...
+        ProductFromBarcode product = this.product.findProduct(this.product.GetBitMap(fileContent));//co zrobic z plikiem? przesylany jest InputStream...
 
 
-        request.setAttribute("result", fileName);
+        request.setAttribute("result", product.getProductName());
 
         RequestDispatcher dispatcher = request.getRequestDispatcher("foundFileWithBarcode.jsp");
         dispatcher.forward(request, response);
