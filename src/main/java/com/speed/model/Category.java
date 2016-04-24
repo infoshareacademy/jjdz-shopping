@@ -95,5 +95,16 @@ public class Category {
         result = 31 * result + getCatIsProductCatalogueEnabled();
         return result;
     }
+
+    @Override
+    public String toString() {
+        return "Category{" +
+                "catId=" + catId +
+                ", catName='" + catName + '\'' +
+                ", catParent=" + catParent +
+                ", catPosition=" + catPosition +
+                ", catIsProductCatalogueEnabled=" + catIsProductCatalogueEnabled +
+                '}';
+    }
 }
 
