@@ -58,10 +58,11 @@
             <div class="inner cover">
 
                 <p>
-
                     <c:forEach items="${result}" var="item">
+                        <a href="ShowSubcategoriesServlet?categoryId=${item.catId}">
                         <c:out value="${item.catId}"/>
-                        <c:out value="${item.catName}"/><br>
+                        <c:out value="${item.catName}"/>
+                        </a> Add to Favorites<br>
                     </c:forEach>
                 </p>
                 <!--<p class="lead">Cover is a one-page template for building simple and beautiful home pages. Download, edit the text, and add your own fullscreen background photo to make it your own.</p>-->
