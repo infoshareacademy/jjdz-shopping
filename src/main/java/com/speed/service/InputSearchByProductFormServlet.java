@@ -2,7 +2,6 @@ package com.speed.service;
 
 
 import com.speed.model.Category;
-import com.speed.model.DataFromSearchByProductForm;
 import org.apache.log4j.Logger;
 
 import javax.ejb.EJB;
@@ -34,8 +33,13 @@ public class InputSearchByProductFormServlet extends HttpServlet {
 
         req.setAttribute("result", result);
 
-        RequestDispatcher dispatcher = req.getRequestDispatcher("foundCategories.jsp");
-        dispatcher.forward(req, resp);
+        if(result.size() > 0){
+            RequestDispatcher dispatcher = req.getRequestDispatcher("foundCategories.jsp");
+            dispatcher.forward(req, resp);
+        } else {
+            RequestDispatcher dispatcher = req.getRequestDispatcher("categoriesNotFound.jsp");
+            dispatcher.forward(req, resp);
+        }
 
 
     }
