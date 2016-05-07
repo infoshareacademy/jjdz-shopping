@@ -1,8 +1,8 @@
 package com.speed.service;
 
+import com.speed.model.Category;
 import com.speed.model.ProductFromBarcode;
 
-import javax.annotation.Resource;
 import javax.ejb.EJB;
 import javax.ejb.EJBException;
 import javax.servlet.RequestDispatcher;
@@ -13,12 +13,10 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.Part;
-import javax.validation.ConstraintViolation;
-import javax.validation.Validator;
 import java.io.IOException;
 import java.io.InputStream;
-import java.util.Objects;
-import java.util.Set;
+import java.util.List;
+import java.util.regex.Pattern;
 
 import org.apache.log4j.Logger;
 
@@ -32,6 +30,9 @@ public class SearchByBarcodeServlet extends HttpServlet {
 
     @EJB
     ProductFromBarcodeApp product;
+
+    @EJB
+    CategorySearch categorySearch;
     
 
     final static Logger logger = Logger.getLogger(SearchByBarcodeServlet.class);
@@ -42,15 +43,21 @@ public class SearchByBarcodeServlet extends HttpServlet {
         Part filePart = request.getPart("barcodeImg");          // Retrieves <input type="file" name="barcodeImg">
         String fileName = filePart.getSubmittedFileName();
 
-
-
         ProductFromBarcode product;
         RequestDispatcher dispatcher;
         try (InputStream fileContent = filePart.getInputStream()) {
             product = this.product.findProduct(this.product.GetBitMap(fileContent));
-            request.setAttribute("result", product.getProductName());
 
-            dispatcher = request.getRequestDispatcher("foundFileWithBarcode.jsp");
+            List<Category> categories = FindKeyWord(product.getProductName());
+            if(categories != null){
+                request.setAttribute("result", categories);
+
+                dispatcher = request.getRequestDispatcher("foundCategories.jsp");
+                dispatcher.forward(request, response);
+
+            } else{
+                request.setAttribute("result", product.getProductName()+" did not result in a category");
+                dispatcher = request.getRequestDispatcher("foundFileWithBarcode.jsp");}
 
         }
         catch (EJBException e){
@@ -65,6 +72,22 @@ public class SearchByBarcodeServlet extends HttpServlet {
         dispatcher.forward(request, response);
 
 
+    }
+
+    public List<Category> FindKeyWord(String productName) {
+
+        Pattern pattern = Pattern.compile("[^a-zA-Z]+");
+        String[] result = pattern.split(productName);
+
+
+        for (String i:result) {
+            List<Category> catList = categorySearch.searchCategoryByGivenProduct(i);
+            if (!catList.isEmpty()) {
+                return catList;
+            }
+        }
+
+        return null;
     }
 
 }
