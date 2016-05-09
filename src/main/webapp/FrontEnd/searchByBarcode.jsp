@@ -62,14 +62,16 @@
                 <div class="col-md-12">
                     <div class="input-group">
                         <form class="navbar-form navbar-left" role="search" method="POST" action="SearchByBarcode" enctype="multipart/form-data">
-                            <c:if test="${message != null}">
-                                <div style="background-color: red;">${message}</div>
-                            </c:if>
 
                             <div class="form-group">
                                 <input type="file" name="barcodeImg">
                             </div>
                             <button type="submit" class="btn btn-default">Submit</button>
+
+                            <c:if test="${message != null}">
+                                <br>
+                                <div style="background-color: red;">${message}</div>
+                            </c:if>
                         </form>
                     </div><!-- /input-group -->
                 </div><!-- /.col-md-12 -->
