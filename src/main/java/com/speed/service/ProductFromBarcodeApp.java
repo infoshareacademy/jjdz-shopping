@@ -32,7 +32,7 @@ import java.util.regex.Pattern;
 public class ProductFromBarcodeApp {
 
 
-    CategorySearch categorySearch;
+//    CategorySearch categorySearch;
 
     final static Logger logger = Logger.getLogger(ProductFromBarcodeApp.class);
 
