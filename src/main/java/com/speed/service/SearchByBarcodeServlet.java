@@ -13,6 +13,7 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.Part;
+import javax.xml.stream.XMLStreamException;
 import java.io.IOException;
 import java.io.InputStream;
 import java.util.List;
@@ -27,13 +28,8 @@ import org.apache.log4j.Logger;
 @MultipartConfig
 public class SearchByBarcodeServlet extends HttpServlet {
 
-
     @EJB
     ProductFromBarcodeApp product;
-
-    @EJB
-    CategorySearch categorySearch;
-    
 
     final static Logger logger = Logger.getLogger(SearchByBarcodeServlet.class);
 
@@ -43,51 +39,35 @@ public class SearchByBarcodeServlet extends HttpServlet {
         Part filePart = request.getPart("barcodeImg");          // Retrieves <input type="file" name="barcodeImg">
         String fileName = filePart.getSubmittedFileName();
 
-        ProductFromBarcode product;
+        ProductFromBarcode pfb;
         RequestDispatcher dispatcher;
-        try (InputStream fileContent = filePart.getInputStream()) {
-            product = this.product.findProduct(this.product.GetBitMap(fileContent));
 
-            List<Category> categories = FindKeyWord(product.getProductName());
+        try (InputStream fileContent = filePart.getInputStream()) {
+            pfb = this.product.findProduct(this.product.GetBitMap(fileContent));
+
+            List<Category> categories = pfb.getProductCategories();
             if(categories != null){
                 request.setAttribute("result", categories);
 
                 dispatcher = request.getRequestDispatcher("foundCategories.jsp");
-                dispatcher.forward(request, response);
 
             } else{
-                request.setAttribute("result", product.getProductName()+" did not result in a category");
+                request.setAttribute("result", "Dla " + pfb.getProductName() + " nie znaleziono odpowiedniej kategorii.");
                 dispatcher = request.getRequestDispatcher("foundFileWithBarcode.jsp");}
-
         }
         catch (EJBException e){
             request.setAttribute("message", "Nie podales sciezki do pliku");
             dispatcher = request.getRequestDispatcher("searchByBarcode.jsp");
         }
         catch(IOException e){
-            request.setAttribute("message", "File could not be read");
+            request.setAttribute("message", "Niemozliwy odczyt pliku. Sprobuj podac adres nowego pliku");
+            dispatcher = request.getRequestDispatcher("searchByBarcode.jsp");
+        } catch (XMLStreamException e) {
+            request.setAttribute("message", "Jakis blad");
             dispatcher = request.getRequestDispatcher("searchByBarcode.jsp");
         }
-
         dispatcher.forward(request, response);
-
-
     }
 
-    public List<Category> FindKeyWord(String productName) {
-
-        Pattern pattern = Pattern.compile("[^a-zA-Z]+");
-        String[] result = pattern.split(productName);
-
-
-        for (String i:result) {
-            List<Category> catList = categorySearch.searchCategoryByGivenProduct(i);
-            if (!catList.isEmpty()) {
-                return catList;
-            }
-        }
-
-        return null;
-    }
 
 }

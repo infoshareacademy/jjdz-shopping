@@ -2,7 +2,6 @@ package com.speed.service;
 
 
 import com.speed.model.Category;
-import com.speed.model.DataFromSearchByProductForm;
 import org.apache.log4j.Logger;
 
 import javax.ejb.EJB;
