@@ -5,8 +5,7 @@ import com.speed.parsingutils.ParseXML;
 
 import javax.ejb.Stateless;
 import javax.xml.stream.XMLStreamException;
-import java.util.ArrayList;
-import java.util.List;
+import java.util.*;
 
 /**
  * Created by damian on 22.04.16.
@@ -51,6 +50,33 @@ public class CategorySearch {
         return subcategories;
     }
 
+    public Category findCategoryById(int catId){
 
+        Category category = null;
+
+        for (Category cat : parsedCategories){
+            if (cat.getCatId() == catId){
+                category = cat;
+            }
+        }
+
+        return  category;
+    }
+
+    public StringBuilder showPath(int catId){
+
+        String currentPath = "";
+        StringBuilder builder = new StringBuilder();
+
+        do {
+            int currentCatId = findCategoryById(catId).getCatId();
+            currentPath = findCategoryById(currentCatId).getCatName();
+            builder.insert(0, " >> ");
+            builder.insert(0, currentPath);
+            catId = findCategoryById(currentCatId).getCatParent();
+        } while (catId != 0);
+
+        return  builder;
+    }
 }
 

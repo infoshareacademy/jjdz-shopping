@@ -30,8 +30,10 @@ public class ShowSubcategoriesServlet extends HttpServlet {
         logger.debug("categoryId: " + catId);
 
         List<Category> result = categorySearch.findCategoryChildren(Integer.parseInt(catId));
+        StringBuilder currentPath = categorySearch.showPath(Integer.parseInt(catId));
 
         req.setAttribute("result", result);
+        req.setAttribute("currentPath", currentPath);
 
         if(result.size() > 0){
             RequestDispatcher dispatcher = req.getRequestDispatcher("foundCategories.jsp");
