@@ -51,6 +51,7 @@ public class OAuth2CallbackServlet extends HttpServlet {
         //dispatcher.forward(req, resp);
 
 
+
     }
 }
 
@@ -95,8 +96,25 @@ class GetUserInfo {
 
         //session.getAttribute("name");
 
+        }
 
-    }
+    public void removefromSession() {
+
+        Long threadId = Thread.currentThread().getId();
+        logger.debug("Getting user information for thread: {} - start", threadId);
+
+        HttpSession session = req.getSession();
+
+        session.removeAttribute("name");
+        session.removeAttribute("email");
+        logger.debug("Check if user is Logout [name:{}, email:{}] acquired for thread: {} - end",session.getAttribute("name") , session.getAttribute("email"), threadId);
+
+        //session.getAttribute("name");
+
+
+        }
+
+
 }
 
 

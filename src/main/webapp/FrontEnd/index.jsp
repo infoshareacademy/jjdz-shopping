@@ -59,7 +59,10 @@
                                     </c:when>
 
                                     <c:otherwise>
-                             <div>${sessionScope.name}</div>
+                                        <div>${sessionScope.name}</div>
+                                            <li>
+                                        <div>Logout</div>
+                                            </li>
                                     </c:otherwise>
                                 </c:choose>
 
