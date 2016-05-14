@@ -22,7 +22,7 @@ import javax.servlet.http.HttpSession;
 import java.io.ByteArrayInputStream;
 import java.io.IOException;
 
-@WebServlet(urlPatterns = "FrondEnd/oauth2callback", asyncSupported=true)
+@WebServlet(urlPatterns = "FrontEnd/oauth2callback", asyncSupported=true)
 public class OAuth2CallbackServlet extends HttpServlet {
     private static Logger logger = LoggerFactory.getLogger(OAuth2CallbackServlet.class);
 

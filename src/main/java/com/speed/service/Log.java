@@ -39,7 +39,7 @@ public abstract class Log{
                 .scope("https://www.googleapis.com/auth/userinfo.profile " +
                         "https://www.googleapis.com/auth/userinfo.email") // replace with desired scope
                 .state(secretState)
-                .callback("http://example.com/callback") //("webapp/FrontEnd/LogingForm.jsp")
+                .callback("http://localhost:8080/jjdz-shopping-1.0-SNAPSHOT/FrontEnd/oauth2callback") //("webapp/FrontEnd/LogingForm.jsp")
                 .build(GoogleApi20.instance());
 
         //req.
