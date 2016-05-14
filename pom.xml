@@ -35,6 +35,29 @@
     </build>
 
     <dependencies>
+
+
+        <!--dodane przez ss-->
+        <dependency>
+            <groupId>com.github.scribejava</groupId>
+            <artifactId>scribejava-apis</artifactId>
+            <version>2.5.3</version>
+        </dependency>
+
+        <dependency>
+            <groupId>com.github.scribejava</groupId>
+            <artifactId>scribejava-core</artifactId>
+            <version>2.5.3</version>
+        </dependency>
+
+      <!--  <dependency>
+            <groupId>com.google.oauth-client</groupId>
+            <artifactId>google-oauth-client</artifactId>
+        </dependency>-->
+
+        <!--dodane przez ss-->
+
+
         <dependency>
             <groupId>com.google.zxing</groupId>
             <artifactId>core</artifactId>
@@ -69,6 +92,8 @@
             <version>4.12</version>
             <scope>test</scope>
         </dependency>
+
+
 
     </dependencies>
 
