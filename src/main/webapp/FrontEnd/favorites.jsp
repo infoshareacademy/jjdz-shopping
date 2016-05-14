@@ -11,7 +11,7 @@
     <meta name="author" content="">
     <link rel="icon" href="favicon.ico">
 
-    <title>Cover Template for Bootstrap</title>
+    <title>Favorites</title>
 
     <!-- Bootstrap core CSS -->
     <link href="assets/bootstrap.min.css" rel="stylesheet">
@@ -47,7 +47,7 @@
                     <h3 class="masthead-brand">SPEeD Team</h3>
                     <nav>
                         <ul class="nav masthead-nav">
-                            <li class="active"><a href="index.jsp">Home</a></li>
+                            <li class="active"><a href="#">Home</a></li>
                             <li><a href="#">About</a></li>
                             <li><a href="#">Contact</a></li>
                         </ul>
@@ -56,18 +56,13 @@
             </div>
 
             <div class="inner cover">
-                <p>
-                    Current path: ${currentPath}
-                </p>
 
                 <p>
-                    <c:forEach items="${result}" var="item">
-                        <a href="ShowSubcategoriesServlet?categoryId=${item.catId}">
+                    <h2>Favorites:</h2>
+                    <c:forEach items="${favorites}" var="item">
                         <c:out value="${item.catId}"/>
-                        <c:out value="${item.catName}"/>
-                        </a>
-                        <a href="AddToFavoritesServlet?categoryId=${item.catId}">Add to Favorites</a><br>
-                    </c:forEach><br>
+                        <c:out value="${item.catName}"/><br>
+                    </c:forEach>
                 </p>
                 <!--<p class="lead">Cover is a one-page template for building simple and beautiful home pages. Download, edit the text, and add your own fullscreen background photo to make it your own.</p>-->
                 <p class="lead">
