@@ -73,7 +73,7 @@ public class ProductFromBarcodeAppTest {
         List<Category> checkedCategories = categorySearch.searchCategoryByGivenProduct("LED");
 
         //        when
-        List<Category> tvCategories = cut.FindKeyWord(product.getProductName());
+        List<Category> tvCategories = product.getProductCategories();
 
         //        then
         assertEquals("Cos jest nie tak", tvCategories, checkedCategories);

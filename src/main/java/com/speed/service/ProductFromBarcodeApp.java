@@ -70,8 +70,9 @@ public class ProductFromBarcodeApp {
 
         // part 3 - findig allegro categories for product
 
-        List<Category> categories = FindKeyWord(product.getProductName());
-        product.setProductCategories(categories);
+//        List<Category> categories = FindKeyWord(product.getProductName());
+//        product.setProductCategories(categories);
+        FindKeyWord(product);
 
         return product;
 
@@ -101,9 +102,10 @@ public class ProductFromBarcodeApp {
         return new BinaryBitmap(hb);
     }
 
-    public List<Category> FindKeyWord(String productName) throws XMLStreamException {
+    public ProductFromBarcode FindKeyWord(ProductFromBarcode product) throws XMLStreamException {
 
         CategorySearch categorySearch = new CategorySearch();
+        String productName = product.getProductName();
 
         Pattern pattern = Pattern.compile("[^a-zA-Z]+");
         String[] result = pattern.split(productName);
@@ -111,7 +113,9 @@ public class ProductFromBarcodeApp {
         for (String i:result) {
             List<Category> catList = categorySearch.searchCategoryByGivenProduct(i);
             if (!catList.isEmpty()) {
-                return catList;
+                product.setProductCategories(catList);
+                product.setProductKeyWord(i);
+                return product;
             }
         }
         return null;
