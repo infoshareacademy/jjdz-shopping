@@ -14,24 +14,26 @@ import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 import java.util.List;
 
-@WebServlet(urlPatterns = "FrontEnd/SearchByProductServlet")
-public class InputSearchByProductFormServlet extends HttpServlet {
+@WebServlet(urlPatterns = "FrontEnd/ShowSubcategoriesServlet")
+public class ShowSubcategoriesServlet extends HttpServlet {
 
-    final  static Logger logger = Logger.getLogger(InputSearchByProductFormServlet.class);
+    final  static Logger logger = Logger.getLogger(ShowSubcategoriesServlet.class);
 
     @EJB
     CategorySearch categorySearch;
 
     @Override
-    protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-        logger.debug("START w servlecie");
+    protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+        logger.debug("Call ShowSubcategoriesServlet");
 
-        String searchedProduct = req.getParameter("searchedProduct");
-        logger.debug("getParameter: " + searchedProduct);
+        String catId = req.getParameter("categoryId");
+        logger.debug("categoryId: " + catId);
 
-        List<Category> result = categorySearch.searchCategoryByGivenProduct(searchedProduct);
+        List<Category> result = categorySearch.findCategoryChildren(Integer.parseInt(catId));
+        StringBuilder currentPath = categorySearch.showPath(Integer.parseInt(catId));
 
         req.setAttribute("result", result);
+        req.setAttribute("currentPath", currentPath);
 
         if(result.size() > 0){
             RequestDispatcher dispatcher = req.getRequestDispatcher("foundCategories.jsp");
@@ -40,7 +42,5 @@ public class InputSearchByProductFormServlet extends HttpServlet {
             RequestDispatcher dispatcher = req.getRequestDispatcher("categoriesNotFound.jsp");
             dispatcher.forward(req, resp);
         }
-
-
     }
 }
