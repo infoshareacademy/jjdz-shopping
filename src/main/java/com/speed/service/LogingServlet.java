@@ -17,7 +17,7 @@ import java.util.List;
  * Created by slawekskel on 5/6/16.
  */
 
-@WebServlet(urlPatterns = "FrontEnd/LogingServlet")
+@WebServlet(urlPatterns = "FrontEnd/LogingForm")
 public class LogingServlet extends HttpServlet {
 
          final  static Logger logger = Logger.getLogger(LogingServlet.class);
