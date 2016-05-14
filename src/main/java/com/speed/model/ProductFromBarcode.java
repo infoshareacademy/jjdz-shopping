@@ -15,6 +15,7 @@ public class ProductFromBarcode {
     private String ProductName;
     private String ProductNumber;
     private String ManufacturerName;
+    private String ProductKeyWord;
     private List<Category> ProductCategories;
 
 
@@ -48,5 +49,13 @@ public class ProductFromBarcode {
 
     public void setProductCategories(List<Category> productCategories) {
         ProductCategories = productCategories;
+    }
+
+    public String getProductKeyWord() {
+        return ProductKeyWord;
+    }
+
+    public void setProductKeyWord(String productKeyWord) {
+        ProductKeyWord = productKeyWord;
     }
 }
