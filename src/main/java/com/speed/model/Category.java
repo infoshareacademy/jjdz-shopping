@@ -1,24 +1,36 @@
 package com.speed.model;
 
 
-import java.util.HashMap;
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.Id;
+import javax.persistence.Table;
+import javax.validation.constraints.NotNull;
+import java.io.Serializable;
 
 /**
  * Created by slaw on 13.02.16.
  */
 
-import java.util.HashMap;
-import java.util.Iterator;
-import java.util.Map;
-import java.util.Set;
 
 
-public class Category {
 
+@Entity
+@Table(name="category")
+public class Category implements Serializable{
+
+
+    @Id
+    @Column(name = "catId")
+    @NotNull
     private int catId;
+    @Column(name = "catName")
     private String catName;
+    @Column(name = "catParent")
     private int catParent;
+    @Column(name = "catPosition")
     private int catPosition;
+    @Column(name = "catIsProductCatalogueEnabled")
     private int catIsProductCatalogueEnabled;
 
     public Category(int catId, int catParent, String catName) {
