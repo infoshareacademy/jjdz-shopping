@@ -10,6 +10,7 @@ import java.io.Serializable;
 
 /**
  * Created by slaw on 13.02.16.
+ * edit piotr
  */
 
 
