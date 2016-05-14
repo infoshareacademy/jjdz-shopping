@@ -56,28 +56,22 @@
               <h3 class="cover-heading">Podaj adres pliku ze zdjęciem kodu kreskowego</h3>
           </div>
 
-          <!--<form action="demo_form.asp">-->
-            <!--<input type="file" name="img">-->
-            <!--<input type="submit" class="btn-default ">-->
-          <!--</form>-->
 
-
-
-          <%--<form class="navbar-form navbar-left" role="search">--%>
-              <%--<div class="form-group">--%>
-                  <%--<input type="file" name="img">--%>
-              <%--</div>--%>
-              <%--<button type="submit" class="btn btn-default">Submit</button>--%>
-          <%--</form>--%>
 
             <div class="row">
                 <div class="col-md-12">
                     <div class="input-group">
                         <form class="navbar-form navbar-left" role="search" method="POST" action="SearchByBarcode" enctype="multipart/form-data">
+
                             <div class="form-group">
                                 <input type="file" name="barcodeImg">
                             </div>
                             <button type="submit" class="btn btn-default">Submit</button>
+
+                            <c:if test="${message != null}">
+                                <br>
+                                <div style="background-color: red;">${message}</div>
+                            </c:if>
                         </form>
                     </div><!-- /input-group -->
                 </div><!-- /.col-md-12 -->
