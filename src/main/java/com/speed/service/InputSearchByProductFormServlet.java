@@ -1,6 +1,8 @@
 package com.speed.service;
 
 
+import com.speed.dao.CategoryDao;
+import com.speed.dao.Dao;
 import com.speed.model.Category;
 import com.speed.model.ReportPopularProducts;
 import org.apache.log4j.Logger;
@@ -27,18 +29,20 @@ public class InputSearchByProductFormServlet extends HttpServlet {
     @EJB
     ReportPopularProducts reportPopularProducts;
 
+//    @EJB
+//    CategoryDao categoryDao;
+
+
+
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         logger.debug("START w servlecie");
 
         String searchedProduct = req.getParameter("searchedProduct");
         logger.debug("getParameter: " + searchedProduct);
-        reportPopularProducts.addProductToPopularProducts(searchedProduct);
 
-        String popularProducts = reportPopularProducts.showPopularProducts();
         List<Category> result = categorySearch.searchCategoryByGivenProduct(searchedProduct);
 
-        req.setAttribute("popularProducts", popularProducts);
         req.setAttribute("result", result);
 
         if(result.size() > 0){
@@ -48,6 +52,8 @@ public class InputSearchByProductFormServlet extends HttpServlet {
             RequestDispatcher dispatcher = req.getRequestDispatcher("categoriesNotFound.jsp");
             dispatcher.forward(req, resp);
         }
+
+
 
 
     }

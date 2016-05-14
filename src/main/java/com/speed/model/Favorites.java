@@ -1,6 +1,7 @@
 package com.speed.model;
 
 import javax.ejb.Stateless;
+import javax.persistence.Entity;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -23,4 +24,5 @@ public class Favorites {
     public void addToFavorites(Category category){
         favorites.add(category);
     }
+
 }

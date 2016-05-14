@@ -12,10 +12,11 @@ import java.util.List;
 
 /**
  * Created by piotr on 14.05.16.
- */@Stateless
+ */
+@Stateless
 public class CategoryDao implements Dao<Category> {
 
-    private static final Logger logger = LoggerFactory.getLogger(CategoryDao.class);
+//    private static final Logger logger = LoggerFactory.getLogger(CategoryDao.class);
 
     @PersistenceContext
     EntityManager em;
