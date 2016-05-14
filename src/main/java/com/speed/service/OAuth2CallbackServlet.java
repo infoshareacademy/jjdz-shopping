@@ -8,6 +8,7 @@ import com.github.scribejava.core.oauth.OAuth20Service;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
+import javax.inject.Scope;
 import javax.json.Json;
 import javax.json.JsonObject;
 import javax.json.JsonReader;
@@ -40,30 +41,30 @@ public class OAuth2CallbackServlet extends HttpServlet {
         }
 
         logger.debug("OK the user have consented so lets find out about the user");
-        AsyncContext ctx = req.startAsync();
-        ctx.start(new GetUserInfo(req, resp, ctx));
-        RequestDispatcher dispatcher = req.getRequestDispatcher("/");
-        dispatcher.forward(req, resp);
+
+        GetUserInfo getUserInfo = new GetUserInfo(req);
+
+        getUserInfo.setSession();
+        //RequestDispatcher dispatcher = req.getRequestDispatcher("/");
+
+        resp.sendRedirect("index.jsp");
+        //dispatcher.forward(req, resp);
 
 
     }
 }
 
-class GetUserInfo implements Runnable {
+class GetUserInfo {
     private static Logger logger = LoggerFactory.getLogger(GetUserInfo.class);
 
     private HttpServletRequest req;
-    private HttpServletResponse resp;
-    private AsyncContext asyncCtx;
 
-    public GetUserInfo(HttpServletRequest req, HttpServletResponse resp, AsyncContext asyncCtx) {
+    public GetUserInfo(HttpServletRequest req) {
         this.req = req;
-        this.resp = resp;
-        this.asyncCtx = asyncCtx;
     }
 
-    @Override
-    public void run() {
+    public void setSession() {
+
         Long threadId = Thread.currentThread().getId();
         logger.debug("Getting user information for thread: {} - start", threadId);
 
@@ -91,7 +92,10 @@ class GetUserInfo implements Runnable {
         session.setAttribute("name", profile.getString("name"));
         session.setAttribute("email", profile.getString("email"));
         logger.debug("User information [name:{}, email:{}] acquired for thread: {} - end",session.getAttribute("name") , session.getAttribute("email"), threadId);
-        asyncCtx.complete();
+
+        //session.getAttribute("name");
+
+
     }
 }
 
