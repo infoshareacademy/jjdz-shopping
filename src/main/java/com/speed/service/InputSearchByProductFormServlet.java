@@ -2,6 +2,7 @@ package com.speed.service;
 
 
 import com.speed.model.Category;
+import com.speed.model.ReportPopularProducts;
 import org.apache.log4j.Logger;
 
 import javax.ejb.EJB;
@@ -13,6 +14,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 import java.util.List;
+import java.util.Map;
 
 @WebServlet(urlPatterns = "FrontEnd/SearchByProductServlet")
 public class InputSearchByProductFormServlet extends HttpServlet {
@@ -22,15 +24,21 @@ public class InputSearchByProductFormServlet extends HttpServlet {
     @EJB
     CategorySearch categorySearch;
 
+    @EJB
+    ReportPopularProducts reportPopularProducts;
+
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         logger.debug("START w servlecie");
 
         String searchedProduct = req.getParameter("searchedProduct");
         logger.debug("getParameter: " + searchedProduct);
+        reportPopularProducts.addProductToPopularProducts(searchedProduct);
 
+        String popularProducts = reportPopularProducts.showPopularProducts();
         List<Category> result = categorySearch.searchCategoryByGivenProduct(searchedProduct);
 
+        req.setAttribute("popularProducts", popularProducts);
         req.setAttribute("result", result);
 
         if(result.size() > 0){
