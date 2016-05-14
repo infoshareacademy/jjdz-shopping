@@ -57,17 +57,15 @@
                 <div class="row">
                     <div class="col-md-12">
                         <div class="input-group">
-                            <p>Please give Your email adress to verify be google+</p>
+                            <p>Log by google+</p>
                         </div><!-- /input-group -->
                     </div><!-- /.col-md-12 -->
                 </div><!-- /.row -->
                 <div class="row">
                     <div class="col-md-12">
                         <div class="input-group">
-                            <form method="POST" action="LogingServlet">
+                            <form method="GET" action="googleplus">
 
-                                <input type="text" name="searchedProduct" class="form-control" placeholder="Your email..">
-                                <!--<span class="input-group-btn">-->
                                     <input type="submit" value="OK">
                                 <!--</span>-->
                             </form>
