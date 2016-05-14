@@ -7,8 +7,6 @@ import org.slf4j.LoggerFactory;
 
 import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
-import javax.persistence.EntityManagerFactory;
-import javax.persistence.Persistence;
 import javax.persistence.PersistenceContext;
 import java.util.List;
 
@@ -19,10 +17,8 @@ public class CategoryDao implements Dao<Category> {
 
     private static final Logger logger = LoggerFactory.getLogger(CategoryDao.class);
 
-//    EntityManagerFactory emf = Persistence.createEntityManagerFactory("ShoppingDB");
     @PersistenceContext
     EntityManager em;
-//    EntityManager em = emf.createEntityManager();
 
 
     @Override
@@ -33,10 +29,8 @@ public class CategoryDao implements Dao<Category> {
 
     @Override
     public void upade(Category category) {
-        em.getTransaction().begin();
         em.merge(category);
-        em.getTransaction().commit();
-        em.close();
+
 
     }
 
@@ -48,20 +42,14 @@ public class CategoryDao implements Dao<Category> {
 
     @Override
     public Category getById(int catId) {
-        em.getTransaction().begin();
-        em.find(Category.class, catId);
-        em.getTransaction().commit();
-        em.close();
+        return em.find(Category.class, catId);
 
-        return null;
     }
 
     @Override
     public void remove(int catId) {
-        em.getTransaction().begin();
         em.remove(catId);
-        em.getTransaction().commit();
-        em.close();
+
 
     }
 }
