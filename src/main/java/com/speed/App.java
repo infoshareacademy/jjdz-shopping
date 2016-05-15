@@ -1,8 +1,7 @@
 package com.speed;
 
-import com.speed.model.AppEntryPoint;
-import com.speed.model.Shop;
-import com.speed.model.TV;
+import com.speed.kosz.AppEntryPoint;
+import com.speed.kosz.TV;
 
 import java.net.URI;
 import java.util.Arrays;
@@ -12,7 +11,7 @@ import java.util.Scanner;
 public class App {
     public static void main(String[] args) {
 
-        Shop shop = new Shop() {
+        AppEntryPoint.Shop shop = new AppEntryPoint.Shop() {
             @Override
             public List<URI> search(TV tv) {
                 return Arrays.asList(

@@ -1,11 +1,11 @@
-package com.speed.model;
+package com.speed.kosz;
 
-import java.io.InputStream;
+//import com.speed.model.LCD;
+
 import java.io.PrintStream;
 import java.net.URI;
 import java.util.Iterator;
 import java.util.List;
-import java.util.Scanner;
 
 public class AppEntryPoint {
 
@@ -57,4 +57,7 @@ public class AppEntryPoint {
 
     }
 
+    public static interface Shop {
+        List<URI> search(TV tv);
+    }
 }

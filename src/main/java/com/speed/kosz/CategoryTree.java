@@ -1,4 +1,6 @@
-package com.speed.model;
+package com.speed.kosz;
+
+import com.speed.model.Category;
 
 import java.util.Map;
 
