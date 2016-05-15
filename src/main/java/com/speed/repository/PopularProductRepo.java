@@ -18,11 +18,11 @@ public class PopularProductRepo {
     EntityManager em;
 
 
-    public List<ReportDTO> getPopolarProduct() {
+    public List<ReportDTO> getPopularProduct() {
         List<ReportDTO> list = em.createQuery("select new com.speed.service.ReportDTO(p.product, count(p)) " +
                 "from ReportPopularProducts p group by p.product", ReportDTO.class)
                 .getResultList();
-
+        System.out.println(list);
         return list;
     }
 }
