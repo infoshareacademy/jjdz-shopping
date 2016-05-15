@@ -1,5 +1,6 @@
 package com.speed.model;
 
+import com.speed.kosz.CategoryTree;
 import org.junit.Test;
 
 import java.util.HashMap;

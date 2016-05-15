@@ -1,19 +1,19 @@
 package com.speed.model;
 
+import com.speed.kosz.AppEntryPoint;
+import com.speed.kosz.TV;
 import org.junit.Test;
 
 import java.net.URI;
 import java.util.Arrays;
 import java.util.List;
 
-import static org.junit.Assert.*;
-
 public class AppEntryPointTest {
 
     @Test
     public void testSearchShops() throws Exception {
 
-        Shop shop = new Shop() {
+        AppEntryPoint.Shop shop = new AppEntryPoint.Shop() {
             @Override
             public List<URI> search(TV tv) {
                 return Arrays.asList(
