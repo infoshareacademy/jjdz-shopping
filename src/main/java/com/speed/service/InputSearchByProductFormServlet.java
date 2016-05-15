@@ -36,10 +36,10 @@ public class InputSearchByProductFormServlet extends HttpServlet {
 
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-        logger.debug("START w servlecie");
+//        logger.debug("START w servlecie");
 
         String searchedProduct = req.getParameter("searchedProduct");
-        logger.debug("getParameter: " + searchedProduct);
+//        logger.debug("getParameter: " + searchedProduct);
 
         List<Category> result = categorySearch.searchCategoryByGivenProduct(searchedProduct);
 

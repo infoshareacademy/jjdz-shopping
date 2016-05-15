@@ -27,7 +27,7 @@ public class ShowSubcategoriesServlet extends HttpServlet {
         logger.debug("Call ShowSubcategoriesServlet");
 
         String catId = req.getParameter("categoryId");
-        logger.debug("categoryId: " + catId);
+//        logger.debug("categoryId: " + catId);
 
         List<Category> result = categorySearch.findCategoryChildren(Integer.parseInt(catId));
         StringBuilder currentPath = categorySearch.showPath(Integer.parseInt(catId));

@@ -110,7 +110,7 @@ public class ProductFromBarcodeApp {
         String[] result = pattern.split(productName);
 
         for (String i:result) {
-            List<Category> catList = categorySearch.searchCategoryByGivenProduct(i);
+            List<Category> catList = categorySearch.searchCategoryByGivenProduct(i.toLowerCase());
             if (!catList.isEmpty()) {
                 product.setProductCategories(catList);
                 product.setProductKeyWord(i);
