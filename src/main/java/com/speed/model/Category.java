@@ -23,7 +23,6 @@ public class Category implements Serializable{
 
     @Id
     @Column(name = "catId")
-    @NotNull
     private int catId;
     @Column(name = "catName")
     private String catName;

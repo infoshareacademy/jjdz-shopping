@@ -1,7 +1,10 @@
 package com.speed.service;
 
 
+import com.speed.dao.CategoryDao;
+import com.speed.dao.Dao;
 import com.speed.model.Category;
+import com.speed.model.ReportPopularProducts;
 import org.apache.log4j.Logger;
 
 import javax.ejb.EJB;
@@ -13,6 +16,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 import java.util.List;
+import java.util.Map;
 
 @WebServlet(urlPatterns = "FrontEnd/SearchByProductServlet")
 public class InputSearchByProductFormServlet extends HttpServlet {
@@ -21,6 +25,14 @@ public class InputSearchByProductFormServlet extends HttpServlet {
 
     @EJB
     CategorySearch categorySearch;
+
+    @EJB
+    ReportPopularProducts reportPopularProducts;
+
+//    @EJB
+//    CategoryDao categoryDao;
+
+
 
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
@@ -40,6 +52,8 @@ public class InputSearchByProductFormServlet extends HttpServlet {
             RequestDispatcher dispatcher = req.getRequestDispatcher("categoriesNotFound.jsp");
             dispatcher.forward(req, resp);
         }
+
+
 
 
     }
