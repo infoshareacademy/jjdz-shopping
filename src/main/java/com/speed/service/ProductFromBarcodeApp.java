@@ -14,6 +14,7 @@ import org.xml.sax.SAXException;
 import javax.ejb.EJB;
 import javax.ejb.Stateless;
 import javax.imageio.ImageIO;
+import javax.inject.Inject;
 import javax.xml.parsers.ParserConfigurationException;
 import javax.xml.stream.XMLStreamException;
 import java.awt.image.BufferedImage;
@@ -31,8 +32,8 @@ import java.util.regex.Pattern;
 @Stateless
 public class ProductFromBarcodeApp {
 
-
-//    CategorySearch categorySearch;
+    @Inject
+    CategorySearch categorySearch;
 
     final static Logger logger = Logger.getLogger(ProductFromBarcodeApp.class);
 
@@ -103,8 +104,6 @@ public class ProductFromBarcodeApp {
     }
 
     public ProductFromBarcode FindKeyWord(ProductFromBarcode product) throws XMLStreamException {
-
-        CategorySearch categorySearch = new CategorySearch();
         String productName = product.getProductName();
 
         Pattern pattern = Pattern.compile("[^a-zA-Z]+");
