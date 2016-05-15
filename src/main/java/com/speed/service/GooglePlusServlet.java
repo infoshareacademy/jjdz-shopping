@@ -10,6 +10,7 @@ import com.github.scribejava.core.oauth.OAuth20Service;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
+import javax.inject.Inject;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -21,6 +22,12 @@ import java.util.Random;
 
 @WebServlet("FrontEnd/googleplus")
 public class GooglePlusServlet extends HttpServlet {
+
+
+    @Inject
+    SessionData sessionData;
+
+
     private static Logger logger = LoggerFactory.getLogger(GooglePlusServlet.class);
     private static final String CLIENT_ID = "689901795833-d2plfdd7bki7o94g31v9qce2c2miferk.apps.googleusercontent.com";
     private static final String CLIENT_SECRET = "-ffFvv3enMwJSDLRVWtAhREf";
@@ -29,6 +36,8 @@ public class GooglePlusServlet extends HttpServlet {
 
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+
+        //String referrer = req.getParameter("referrer");
 
         logger.debug("Making a service for OAuth.");
         OAuth20Service service = new ServiceBuilder()
@@ -40,10 +49,10 @@ public class GooglePlusServlet extends HttpServlet {
                         "https://www.googleapis.com/auth/plus.me")
                 .build(GoogleApi20.instance());
 
-        HttpSession session = req.getSession();
-        session.setAttribute("oauth2Service", service);
-
-        logger.debug("Redirecting to google for authorization.");
+        sessionData.setOAuth2Service(service);
         resp.sendRedirect(service.getAuthorizationUrl());
     }
-}
+
+
+    }
+
