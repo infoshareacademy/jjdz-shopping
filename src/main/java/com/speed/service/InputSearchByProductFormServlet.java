@@ -1,8 +1,6 @@
 package com.speed.service;
 
 
-import com.speed.dao.CategoryDao;
-import com.speed.dao.Dao;
 import com.speed.model.Category;
 import com.speed.model.ReportPopularProducts;
 import org.apache.log4j.Logger;
@@ -16,7 +14,6 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 import java.util.List;
-import java.util.Map;
 
 @WebServlet(urlPatterns = "FrontEnd/SearchByProductServlet")
 public class InputSearchByProductFormServlet extends HttpServlet {

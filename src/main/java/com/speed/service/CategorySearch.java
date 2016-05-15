@@ -1,17 +1,13 @@
 package com.speed.service;
 
-import com.speed.dao.CategoryDao;
-import com.speed.dao.PopularProductsDao;
 import com.speed.model.Category;
 import com.speed.model.ReportPopularProducts;
 import com.speed.parsingutils.ParseXML;
 import org.apache.log4j.Logger;
 
-import javax.ejb.EJB;
 import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
-import javax.persistence.Query;
 import javax.xml.stream.XMLStreamException;
 import java.util.*;
 
@@ -42,12 +38,6 @@ public class CategorySearch {
         reportPopularProducts.setProduct(searchedProduct);
         em.persist(reportPopularProducts);
 
-        //
-        List<ReportDTO> list = em.createQuery("select new com.speed.service.ReportDTO(p.product, count(p)) " +
-                "from ReportPopularProducts p group by p.product", ReportDTO.class)
-                .getResultList();
-        System.out.println("list = " + list);
-        //
 
         List<Category> foundCategories = new ArrayList<>();
 
