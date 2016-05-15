@@ -8,7 +8,9 @@ import com.google.zxing.client.j2se.BufferedImageLuminanceSource;
 import com.google.zxing.common.HybridBinarizer;
 import com.speed.model.Category;
 import com.speed.model.ProductFromBarcode;
+import org.apache.commons.collections4.CollectionUtils;
 import org.apache.log4j.Logger;
+//import org.mockito.cglib.core.CollectionUtils;
 import org.xml.sax.SAXException;
 
 import javax.ejb.EJB;
@@ -112,7 +114,7 @@ public class ProductFromBarcodeApp {
 
         for (String i:result) {
             List<Category> catList = categorySearch.searchCategoryByGivenProduct(i.toLowerCase());
-            if (!catList.isEmpty()) {
+            if (CollectionUtils.isNotEmpty(catList)){
                 product.setProductCategories(catList);
                 product.setProductKeyWord(i);
                 return product;
