@@ -65,6 +65,9 @@
                     <div class="col-md-4">
                         <h2>Search by<br>category</h2>
                     </div>
+                    <p>
+                        <a href="PopularProducts">Popular products report</a>
+                    </p>
                 </div>
             </div>
 

@@ -11,7 +11,7 @@
     <meta name="author" content="">
     <link rel="icon" href="favicon.ico">
 
-    <title>Cover Template for Bootstrap</title>
+    <title>Popular Products</title>
 
     <!-- Bootstrap core CSS -->
     <link href="assets/bootstrap.min.css" rel="stylesheet">
@@ -58,7 +58,16 @@
             <div class="inner cover">
 
                 <p>
-                    <h2>Sorry. No matching Category found.</h2>
+                    <h2>Popular Products Report:</h2>
+                    <table id="popular_products">
+                        <tr><th>Produkt</th><th>Popularność</th></tr>
+                    <c:forEach items="${popularProduct}" var="item">
+                        <tr>
+                            <td>${item.product}</td>
+                            <td>${item.count}</td>
+                        </tr>
+                    </c:forEach>
+                    </table>
                 </p>
                 <!--<p class="lead">Cover is a one-page template for building simple and beautiful home pages. Download, edit the text, and add your own fullscreen background photo to make it your own.</p>-->
                 <p class="lead">
