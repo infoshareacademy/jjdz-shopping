@@ -17,18 +17,9 @@ public class ReadXMLFile {
 
     public ProductFromBarcode parseXML(String xmlStr, ProductFromBarcode product) throws IOException, ParserConfigurationException, SAXException, NullPointerException {
 
-        try (PrintWriter pw = new PrintWriter("XML.xml", "UTF-8")) {
-            pw.println(xmlStr);
-        } catch (FileNotFoundException | UnsupportedEncodingException e) {
-            throw e;
-        }
+        printXmlContent(xmlStr);
 
-        File file = new File("XML.xml");
-
-        DocumentBuilderFactory dbFactory = DocumentBuilderFactory.newInstance();
-        DocumentBuilder dBuilder = dbFactory.newDocumentBuilder();
-
-        Document doc = dBuilder.parse(file);
+        Document doc = getFileHandler();
 
         if (doc != null) {
             doc.getDocumentElement().normalize();
@@ -59,5 +50,22 @@ public class ReadXMLFile {
         }
 
         return product;
+    }
+
+    private Document getFileHandler() throws ParserConfigurationException, SAXException, IOException {
+        File file = new File("XML.xml");
+
+        DocumentBuilderFactory dbFactory = DocumentBuilderFactory.newInstance();
+        DocumentBuilder dBuilder = dbFactory.newDocumentBuilder();
+
+        return dBuilder.parse(file);
+    }
+
+    private void printXmlContent(String xmlStr) throws FileNotFoundException, UnsupportedEncodingException {
+        try (PrintWriter pw = new PrintWriter("XML.xml", "UTF-8")) {
+            pw.println(xmlStr);
+        } catch (FileNotFoundException | UnsupportedEncodingException e) {
+            throw e;
+        }
     }
 }
