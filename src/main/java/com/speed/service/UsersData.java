@@ -35,8 +35,11 @@ public class UsersData {
         this.userEmail = userEmail;
     }
 
-
-
-
-
+    @Override
+    public String toString() {
+        return "UsersData{" +
+                "userName='" + userName + '\'' +
+                ", userEmail='" + userEmail + '\'' +
+                '}';
+    }
 }

@@ -30,7 +30,8 @@ import java.io.IOException;
 public class OAuth2CallbackServlet extends HttpServlet {
     private static Logger logger = LoggerFactory.getLogger(OAuth2CallbackServlet.class);
 
-
+    @Inject
+    SessionData sessionData;
 
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp)
@@ -47,97 +48,26 @@ public class OAuth2CallbackServlet extends HttpServlet {
 
         logger.debug("OK the user have consented so lets find out about the user");
 
-        GetUserInfo getUserInfo = new GetUserInfo(req);
-
-        getUserInfo.setSession();
-        //RequestDispatcher dispatcher = req.getRequestDispatcher("/");
-
-        resp.sendRedirect("index.jsp");
-        //dispatcher.forward(req, resp);
-
-
-
-    }
-}
-
-class GetUserInfo {
-
-    public GetUserInfo() {}
-
-
-    @Inject
-    SessionData sessionData;
-
-    private static Logger logger = LoggerFactory.getLogger(GetUserInfo.class);
-
-    private HttpServletRequest req;
-
-    public GetUserInfo(HttpServletRequest req) {
-        this.req = req;
-    }
-
-
-
-    public void setSession() {
-
-        Long threadId = Thread.currentThread().getId();
-        logger.debug("Getting user information for thread: {} - start", threadId);
-
-        HttpSession session = req.getSession();
-        OAuth20Service service = (OAuth20Service) session.getAttribute("oauth2Service");
-
-        logger.debug("Getting the authorization code for thread: {} ", threadId);
+        OAuth20Service oAuth2Service = sessionData.getOAuth2Service();
         String code = req.getParameter("code");
-        logger.debug("Constructing the access token for thread: {} ", threadId);
-        OAuth2AccessToken token = service.getAccessToken(code);
-        session.setAttribute("token", token);
+        OAuth2AccessToken token = oAuth2Service.getAccessToken(code);
 
-        logger.debug("Getting the user's G+ profile for thread: {} ", threadId);
         OAuthRequest oReq = new OAuthRequest(Verb.GET,
                 "https://www.googleapis.com/oauth2/v2/userinfo",
-                service);
-        service.signRequest(token, oReq);
+                oAuth2Service);
+        oAuth2Service.signRequest(token, oReq);
         Response oResp = oReq.send();
 
-        logger.debug("Getting result and saving to session for thread: {} ", threadId);
         JsonReader reader = Json.createReader(new ByteArrayInputStream(
                 oResp.getBody().getBytes()));
         JsonObject profile = reader.readObject();
 
-        session.setAttribute("name", profile.getString("name"));
-        session.setAttribute("email", profile.getString("email"));
-        logger.debug("User information [name:{}, email:{}] acquired for thread: {} - end",session.getAttribute("name") , session.getAttribute("email"), threadId);
-
         UsersData User = new UsersData(profile.getString("name"),profile.getString("email"));
-
         logger.debug("User information [name:{}, email:{}] token: {} - end",profile.getString("name"),profile.getString("email"), token);
         sessionData.logIn(User, token);
 
 
-        //Gson gson = new Gson();
-       // UsersData User = gson.fromJson(profile.toString(), UsersData.class);
-
-
-
-        }
-
-/*    public void removefromSession() {
-
-        Long threadId = Thread.currentThread().getId();
-        logger.debug("Getting user information for thread: {} - start", threadId);
-
-        HttpSession session = req.getSession();
-
-        session.removeAttribute("name");
-        session.removeAttribute("email");
-        logger.debug("Check if user is Logout [name:{}, email:{}] acquired for thread: {} - end",session.getAttribute("name") , session.getAttribute("email"), threadId);
-
-        //session.getAttribute("name");
-
-
-        }*/
-
-
+        resp.sendRedirect("index.jsp");
+    }
 }
-
 

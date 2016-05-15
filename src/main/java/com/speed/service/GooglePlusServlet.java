@@ -49,14 +49,8 @@ public class GooglePlusServlet extends HttpServlet {
                         "https://www.googleapis.com/auth/plus.me")
                 .build(GoogleApi20.instance());
 
-
-        HttpSession session = req.getSession();
-        session.setAttribute("oauth2Service", service);
-
-        logger.debug("Redirecting to google for authorization.");
+        sessionData.setOAuth2Service(service);
         resp.sendRedirect(service.getAuthorizationUrl());
-
-
     }
 
     // ----------do korekty

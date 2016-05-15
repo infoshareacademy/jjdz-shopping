@@ -51,15 +51,16 @@
                             <li><a href="#">About</a></li>
 
                             <li>
+
                                 <c:choose>
-                                    <c:when test="${sessionScope.name == null || sessionScope.name == '' }">
+                                    <c:when test="${userdata == null}">
                                         <a href="LogingForm.jsp">
                                             <div> Login </div>
                                         </a>
                                     </c:when>
 
                                     <c:otherwise>
-                                        <div>${sessionScope.name}</div>
+                                        <div>${userdata.userName}</div>
                                             <li>
                                         <div>Logout</div>
                                             </li>

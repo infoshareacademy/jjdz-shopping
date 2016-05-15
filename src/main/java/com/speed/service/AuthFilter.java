@@ -7,7 +7,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 
-@WebFilter("/FrontEnd")
+@WebFilter("/*")
 public class AuthFilter implements Filter {
 
     @Inject
@@ -15,16 +15,8 @@ public class AuthFilter implements Filter {
 
     @Override
     public void doFilter(ServletRequest request, ServletResponse response, FilterChain chain) throws IOException, ServletException {
-
-        if (!sessionData.isLoggedIn()) {
-            System.out.println("Username is empty");
-
-            HttpServletRequest httpServletRequest = (HttpServletRequest) request;
-            HttpServletResponse httpServletResponse = (HttpServletResponse) response;
-            httpServletResponse.sendRedirect("LoginForm.jsp?referrer=" + httpServletRequest.getRequestURL());
-            return;
-        }
-
+        request.setAttribute("userdata", sessionData.getUser());
+        System.out.println("sessionData.getUser() = " + sessionData.getUser());
         chain.doFilter(request, response);
     }
 

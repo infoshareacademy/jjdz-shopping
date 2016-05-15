@@ -1,6 +1,7 @@
 package com.speed.service;
 
 import com.github.scribejava.core.model.OAuth2AccessToken;
+import com.github.scribejava.core.oauth.OAuth20Service;
 
 import javax.enterprise.context.SessionScoped;
 import java.io.Serializable;
@@ -8,35 +9,36 @@ import java.io.Serializable;
 @SessionScoped
 public class SessionData implements Serializable {
 
-    private String userName;
-    private String userEmail;
+    private UsersData user;
     private OAuth2AccessToken userToken;
-
-    public String getUserEmail() {
-        return userEmail;
-    }
-
-    public String getUserName() {
-        return userName;
-    }
-
-
+    private OAuth20Service OAuth2Service;
 
     public void logIn(UsersData User, OAuth2AccessToken userToken) {
-
-        this.userEmail = User.getUserEmail();
-        this.userName = User.getUserName();
+        this.user = User;
         this.userToken = userToken;
     }
 
     public void logout() {
+        this.user = null;
+    }
 
-        this.userEmail = null;
-        this.userName = null;
+    public UsersData getUser() {
+        return user;
     }
 
     public boolean isLoggedIn() {
         return (userToken!=null);
     }
 
+    public void setOAuth2Service(OAuth20Service OAuth2Service) {
+        this.OAuth2Service = OAuth2Service;
+    }
+
+    public OAuth20Service getOAuth2Service() {
+        return OAuth2Service;
+    }
+
+    public OAuth2AccessToken getOAuth2Token() {
+        return userToken;
+    }
 }
