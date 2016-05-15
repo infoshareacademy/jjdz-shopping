@@ -1,5 +1,4 @@
 
-<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <%@ page contentType="text/html;charset=utf-8" %>
 <!DOCTYPE html>
 <html lang="en">
@@ -51,22 +50,7 @@
                             <li><a href="#">About</a></li>
 
                             <li>
-
-                                <c:choose>
-                                    <c:when test="${userdata == null}">
-                                        <a href="LogingForm.jsp">
-                                            <div> Login </div>
-                                        </a>
-                                    </c:when>
-
-                                    <c:otherwise>
-                                        <div>${userdata.userName}</div>
-                                            <li>
-                                        <div>Logout</div>
-                                            </li>
-                                    </c:otherwise>
-                                </c:choose>
-
+                                <jsp:include page="UserDataInput.jsp"/>
                             </li>
 
 

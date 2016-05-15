@@ -53,12 +53,6 @@ public class GooglePlusServlet extends HttpServlet {
         resp.sendRedirect(service.getAuthorizationUrl());
     }
 
-    // ----------do korekty
-    @Override
-    protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-        sessionData.logout();
-        resp.sendRedirect("/");
-
 
     }
-}
+
