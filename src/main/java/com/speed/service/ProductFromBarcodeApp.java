@@ -31,8 +31,8 @@ import java.util.regex.Pattern;
 @Stateless
 public class ProductFromBarcodeApp {
 
-
-//    CategorySearch categorySearch;
+    @EJB
+    CategorySearch categorySearch;
 
     final static Logger logger = Logger.getLogger(ProductFromBarcodeApp.class);
 
@@ -104,7 +104,6 @@ public class ProductFromBarcodeApp {
 
     public ProductFromBarcode FindKeyWord(ProductFromBarcode product) throws XMLStreamException {
 
-        CategorySearch categorySearch = new CategorySearch();
         String productName = product.getProductName();
 
         Pattern pattern = Pattern.compile("[^a-zA-Z]+");
