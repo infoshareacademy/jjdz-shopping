@@ -5,9 +5,12 @@ package com.speed.service;
  */
 import com.github.scribejava.core.model.*;
 import com.github.scribejava.core.oauth.OAuth20Service;
+import com.google.gson.Gson;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.w3c.dom.UserDataHandler;
 
+import javax.inject.Inject;
 import javax.inject.Scope;
 import javax.json.Json;
 import javax.json.JsonObject;
@@ -26,6 +29,8 @@ import java.io.IOException;
 @WebServlet(urlPatterns = "FrontEnd/oauth2callback", asyncSupported=true)
 public class OAuth2CallbackServlet extends HttpServlet {
     private static Logger logger = LoggerFactory.getLogger(OAuth2CallbackServlet.class);
+
+
 
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp)
@@ -56,6 +61,13 @@ public class OAuth2CallbackServlet extends HttpServlet {
 }
 
 class GetUserInfo {
+
+    public GetUserInfo() {}
+
+
+    @Inject
+    SessionData sessionData;
+
     private static Logger logger = LoggerFactory.getLogger(GetUserInfo.class);
 
     private HttpServletRequest req;
@@ -63,6 +75,8 @@ class GetUserInfo {
     public GetUserInfo(HttpServletRequest req) {
         this.req = req;
     }
+
+
 
     public void setSession() {
 
@@ -94,11 +108,20 @@ class GetUserInfo {
         session.setAttribute("email", profile.getString("email"));
         logger.debug("User information [name:{}, email:{}] acquired for thread: {} - end",session.getAttribute("name") , session.getAttribute("email"), threadId);
 
-        //session.getAttribute("name");
+        UsersData User = new UsersData(profile.getString("name"),profile.getString("email"));
+
+        logger.debug("User information [name:{}, email:{}] token: {} - end",profile.getString("name"),profile.getString("email"), token);
+        sessionData.logIn(User, token);
+
+
+        //Gson gson = new Gson();
+       // UsersData User = gson.fromJson(profile.toString(), UsersData.class);
+
+
 
         }
 
-    public void removefromSession() {
+/*    public void removefromSession() {
 
         Long threadId = Thread.currentThread().getId();
         logger.debug("Getting user information for thread: {} - start", threadId);
@@ -112,7 +135,7 @@ class GetUserInfo {
         //session.getAttribute("name");
 
 
-        }
+        }*/
 
 
 }

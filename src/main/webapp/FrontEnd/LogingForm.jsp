@@ -65,6 +65,7 @@
                     <div class="col-md-12">
                         <div class="input-group">
                             <form method="GET" action="googleplus">
+                               <%-- <input type="hidden" name="referrer" value="${param.referrer}">--%>
 
                                     <input type="submit" value="OK">
                                 <!--</span>-->
