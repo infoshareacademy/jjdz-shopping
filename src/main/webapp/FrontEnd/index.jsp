@@ -1,3 +1,5 @@
+
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <%@ page contentType="text/html;charset=utf-8" %>
 <!DOCTYPE html>
 <html lang="en">
@@ -47,7 +49,26 @@
                         <ul class="nav masthead-nav">
                             <li class="active"><a href="#">Home</a></li>
                             <li><a href="#">About</a></li>
-                            <li><a href="#">Contact</a></li>
+
+                            <li>
+                                <c:choose>
+                                    <c:when test="${sessionScope.name == null || sessionScope.name == '' }">
+                                        <a href="LogingForm.jsp">
+                                            <div> Login </div>
+                                        </a>
+                                    </c:when>
+
+                                    <c:otherwise>
+                                        <div>${sessionScope.name}</div>
+                                            <li>
+                                        <div>Logout</div>
+                                            </li>
+                                    </c:otherwise>
+                                </c:choose>
+
+                            </li>
+
+
                         </ul>
                     </nav>
                 </div>

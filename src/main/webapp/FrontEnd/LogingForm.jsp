@@ -47,7 +47,7 @@
                         <ul class="nav masthead-nav">
                             <li class="active"><a href="index.jsp">Home</a></li>
                             <li><a href="#">About</a></li>
-                            <li><a href="#">Login - ${sessionScope.name}</a></li>
+                            <li><a href="#">Contact</a></li>
                         </ul>
                     </nav>
                 </div>
@@ -57,17 +57,15 @@
                 <div class="row">
                     <div class="col-md-12">
                         <div class="input-group">
-                            <p>Search by product name</p>
+                            <p>Log by google+</p>
                         </div><!-- /input-group -->
                     </div><!-- /.col-md-12 -->
                 </div><!-- /.row -->
                 <div class="row">
                     <div class="col-md-12">
                         <div class="input-group">
-                            <form method="POST" action="SearchByProductServlet">
+                            <form method="GET" action="googleplus">
 
-                                <input type="text" name="searchedProduct" class="form-control" placeholder="Search for...">
-                                <!--<span class="input-group-btn">-->
                                     <input type="submit" value="OK">
                                 <!--</span>-->
                             </form>

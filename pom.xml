@@ -49,16 +49,34 @@
                     <failOnMissingWebXml>false</failOnMissingWebXml>
                 </configuration>
             </plugin>
-            <plugin>
-                <groupId>org.wildfly.plugins</groupId>
-                <artifactId>wildfly-maven-plugin</artifactId>
-                <version>1.1.0.Alpha7</version>
-            </plugin>
+                    <plugin>
+                        <groupId>org.wildfly.plugins</groupId>
+                        <artifactId>wildfly-maven-plugin</artifactId>
+                        <version>1.1.0.Alpha7</version>
+                    </plugin>
         </plugins>
 
     </build>
 
     <dependencies>
+
+
+        <!--dodane przez ss-->
+        <dependency>
+            <groupId>com.github.scribejava</groupId>
+            <artifactId>scribejava-apis</artifactId>
+            <version>2.5.3</version>
+        </dependency>
+
+
+      <!--  <dependency>
+            <groupId>com.gogle.oauth-client</groupId>
+            <artifactId>google-oauth-client</artifactId>
+        </dependency>-->
+
+        <!--dodane przez ss-->
+
+
 
         <dependency>
             <groupId>org.jboss.arquillian.junit</groupId>
@@ -88,21 +106,17 @@
             <artifactId>javase</artifactId>
             <version>3.2.1</version>
         </dependency>
-
+        <dependency>
+            <groupId>javax.xml.bind</groupId>
+            <artifactId>jaxb-api</artifactId>
+            <version>2.2.3</version>
+        </dependency>
         <dependency>
             <groupId>javax</groupId>
             <artifactId>javaee-api</artifactId>
             <version>7.0</version>
             <scope>provided</scope>
         </dependency>
-
-
-        <!--<dependency>-->
-            <!--<groupId>hibernate</groupId>-->
-            <!--<artifactId>hibernate-entitymanager</artifactId>-->
-            <!--<version>3.4.0.GA</version>-->
-        <!--</dependency>-->
-
 
         <dependency>
             <groupId>log4j</groupId>
@@ -126,6 +140,12 @@
             <artifactId>junit</artifactId>
             <version>4.12</version>
             <scope>test</scope>
+        </dependency>
+
+        <dependency>
+            <groupId>org.slf4j</groupId>
+            <artifactId>slf4j-api</artifactId>
+            <version>1.7.2</version>
         </dependency>
 
         <dependency>
