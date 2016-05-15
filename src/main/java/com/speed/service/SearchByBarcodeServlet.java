@@ -28,6 +28,10 @@ import org.apache.log4j.Logger;
 @MultipartConfig
 public class SearchByBarcodeServlet extends HttpServlet {
 
+    public static final String SEARCH_BY_BARCODE_JSP = "searchByBarcode.jsp";
+    public static final String FOUND_FILE_WITH_BARCODE_JSP = "foundFileWithBarcode.jsp";
+    public static final String FOUND_CATEGORIES_JSP = "foundCategories.jsp";
+
     @EJB
     ProductFromBarcodeApp product;
 
@@ -48,23 +52,25 @@ public class SearchByBarcodeServlet extends HttpServlet {
             List<Category> categories = pfb.getProductCategories();
             if(categories != null){
                 request.setAttribute("result", categories);
+                dispatcher = request.getRequestDispatcher(FOUND_CATEGORIES_JSP);
 
-                dispatcher = request.getRequestDispatcher("foundCategories.jsp");
-
-            } else{
+            }
+            else {
                 request.setAttribute("result", "Dla " + pfb.getProductName() + " nie znaleziono odpowiedniej kategorii.");
-                dispatcher = request.getRequestDispatcher("foundFileWithBarcode.jsp");}
+                dispatcher = request.getRequestDispatcher(FOUND_FILE_WITH_BARCODE_JSP);}
         }
         catch (EJBException e){
             request.setAttribute("message", "Nie podales sciezki do pliku");
-            dispatcher = request.getRequestDispatcher("searchByBarcode.jsp");
+            dispatcher = request.getRequestDispatcher(SEARCH_BY_BARCODE_JSP);
         }
         catch(IOException e){
             request.setAttribute("message", "Niemozliwy odczyt pliku. Sprobuj podac adres nowego pliku");
-            dispatcher = request.getRequestDispatcher("searchByBarcode.jsp");
-        } catch (XMLStreamException e) {
+            dispatcher = request.getRequestDispatcher(SEARCH_BY_BARCODE_JSP);
+
+        }
+        catch (XMLStreamException e) {
             request.setAttribute("message", "Jakis blad");
-            dispatcher = request.getRequestDispatcher("searchByBarcode.jsp");
+            dispatcher = request.getRequestDispatcher(SEARCH_BY_BARCODE_JSP);
         }
         dispatcher.forward(request, response);
     }

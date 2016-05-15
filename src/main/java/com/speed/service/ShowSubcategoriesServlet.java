@@ -17,7 +17,9 @@ import java.util.List;
 @WebServlet(urlPatterns = "FrontEnd/ShowSubcategoriesServlet")
 public class ShowSubcategoriesServlet extends HttpServlet {
 
-    final  static Logger logger = Logger.getLogger(ShowSubcategoriesServlet.class);
+    final static Logger logger = Logger.getLogger(ShowSubcategoriesServlet.class);
+    public static final String CATEGORIES_NOT_FOUND_JSP = "categoriesNotFound.jsp";
+    public static final String FOUND_CATEGORIES_JSP = "foundCategories.jsp";
 
     @EJB
     CategorySearch categorySearch;
@@ -35,12 +37,15 @@ public class ShowSubcategoriesServlet extends HttpServlet {
         req.setAttribute("result", result);
         req.setAttribute("currentPath", currentPath);
 
-        if(result.size() > 0){
-            RequestDispatcher dispatcher = req.getRequestDispatcher("foundCategories.jsp");
-            dispatcher.forward(req, resp);
+        if (result.size() > 0) {
+            sentToPage(req, resp, FOUND_CATEGORIES_JSP);
         } else {
-            RequestDispatcher dispatcher = req.getRequestDispatcher("categoriesNotFound.jsp");
-            dispatcher.forward(req, resp);
+            sentToPage(req, resp, CATEGORIES_NOT_FOUND_JSP);
         }
+    }
+
+    private void sentToPage(HttpServletRequest req, HttpServletResponse resp, String s) throws ServletException, IOException {
+        RequestDispatcher dispatcher = req.getRequestDispatcher(s);
+        dispatcher.forward(req, resp);
     }
 }
