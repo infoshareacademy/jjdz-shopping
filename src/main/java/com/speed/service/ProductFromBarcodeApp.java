@@ -14,6 +14,7 @@ import org.xml.sax.SAXException;
 import javax.ejb.EJB;
 import javax.ejb.Stateless;
 import javax.imageio.ImageIO;
+import javax.inject.Inject;
 import javax.xml.parsers.ParserConfigurationException;
 import javax.xml.stream.XMLStreamException;
 import java.awt.image.BufferedImage;
@@ -31,7 +32,7 @@ import java.util.regex.Pattern;
 @Stateless
 public class ProductFromBarcodeApp {
 
-    @EJB
+    @Inject
     CategorySearch categorySearch;
 
     final static Logger logger = Logger.getLogger(ProductFromBarcodeApp.class);

@@ -6,7 +6,12 @@ import com.speed.model.ProductFromBarcode;
 import com.speed.service.CategorySearch;
 import com.speed.service.ProductFromBarcodeApp;
 import org.junit.Test;
+import org.junit.runner.RunWith;
+import org.mockito.InjectMocks;
+import org.mockito.Mock;
+import org.mockito.runners.MockitoJUnitRunner;
 
+import javax.persistence.EntityManager;
 import javax.xml.stream.XMLStreamException;
 import java.io.IOException;
 import java.util.List;
@@ -17,10 +22,17 @@ import static org.junit.Assert.assertEquals;
 /**
  * Created by ewaw on 28.02.16.
  */
+@RunWith(MockitoJUnitRunner.class)
 public class ProductFromBarcodeAppTest {
 
+    @Mock
+    EntityManager em;
 
-    private ProductFromBarcodeApp cut = new ProductFromBarcodeApp();
+    @Mock
+    CategorySearch categorySearch;
+
+    @InjectMocks
+    ProductFromBarcodeApp cut;
 
     @Test
     public void testFindProductwithRightPicture() throws Exception {
@@ -62,24 +74,6 @@ public class ProductFromBarcodeAppTest {
 
         //then throws IOException
     }
-
-    @Test
-    public void testfindKeyWordGivesRightResult() throws Exception {
-
-//        given
-//        ProductFromBarcodeApp produktZObrazka = new ProductFromBarcodeApp(); - CUT
-        CategorySearch categorySearch = new CategorySearch();
-        ProductFromBarcode product = cut.findProduct(cut.GetBitMap(getClass().getResource("/barcode_tv.png").getPath()));
-        List<Category> checkedCategories = categorySearch.searchCategoryByGivenProduct("LED");
-
-        //        when
-        List<Category> tvCategories = product.getProductCategories();
-
-        //        then
-        assertEquals("Cos jest nie tak", tvCategories, checkedCategories);
-
-    }
-
 //
 
 }
