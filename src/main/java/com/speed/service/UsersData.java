@@ -1,6 +1,7 @@
 package com.speed.service;
 
 import javax.persistence.Entity;
+import javax.persistence.Id;
 
 /**
  * Created by slaw on 15.05.16.
@@ -17,6 +18,8 @@ public class UsersData {
     private String userName;
     private String userEmail;
 
+    public UsersData() {
+    }
 
 
     public String getUserName() {
@@ -41,5 +44,16 @@ public class UsersData {
                 "userName='" + userName + '\'' +
                 ", userEmail='" + userEmail + '\'' +
                 '}';
+    }
+
+    private String id;
+
+    @Id
+    public String getId() {
+        return id;
+    }
+
+    public void setId(String id) {
+        this.id = id;
     }
 }
