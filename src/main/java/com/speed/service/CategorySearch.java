@@ -3,8 +3,10 @@ package com.speed.service;
 import com.speed.model.Category;
 import com.speed.model.ReportPopularProducts;
 import com.speed.parsingutils.ParseXML;
+import com.speed.repository.PopularProductRepo;
 import org.apache.log4j.Logger;
 
+import javax.ejb.EJB;
 import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
@@ -16,6 +18,9 @@ import java.util.*;
  */
 @Stateless
 public class CategorySearch {
+
+    @EJB
+    PopularProductRepo popularProductRepo;
 
     final static Logger logger = Logger.getLogger(CategorySearch.class);
 
@@ -37,6 +42,7 @@ public class CategorySearch {
         ReportPopularProducts reportPopularProducts = new ReportPopularProducts();
         reportPopularProducts.setProduct(searchedProduct);
         em.persist(reportPopularProducts);
+
 
 
         List<Category> foundCategories = new ArrayList<>();

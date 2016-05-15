@@ -1,5 +1,6 @@
-<%@ page contentType="text/html;charset=utf-8" %>
-<!DOCTYPE html>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
+<%@ page contentType="text/html;charset=UTF-8" language="java" %>
+
 <html lang="en">
 <head>
     <meta charset="utf-8">
@@ -10,7 +11,7 @@
     <meta name="author" content="">
     <link rel="icon" href="favicon.ico">
 
-    <title>Cover Template for Bootstrap</title>
+    <title>Popular Products</title>
 
     <!-- Bootstrap core CSS -->
     <link href="assets/bootstrap.min.css" rel="stylesheet">
@@ -22,7 +23,8 @@
     <link href="assets/speed.css" rel="stylesheet">
 
     <!-- Just for debugging purposes. Don't actually copy these 2 lines! -->
-    <!--[if lt IE 9]><script src="assets/ie8-responsive-file-warning.js"></script><![endif]-->
+    <!--[if lt IE 9]>
+    <script src="assets/ie8-responsive-file-warning.js"></script><![endif]-->
     <script src="assets/ie-emulation-modes-warning.js"></script>
 
     <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
@@ -54,28 +56,29 @@
             </div>
 
             <div class="inner cover">
-                <div class="row">
-                    <div class="col-md-4">
-                        <a href="searchByBarcode.jsp"><h2>Search by<br>bar code</h2></a>
 
-                    </div>
-                    <div class="col-md-4">
-                        <a href="searchByProductForm.jsp"><h2>Search by<br>product name</h2></a>
-                    </div>
-                    <div class="col-md-4">
-                        <h2>Search by<br>category</h2>
-                    </div>
-                    <p>
-                        <a href="PopularProducts">Popular products report</a>
-                    </p>
-                </div>
+                <p>
+                    <h2>Popular Products Report:</h2>
+                    <table id="popular_products">
+                        <tr><th>Produkt</th><th>Popularność</th></tr>
+                    <c:forEach items="${popularProduct}" var="item">
+                        <tr>
+                            <td>${item.product}</td>
+                            <td>${item.count}</td>
+                        </tr>
+                    </c:forEach>
+                    </table>
+                </p>
+                <!--<p class="lead">Cover is a one-page template for building simple and beautiful home pages. Download, edit the text, and add your own fullscreen background photo to make it your own.</p>-->
+                <p class="lead">
+                    <!--<a href="#" class="btn btn-lg btn-default">Wprowadz kod kreskowy</a>-->
+                    <!--<a href="#" class="btn btn-lg btn-default">Wprowadz słowo kluczowe</a>-->
+                </p>
             </div>
-
-
 
             <div class="mastfoot">
                 <div class="inner">
-                    <p>Product searcher made by SPEeD Team <a href="http://getbootstrap.com">Bootstrap</a>, by <a href="https://twitter.com/mdo">@mdo</a>.</p>
+                    <p>Product searcher made by SPEeD Team</p>
                 </div>
             </div>
 
