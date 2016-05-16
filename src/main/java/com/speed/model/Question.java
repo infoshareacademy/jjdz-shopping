@@ -1,9 +1,11 @@
 package com.speed.model;
 
+import com.speed.kosz.CategoryTemp;
+
 import java.util.*;
 
-import static com.speed.model.CategoryTemp.addCategoryToMap;
-import static com.speed.model.CategoryTemp.catFrom;
+import static com.speed.kosz.CategoryTemp.addCategoryToMap;
+import static com.speed.kosz.CategoryTemp.catFrom;
 
 
 

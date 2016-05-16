@@ -25,7 +25,7 @@ public class CategorySearchTest {
     }
 
     @Test
-    public void willReturnCategoryNameWhenUpperCaseProductFound() throws XMLStreamException {
+    public void should_return_not_empty_list_of_found_categories_searched_by_uppercase() throws XMLStreamException {
         // given
         CategorySearch categorySearcher = new CategorySearch();
 
@@ -37,7 +37,7 @@ public class CategorySearchTest {
     }
 
     @Test
-    public void willReturnMessageWhenProductNotFound() throws XMLStreamException {
+    public void should_return_empty_list_if_category_not_found() throws XMLStreamException {
         // given
         CategorySearch categorySearcher = new CategorySearch();
 
@@ -48,5 +48,19 @@ public class CategorySearchTest {
         assertTrue(foundCategories.size() == 0);
     }
 
+    @Test
+    public void should_return_not_empty_list_of_found_subcategories() throws XMLStreamException {
+        //given
+        CategorySearch searchSubcategories = new CategorySearch();
+
+        //when
+        List<Category> childrens = searchSubcategories.findCategoryChildren(5560); //5560 - Motorowery; Contains 2 childrens: "Nowe", "Używane"
+
+        //then
+        for (Category child:childrens) {
+            System.out.println("Children: ID " + child.getCatId() + ", " + child.getCatName());
+        }
+        assertTrue(childrens.size() > 0);
+    }
 
 }

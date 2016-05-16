@@ -1,11 +1,20 @@
 package com.speed;
 
 
+import com.speed.model.Category;
 import com.speed.model.ProductFromBarcode;
+import com.speed.service.CategorySearch;
 import com.speed.service.ProductFromBarcodeApp;
 import org.junit.Test;
+import org.junit.runner.RunWith;
+import org.mockito.InjectMocks;
+import org.mockito.Mock;
+import org.mockito.runners.MockitoJUnitRunner;
 
+import javax.persistence.EntityManager;
+import javax.xml.stream.XMLStreamException;
 import java.io.IOException;
+import java.util.List;
 
 import static org.junit.Assert.assertEquals;
 
@@ -13,9 +22,17 @@ import static org.junit.Assert.assertEquals;
 /**
  * Created by ewaw on 28.02.16.
  */
+@RunWith(MockitoJUnitRunner.class)
 public class ProductFromBarcodeAppTest {
 
-    private ProductFromBarcodeApp cut = new ProductFromBarcodeApp();
+    @Mock
+    EntityManager em;
+
+    @Mock
+    CategorySearch categorySearch;
+
+    @InjectMocks
+    ProductFromBarcodeApp cut;
 
     @Test
     public void testFindProductwithRightPicture() throws Exception {
@@ -37,7 +54,7 @@ public class ProductFromBarcodeAppTest {
 
 
     @Test (expected = IOException.class)
-    public void testFindProductWrongFile() throws IOException {
+    public void testFindProductWrongFile() throws IOException, XMLStreamException {
         //given
         String fileNameNotOK = "";
 
@@ -48,7 +65,7 @@ public class ProductFromBarcodeAppTest {
     }
 
     @Test (expected = IOException.class)
-    public void testFindProductNotInDatabese() throws IOException {
+    public void testFindProductNotInDatabese() throws IOException, XMLStreamException {
         //given
         String fileNameNotOK = getClass().getResource("/zxing_barcode_test.jpg").getPath();
 
@@ -57,5 +74,6 @@ public class ProductFromBarcodeAppTest {
 
         //then throws IOException
     }
+//
 
 }

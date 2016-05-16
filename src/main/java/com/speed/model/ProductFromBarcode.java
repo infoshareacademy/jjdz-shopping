@@ -1,16 +1,22 @@
 package com.speed.model;
 
 
+import javax.ejb.Stateless;
+import java.util.List;
+
 /**
  * Created by ewaw on 13.02.16.
  */
 
+//@Stateless
 public class ProductFromBarcode {
 
 
     private String ProductName;
     private String ProductNumber;
     private String ManufacturerName;
+    private String ProductKeyWord;
+    private List<Category> ProductCategories;
 
 
     public String getProductName() {
@@ -35,5 +41,21 @@ public class ProductFromBarcode {
 
     public void setManufacturerName(String manufacturerName) {
         ManufacturerName = manufacturerName;
+    }
+
+    public List<Category> getProductCategories() {
+        return ProductCategories;
+    }
+
+    public void setProductCategories(List<Category> productCategories) {
+        ProductCategories = productCategories;
+    }
+
+    public String getProductKeyWord() {
+        return ProductKeyWord;
+    }
+
+    public void setProductKeyWord(String productKeyWord) {
+        ProductKeyWord = productKeyWord;
     }
 }

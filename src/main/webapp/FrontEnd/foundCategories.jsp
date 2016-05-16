@@ -56,13 +56,18 @@
             </div>
 
             <div class="inner cover">
+                <p>
+                    Current path: ${currentPath}
+                </p>
 
                 <p>
-
                     <c:forEach items="${result}" var="item">
+                        <a href="ShowSubcategoriesServlet?categoryId=${item.catId}">
                         <c:out value="${item.catId}"/>
-                        <c:out value="${item.catName}"/><br>
-                    </c:forEach>
+                        <c:out value="${item.catName}"/>
+                        </a>
+                        <a href="AddToFavoritesServlet?categoryId=${item.catId}">Add to Favorites</a><br>
+                    </c:forEach><br>
                 </p>
                 <!--<p class="lead">Cover is a one-page template for building simple and beautiful home pages. Download, edit the text, and add your own fullscreen background photo to make it your own.</p>-->
                 <p class="lead">

@@ -6,16 +6,23 @@ import com.google.zxing.NotFoundException;
 import com.google.zxing.Result;
 import com.google.zxing.client.j2se.BufferedImageLuminanceSource;
 import com.google.zxing.common.HybridBinarizer;
+import com.speed.model.Category;
 import com.speed.model.ProductFromBarcode;
+import org.apache.log4j.Logger;
 import org.xml.sax.SAXException;
 
+import javax.ejb.EJB;
 import javax.ejb.Stateless;
 import javax.imageio.ImageIO;
+import javax.inject.Inject;
 import javax.xml.parsers.ParserConfigurationException;
+import javax.xml.stream.XMLStreamException;
 import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.IOException;
 import java.io.InputStream;
+import java.util.List;
+import java.util.regex.Pattern;
 
 /**
  * Created by ewa on 2/21/16.
@@ -25,8 +32,13 @@ import java.io.InputStream;
 @Stateless
 public class ProductFromBarcodeApp {
 
+    @Inject
+    CategorySearch categorySearch;
 
-    public ProductFromBarcode findProduct(BinaryBitmap myMap) throws IOException {
+    final static Logger logger = Logger.getLogger(ProductFromBarcodeApp.class);
+
+
+    public ProductFromBarcode findProduct(BinaryBitmap myMap) throws IOException, XMLStreamException {
 
         //decode picture to number
         Result result;
@@ -57,6 +69,12 @@ public class ProductFromBarcodeApp {
             throw new IOException("Error during getting product information. Reason: "+ e.getMessage(),e);
         }
 
+        // part 3 - findig allegro categories for product
+
+//        List<Category> categories = FindKeyWord(product.getProductName());
+//        product.setProductCategories(categories);
+        FindKeyWord(product);
+
         return product;
 
     }
@@ -83,6 +101,24 @@ public class ProductFromBarcodeApp {
         HybridBinarizer hb = new HybridBinarizer(new BufferedImageLuminanceSource(bufferedImage));
 
         return new BinaryBitmap(hb);
+    }
+
+    public ProductFromBarcode FindKeyWord(ProductFromBarcode product) throws XMLStreamException {
+
+        String productName = product.getProductName();
+
+        Pattern pattern = Pattern.compile("[^a-zA-Z]+");
+        String[] result = pattern.split(productName);
+
+        for (String i:result) {
+            List<Category> catList = categorySearch.searchCategoryByGivenProduct(i.toLowerCase());
+            if (!catList.isEmpty()) {
+                product.setProductCategories(catList);
+                product.setProductKeyWord(i);
+                return product;
+            }
+        }
+        return null;
     }
 
 
