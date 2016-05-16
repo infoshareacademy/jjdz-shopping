@@ -69,7 +69,74 @@
             <version>4.12</version>
             <scope>test</scope>
         </dependency>
+        <dependency>
+            <groupId>javax.servlet</groupId>
+            <artifactId>javax.servlet-api</artifactId>
+            <version>3.1.0</version>
+        </dependency>
+        <dependency>
+            <groupId>javax.servlet</groupId>
+            <artifactId>jstl</artifactId>
+            <version>1.2</version>
+            <scope>provided</scope>
+        </dependency>
+        <dependency>
+            <groupId>net.sourceforge.htmlunit</groupId>
+            <artifactId>htmlunit</artifactId>
+            <version>2.21</version>
+            <scope>test</scope>
+        </dependency>
+        <dependency>
+            <groupId>org.jboss.arquillian.junit</groupId>
+            <artifactId>arquillian-junit-container</artifactId>
+            <scope>test</scope>
+        </dependency>
+        <dependency>
+            <groupId>org.wildfly.arquillian</groupId>
+            <artifactId>wildfly-arquillian-container-remote</artifactId>
+            <version>2.0.0.Final</version>
+            <scope>test</scope>
+        </dependency>
 
     </dependencies>
+
+    <build>
+        <plugins>
+            <!--<plugin>-->
+                <!--<groupId>org.apache.maven.plugins</groupId>-->
+                <!--<artifactId>maven-compiler-plugin</artifactId>-->
+                <!--<configuration>-->
+                    <!--<source>1.8</source>-->
+                    <!--<target>1.8</target>-->
+                <!--</configuration>-->
+            <!--</plugin>-->
+            <plugin>
+                <artifactId>maven-war-plugin</artifactId>
+                <version>2.4</version>
+                <configuration>
+                    <failOnMissingWebXml>false</failOnMissingWebXml>
+                </configuration>
+            </plugin>
+            <plugin>
+                <groupId>org.wildfly.plugins</groupId>
+                <artifactId>wildfly-maven-plugin</artifactId>
+                <version>1.1.0.Alpha7</version>
+                <!--<configuration>-->
+                    <!--<username>${wildfly.adminUsername}</username>-->
+                    <!--<password>${wildfly.adminPassword}</password>-->
+                <!--</configuration>-->
+            </plugin>
+            <plugin>
+                <artifactId>maven-surefire-plugin</artifactId>
+                <version>2.18.1</version>
+                <!--<configuration>-->
+                    <!--<systemPropertyVariables>-->
+                        <!--<adminUsername>${wildfly.adminUsername}</adminUsername>-->
+                        <!--<adminPassword>${wildfly.adminPassword}</adminPassword>-->
+                    <!--</systemPropertyVariables>-->
+                <!--</configuration>-->
+            </plugin>
+        </plugins>
+    </build>
 
 </project>
