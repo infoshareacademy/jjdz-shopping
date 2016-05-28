@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+        "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+
+    <h:body>
+        <ui:composition template="templates/main.xhtml">
+            <ui:define name="content">
+                <h:form>
+                <div class="inner cover">
+
+                    <div class="row">
+                        <div class="col-md-4">
+                            <h1><h:commandLink action="/jsf/searchByBarcode.xhtml" value="Search by barcode"/></h1>
+                        </div>
+                        <div class="col-md-4">
+                            <h1><h:commandLink action="/jsf/searchByProductForm" value="Search by product name"/></h1>
+                        </div>
+                        <div class="col-md-4">
+                         <h1><h:commandLink action="#" value="Search by category"/></h1>
+                        </div>
+                        <p>
+                            <h:commandLink action="#" value="Popular products report"/>
+                        </p>
+                    </div>
+                </div>
+                </h:form>
+            </ui:define>
+        </ui:composition>
+    </h:body>
+
+</html>

@@ -5,15 +5,36 @@
          xsi:schemaLocation="http://java.sun.com/xml/ns/j2ee http://java.sun.com/xml/ns/j2ee/web-app_2_4.xsd"
          version="2.4">
 
+    <welcome-file-list>
+        <welcome-file>index.jsf</welcome-file>
+    </welcome-file-list>
+
     <servlet>
-        <servlet-name>FrontEnd/ShowSubcategoriesServlet</servlet-name>
+        <servlet-name>Faces Servlet</servlet-name>
+        <servlet-class>javax.faces.webapp.FacesServlet</servlet-class>
+        <load-on-startup>1</load-on-startup>
+    </servlet>
+
+    <servlet-mapping>
+        <servlet-name>Faces Servlet</servlet-name>
+        <url-pattern>*.xhtml</url-pattern>
+    </servlet-mapping>
+
+    <servlet-mapping>
+        <servlet-name>Faces Servlet</servlet-name>
+        <url-pattern>*.jsf</url-pattern>
+    </servlet-mapping>
+
+
+    <servlet>
+        <servlet-name>ShowSubcategoriesServlet</servlet-name>
         <servlet-class>com.speed.service.ShowSubcategoriesServlet</servlet-class>
         <load-on-startup>1</load-on-startup>
     </servlet>
 
     <servlet-mapping>
-        <servlet-name>FrontEnd/ShowSubcategoriesServlet</servlet-name>
-        <url-pattern>FrontEnd/ShowSubcategoriesServlet</url-pattern>
+        <servlet-name>ShowSubcategoriesServlet</servlet-name>
+        <url-pattern>ShowSubcategoriesServlet</url-pattern>
     </servlet-mapping>
 
 
