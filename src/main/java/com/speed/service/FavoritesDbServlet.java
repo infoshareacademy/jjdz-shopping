@@ -1,5 +1,6 @@
 package com.speed.service;
 
+import com.speed.model.Category;
 import com.speed.model.FavoritesDB;
 import org.apache.log4j.Logger;
 
@@ -32,7 +33,10 @@ public class FavoritesDbServlet extends HttpServlet{
         String catId = req.getParameter("categoryId");
         logger.debug("categoryId: " + catId);
 
-        favoritesDB.addToFavorites(categorySearch.findCategoryById(Integer.parseInt(catId)));
+        Category categoryById = categorySearch.findCategoryById(Integer.parseInt(catId));
+        logger.debug("Found category: " + categoryById);
+
+        favoritesDB.addToFavorites(categoryById);
 
         req.setAttribute("favorites", favoritesDB.getFavorites());
 

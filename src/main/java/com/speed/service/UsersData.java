@@ -2,11 +2,9 @@ package com.speed.service;
 
 import com.speed.model.Category;
 
-import javax.persistence.Entity;
-import javax.persistence.Id;
-import javax.persistence.OneToMany;
-import javax.persistence.Table;
+import javax.persistence.*;
 import java.io.Serializable;
+import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -15,20 +13,24 @@ import java.util.List;
 
 @Entity
 @Table (name = "users")
+@NamedQuery(name="findByEmail", query = "SELECT u FROM UsersData u WHERE u.userEmail = :email")
 public class UsersData implements Serializable{
 
     public UsersData(String userName, String userEmail) {
         this.userName = userName;
         this.userEmail = userEmail;
+//        this.id = 1L;
     }
 
     private String userName;
     private String userEmail;
 
-    @OneToMany(mappedBy = "user")
-    private List<Category> favorites;
+    @OneToMany
+//            (mappedBy = "user")
+    private List<Category> favorites = new ArrayList<>();
 
     @Id
+    @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
 
     public UsersData() {
@@ -63,6 +65,8 @@ public class UsersData implements Serializable{
         return "UsersData{" +
                 "userName='" + userName + '\'' +
                 ", userEmail='" + userEmail + '\'' +
+                ", favorites=" + favorites +
+                ", id=" + id +
                 '}';
     }
 
@@ -70,7 +74,7 @@ public class UsersData implements Serializable{
         return favorites;
     }
 
-    public void setFavorites(Category category) {
+    public void addCategoryToFavorites(Category category) {
         favorites.add(category);
     }
 

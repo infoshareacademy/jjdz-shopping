@@ -31,8 +31,8 @@ public class Category implements Serializable{
     private int catPosition;
     @Column(name = "catIsProductCatalogueEnabled")
     private int catIsProductCatalogueEnabled;
-    @ManyToOne(fetch = FetchType.EAGER)
-    private UsersData user;
+//    @ManyToOne(fetch = FetchType.EAGER)
+//    private UsersData user;
 
     public Category(int catId, int catParent, String catName) {
         this.catId = catId;
@@ -83,6 +83,14 @@ public class Category implements Serializable{
     public void setCatIsProductCatalogueEnabled(int catIsProductCatalogueEnabled) {
         this.catIsProductCatalogueEnabled = catIsProductCatalogueEnabled;
     }
+
+//    public UsersData getUser() {
+//        return user;
+//    }
+//
+//    public void setUser(UsersData user) {
+//        this.user = user;
+//    }
 
     @Override
     public boolean equals(Object o) {
