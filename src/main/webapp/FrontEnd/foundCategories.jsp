@@ -68,7 +68,7 @@
                         <tr>
                                 <td><c:out value="${item.catId}"/></td>
                                 <td><a href="ShowSubcategoriesServlet?categoryId=${item.catId}"><c:out value="${item.catName}"/></a></td>
-                                <td><a href="AddToFavoritesServlet?categoryId=${item.catId}">Add to Favorites</a></td>
+                                <td><a href="FavoritesDbServlet?categoryId=${item.catId}">Add to Favorites</a></td>
                         </tr>
                     </c:forEach>
                 </table>

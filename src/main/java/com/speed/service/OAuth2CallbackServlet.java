@@ -5,18 +5,15 @@ package com.speed.service;
  */
 import com.github.scribejava.core.model.*;
 import com.github.scribejava.core.oauth.OAuth20Service;
-import com.google.gson.Gson;
+import com.speed.model.UserDataDB;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-import org.w3c.dom.UserDataHandler;
 
+import javax.ejb.EJB;
 import javax.inject.Inject;
-import javax.inject.Scope;
 import javax.json.Json;
 import javax.json.JsonObject;
 import javax.json.JsonReader;
-import javax.servlet.AsyncContext;
-import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -32,6 +29,9 @@ public class OAuth2CallbackServlet extends HttpServlet {
 
     @Inject
     SessionData sessionData;
+
+    @EJB
+    UserDataDB userDataDB;
 
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp)
@@ -62,9 +62,12 @@ public class OAuth2CallbackServlet extends HttpServlet {
                 oResp.getBody().getBytes()));
         JsonObject profile = reader.readObject();
 
-        UsersData User = new UsersData(profile.getString("name"),profile.getString("email"));
-        logger.debug("User information [name:{}, email:{}] token: {} - end",profile.getString("name"),profile.getString("email"), token);
-        sessionData.logIn(User, token);
+        UsersData user = new UsersData(profile.getString("name"),profile.getString("email"));
+
+        UsersData foundUser = userDataDB.findOrSave(user);
+
+        logger.debug("user information [name:{}, email:{}] token: {} - end",profile.getString("name"),profile.getString("email"), token);
+        sessionData.logIn(foundUser, token);
 
 
         resp.sendRedirect("index.jsp");
