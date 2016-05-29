@@ -1,10 +1,10 @@
 package com.speed.model;
 
 
-import com.speed.service.UsersData;
-
-import javax.persistence.*;
-import javax.validation.constraints.NotNull;
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.Id;
+import javax.persistence.Table;
 import java.io.Serializable;
 
 /**
@@ -31,8 +31,6 @@ public class Category implements Serializable{
     private int catPosition;
     @Column(name = "catIsProductCatalogueEnabled")
     private int catIsProductCatalogueEnabled;
-//    @ManyToOne(fetch = FetchType.EAGER)
-//    private UsersData user;
 
     public Category(int catId, int catParent, String catName) {
         this.catId = catId;

@@ -1,4 +1,4 @@
-package com.speed.service;
+package com.speed.SearchByBarcode;
 
 import com.google.zxing.BinaryBitmap;
 import com.google.zxing.MultiFormatReader;
@@ -7,11 +7,10 @@ import com.google.zxing.Result;
 import com.google.zxing.client.j2se.BufferedImageLuminanceSource;
 import com.google.zxing.common.HybridBinarizer;
 import com.speed.model.Category;
-import com.speed.model.ProductFromBarcode;
+import com.speed.service.CategorySearch;
 import org.apache.log4j.Logger;
 import org.xml.sax.SAXException;
 
-import javax.ejb.EJB;
 import javax.ejb.Stateless;
 import javax.imageio.ImageIO;
 import javax.inject.Inject;
@@ -32,11 +31,10 @@ import java.util.regex.Pattern;
 @Stateless
 public class ProductFromBarcodeApp {
 
-    @Inject
-    CategorySearch categorySearch;
-
     final static Logger logger = Logger.getLogger(ProductFromBarcodeApp.class);
-
+    @Inject
+    public
+    CategorySearch categorySearch;
 
     public ProductFromBarcode findProduct(BinaryBitmap myMap) throws IOException, XMLStreamException {
 
@@ -45,7 +43,7 @@ public class ProductFromBarcodeApp {
         try {
             MultiFormatReader reader = new MultiFormatReader();
             result = reader.decode(myMap);
-        }catch (NotFoundException e) {
+        } catch (NotFoundException e) {
             e.printStackTrace();
             throw new IOException("Error during reading and parsing from file. Reason: " + e.getMessage(), e);
         }
@@ -66,7 +64,7 @@ public class ProductFromBarcodeApp {
             ReadXMLFile rxm = new ReadXMLFile();
             product = rxm.parseXML(stringWithRestResponse, product);
         } catch (IOException | SAXException | ParserConfigurationException | NullPointerException e) {
-            throw new IOException("Error during getting product information. Reason: "+ e.getMessage(),e);
+            throw new IOException("Error during getting product information. Reason: " + e.getMessage(), e);
         }
 
         // part 3 - findig allegro categories for product
@@ -110,7 +108,7 @@ public class ProductFromBarcodeApp {
         Pattern pattern = Pattern.compile("[^a-zA-Z]+");
         String[] result = pattern.split(productName);
 
-        for (String i:result) {
+        for (String i : result) {
             List<Category> catList = categorySearch.searchCategoryByGivenProduct(i.toLowerCase());
             if (!catList.isEmpty()) {
                 product.setProductCategories(catList);

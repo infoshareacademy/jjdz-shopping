@@ -20,6 +20,8 @@ import java.io.IOException;
 public class FavoritesDbServlet extends HttpServlet{
     final  static Logger logger = Logger.getLogger(ShowSubcategoriesServlet.class);
 
+    RequestDispatcher dispatcher;
+
     @EJB
     CategorySearch categorySearch;
 
@@ -36,11 +38,16 @@ public class FavoritesDbServlet extends HttpServlet{
         Category categoryById = categorySearch.findCategoryById(Integer.parseInt(catId));
         logger.debug("Found category: " + categoryById);
 
-        favoritesDB.addToFavorites(categoryById);
+        try {
+            favoritesDB.addToFavorites(categoryById);
+            req.setAttribute("favorites", favoritesDB.getFavorites());
+            dispatcher = req.getRequestDispatcher("favorites.jsp");
 
-        req.setAttribute("favorites", favoritesDB.getFavorites());
+            //przekierowanie do logowania jak probujemy dodac ulubione jak nie jestesmy zalogowani
+        } catch (UserNotAuthorisedExeption userNotAuthorisedExeption) {
+            dispatcher = req.getRequestDispatcher("LogingForm.jsp");
+        }
 
-        RequestDispatcher dispatcher = req.getRequestDispatcher("favorites.jsp");
         dispatcher.forward(req, resp);
     }
 }

@@ -1,4 +1,4 @@
-package com.speed.service;
+package com.speed.SearchByBarcode;
 
 import java.io.BufferedReader;
 import java.io.IOException;
@@ -16,9 +16,9 @@ import java.util.Map;
 public class RestAPIProvider {
 
     private Map<String, String> params = new HashMap<>();
-    private String RestRequestAddres = new String();
+    private String RestRequestAddres = "";
 
-    public RestAPIProvider(Map<String, String> params, String RestRequestAddres){
+    public RestAPIProvider(Map<String, String> params, String RestRequestAddres) {
         this.RestRequestAddres = RestRequestAddres;
         this.params = params;
     }
@@ -30,12 +30,13 @@ public class RestAPIProvider {
     public void setRestRequestAddres(String restRequestAddres) {
         RestRequestAddres = restRequestAddres;
     }
+
     public void setParams(Map<String, String> params) {
         this.params = params;
     }
 
     public void addParam(String key, String value) {
-        this.params.put(key,value);
+        this.params.put(key, value);
     }
 
     private String CreateParameters() {
@@ -46,7 +47,7 @@ public class RestAPIProvider {
                 params.entrySet()) {
             adresPar += entry.getKey() + "=" + entry.getValue() + "&";
         }
-        return adresPar .substring(0, adresPar.length()-1);
+        return adresPar.substring(0, adresPar.length() - 1);
     }
 
     //url http://api3.produktywsieci.pl/PublicService.svc/rest/xml/GetProductByGTIN?gs1Key=*****&gtin=*****&ip=*****&geoloc=*****&longitude=*****&latitude=*****
@@ -64,9 +65,9 @@ public class RestAPIProvider {
         // Buffer the result into a string
         StringBuilder bufferStr = new StringBuilder();
 
-        try(InputStream inputStream = conn.getInputStream();
-        InputStreamReader reader = new InputStreamReader(inputStream);
-        BufferedReader buffer = new BufferedReader(reader)) {
+        try (InputStream inputStream = conn.getInputStream();
+             InputStreamReader reader = new InputStreamReader(inputStream);
+             BufferedReader buffer = new BufferedReader(reader)) {
 
             String line;
 
@@ -74,9 +75,8 @@ public class RestAPIProvider {
             while ((line = buffer.readLine()) != null) {
                 bufferStr.append(line);
             }
-        }
-        catch(IOException e){
-            throw new IOException("Error during reading REST information from URL " + url + ". Inner message: "+ e.getMessage());
+        } catch (IOException e) {
+            throw new IOException("Error during reading REST information from URL " + url + ". Inner message: " + e.getMessage());
         }
 
         conn.disconnect();

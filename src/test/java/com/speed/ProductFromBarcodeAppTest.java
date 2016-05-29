@@ -1,10 +1,9 @@
 package com.speed;
 
 
-import com.speed.model.Category;
-import com.speed.model.ProductFromBarcode;
+import com.speed.SearchByBarcode.ProductFromBarcode;
+import com.speed.SearchByBarcode.ProductFromBarcodeApp;
 import com.speed.service.CategorySearch;
-import com.speed.service.ProductFromBarcodeApp;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.mockito.InjectMocks;
@@ -14,7 +13,6 @@ import org.mockito.runners.MockitoJUnitRunner;
 import javax.persistence.EntityManager;
 import javax.xml.stream.XMLStreamException;
 import java.io.IOException;
-import java.util.List;
 
 import static org.junit.Assert.assertEquals;
 

@@ -4,8 +4,8 @@ import com.speed.model.Category;
 
 import javax.persistence.*;
 import java.io.Serializable;
-import java.util.ArrayList;
-import java.util.List;
+import java.util.HashSet;
+import java.util.Set;
 
 /**
  * Created by slaw on 15.05.16.
@@ -16,22 +16,20 @@ import java.util.List;
 @NamedQuery(name="findByEmail", query = "SELECT u FROM UsersData u WHERE u.userEmail = :email")
 public class UsersData implements Serializable{
 
+    private String userName;
+    private String userEmail;
+    @ManyToMany(cascade = CascadeType.MERGE)
+//            (mappedBy = "user")
+    private Set<Category> favorites = new HashSet<>();
+    @Id
+    @GeneratedValue(strategy = GenerationType.AUTO)
+    private Long id;
+
     public UsersData(String userName, String userEmail) {
         this.userName = userName;
         this.userEmail = userEmail;
 //        this.id = 1L;
     }
-
-    private String userName;
-    private String userEmail;
-
-    @OneToMany
-//            (mappedBy = "user")
-    private List<Category> favorites = new ArrayList<>();
-
-    @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
-    private Long id;
 
     public UsersData() {
     }
@@ -70,7 +68,7 @@ public class UsersData implements Serializable{
                 '}';
     }
 
-    public List<Category> getFavorites() {
+    public Set<Category> getFavorites() {
         return favorites;
     }
 

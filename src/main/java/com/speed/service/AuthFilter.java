@@ -3,9 +3,8 @@ package com.speed.service;
 import javax.inject.Inject;
 import javax.servlet.*;
 import javax.servlet.annotation.WebFilter;
-import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
+import java.util.Optional;
 
 @WebFilter("/*")
 public class AuthFilter implements Filter {
@@ -15,8 +14,9 @@ public class AuthFilter implements Filter {
 
     @Override
     public void doFilter(ServletRequest request, ServletResponse response, FilterChain chain) throws IOException, ServletException {
-        request.setAttribute("userdata", sessionData.getUser());
-        System.out.println("sessionData.getUser() = " + sessionData.getUser());
+        Optional<UsersData> user = sessionData.getUser();
+        request.setAttribute("userdata", user.orElse(null));
+        System.out.println("sessionData.getUser() = " + user.orElse(null));
         chain.doFilter(request, response);
     }
 

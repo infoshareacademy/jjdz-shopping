@@ -1,6 +1,5 @@
-package com.speed.service;
+package com.speed.SearchByBarcode;
 
-import com.speed.model.ProductFromBarcode;
 import org.w3c.dom.Document;
 import org.w3c.dom.Element;
 import org.xml.sax.SAXException;
