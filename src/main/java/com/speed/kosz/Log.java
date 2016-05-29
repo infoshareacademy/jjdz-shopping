@@ -1,4 +1,4 @@
-package com.speed.service;
+package com.speed.kosz;
 
 /**
  * Created by slawekskel on 5/6/16.

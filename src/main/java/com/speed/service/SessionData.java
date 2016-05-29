@@ -2,6 +2,7 @@ package com.speed.service;
 
 import com.github.scribejava.core.model.OAuth2AccessToken;
 import com.github.scribejava.core.oauth.OAuth20Service;
+import lombok.Getter;
 
 import javax.enterprise.context.SessionScoped;
 import java.io.Serializable;
@@ -9,6 +10,7 @@ import java.io.Serializable;
 @SessionScoped
 public class SessionData implements Serializable {
 
+    @Getter
     private UsersData user;
     private OAuth2AccessToken userToken;
     private OAuth20Service OAuth2Service;
@@ -22,9 +24,6 @@ public class SessionData implements Serializable {
         this.user = null;
     }
 
-    public UsersData getUser() {
-        return user;
-    }
 
     public boolean isLoggedIn() {
         return (userToken!=null);

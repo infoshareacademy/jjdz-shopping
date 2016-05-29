@@ -2,6 +2,7 @@ package com.speed.service;
 
 import com.speed.model.Category;
 import com.speed.model.FavoritesDB;
+import lombok.extern.slf4j.Slf4j;
 import org.apache.log4j.Logger;
 
 import javax.ejb.EJB;
@@ -17,8 +18,8 @@ import java.io.IOException;
  * Created by raker on 26.05.16.
  */
 @WebServlet(urlPatterns = "FrontEnd/FavoritesDbServlet")
+@Slf4j
 public class FavoritesDbServlet extends HttpServlet{
-    final  static Logger logger = Logger.getLogger(ShowSubcategoriesServlet.class);
 
     @EJB
     CategorySearch categorySearch;
@@ -28,13 +29,13 @@ public class FavoritesDbServlet extends HttpServlet{
 
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-        logger.debug("Call FavoritesDbServlet");
+        log.debug("Call FavoritesDbServlet");
 
         String catId = req.getParameter("categoryId");
-        logger.debug("categoryId: " + catId);
+        log.debug("categoryId: " + catId);
 
         Category categoryById = categorySearch.findCategoryById(Integer.parseInt(catId));
-        logger.debug("Found category: " + categoryById);
+        log.debug("Found category: " + categoryById);
 
         favoritesDB.addToFavorites(categoryById);
 

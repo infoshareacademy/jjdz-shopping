@@ -17,8 +17,11 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
+import javax.ws.rs.Path;
+import javax.ws.rs.PathParam;
 import java.io.IOException;
 import java.util.Random;
+
 
 @WebServlet("FrontEnd/googleplus")
 public class GooglePlusServlet extends HttpServlet {
@@ -34,6 +37,7 @@ public class GooglePlusServlet extends HttpServlet {
 
 
 
+
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 
@@ -44,13 +48,17 @@ public class GooglePlusServlet extends HttpServlet {
                 .apiKey(CLIENT_ID)
                 .apiSecret(CLIENT_SECRET)
                 .callback("http://localhost:8080/jjdz-shopping-1.0-SNAPSHOT/FrontEnd/oauth2callback")
+
                 .scope("openid profile email " +
                         "https://www.googleapis.com/auth/plus.login " +
                         "https://www.googleapis.com/auth/plus.me")
                 .build(GoogleApi20.instance());
 
         sessionData.setOAuth2Service(service);
-        resp.sendRedirect(service.getAuthorizationUrl());
+       resp.sendRedirect(service.getAuthorizationUrl());
+
+
+        ///resp.sendRedirect("https://accounts.google.com/AccountChooser?service=lso&continue=http%3A%2F%2Flocalhost%3A8080%2Fjjdz-shopping-1.0-SNAPSHOT%2FFrontEnd%2Foauth2callback");
     }
 
 
