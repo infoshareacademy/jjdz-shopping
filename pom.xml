@@ -53,7 +53,13 @@
                         <groupId>org.wildfly.plugins</groupId>
                         <artifactId>wildfly-maven-plugin</artifactId>
                         <version>1.1.0.Alpha7</version>
-                    </plugin>
+                        <configuration>
+                            <java-opts>
+                                <java-opt>-agentlib:jdwp=transport=dt_socket,server=y,suspend=n,address=5005</java-opt>
+                            </java-opts>
+                        </configuration>
+            </plugin>
+
         </plugins>
 
     </build>
@@ -137,11 +143,7 @@
             <artifactId>slf4j-api</artifactId>
             <version>1.7.5</version>
         </dependency>
-        <!--<dependency>-->
-            <!--<groupId>org.slf4j</groupId>-->
-            <!--<artifactId>slf4j-log4j12</artifactId>-->
-            <!--<version>1.7.5</version>-->
-        <!--</dependency>-->
+
 
         <dependency>
             <groupId>junit</groupId>
@@ -192,5 +194,25 @@
 
 
     </dependencies>
+
+    <profiles>
+        <profile>
+            <id>wildfly-debug</id>
+            <build>
+                <plugins>
+                    <plugin>
+                        <groupId>org.wildfly.plugins</groupId>
+                        <artifactId>wildfly-maven-plugin</artifactId>
+                        <version>1.1.0.Alpha7</version>
+                        <configuration>
+                            <javaOpts>
+                                <javaOpt>-agentlib:jdwp=transport=dt_socket,address=8787,server=y,suspend=y</javaOpt>
+                            </javaOpts>
+                        </configuration>
+                    </plugin>
+                </plugins>
+            </build>
+        </profile>
+    </profiles>
 
 </project>
