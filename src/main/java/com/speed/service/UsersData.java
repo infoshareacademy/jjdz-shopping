@@ -18,7 +18,7 @@ public class UsersData implements Serializable{
 
     private String userName;
     private String userEmail;
-    @ManyToMany(cascade = CascadeType.MERGE)
+    @ManyToMany(fetch = FetchType.EAGER, cascade = CascadeType.MERGE)
 //            (mappedBy = "user")
     private Set<Category> favorites = new HashSet<>();
     @Id
