@@ -8,7 +8,10 @@
                                     </c:when>
 
                                     <c:otherwise>
-                                        <div>${userdata.userName}</div>
+                                        <a href="ShowLoggedUserFavoritesServlet">
+                                            <div>Favorites</div>
+                                        </a>
+                                        <div>Hello, ${userdata.userName}</div>
                                             <li>
                                         <a href="logout" >
                                                 <div>Logout</div>
