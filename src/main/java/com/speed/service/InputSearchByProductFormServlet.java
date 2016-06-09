@@ -18,17 +18,13 @@ import java.util.List;
 @WebServlet(urlPatterns = "FrontEnd/SearchByProductServlet")
 public class InputSearchByProductFormServlet extends HttpServlet {
 
-    final  static Logger logger = Logger.getLogger(InputSearchByProductFormServlet.class);
+    final static Logger logger = Logger.getLogger(InputSearchByProductFormServlet.class);
 
     @EJB
     CategorySearch categorySearch;
 
     @EJB
     ReportPopularProducts reportPopularProducts;
-
-//    @EJB
-//    CategoryDao categoryDao;
-
 
 
     @Override
@@ -42,15 +38,13 @@ public class InputSearchByProductFormServlet extends HttpServlet {
 
         req.setAttribute("result", result);
 
-        if(result.size() > 0){
+        if (result.size() > 0) {
             RequestDispatcher dispatcher = req.getRequestDispatcher("foundCategories.jsp");
             dispatcher.forward(req, resp);
         } else {
             RequestDispatcher dispatcher = req.getRequestDispatcher("categoriesNotFound.jsp");
             dispatcher.forward(req, resp);
         }
-
-
 
 
     }

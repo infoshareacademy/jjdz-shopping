@@ -30,8 +30,9 @@ public class CategorySearch {
     EntityManager em;
 
     public CategorySearch() throws XMLStreamException {
-        this.parsedCategories = new ParseXML().parsStax("files/allegro.xml");
-
+//        this.parsedCategories = new ParseXML().parsStax("files/allegro.xml");
+        this.parsedCategories = new CategoryParserManager().parseAndPersist("files/allegro.xml");
+//        this.parsedCategories = new ArrayList<>();
     }
 
     public List<Category> getParsedCategories() {

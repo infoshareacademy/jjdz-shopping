@@ -47,9 +47,11 @@
                     <h3 class="masthead-brand">SPEeD Team</h3>
                     <nav>
                         <ul class="nav masthead-nav">
-                            <li class="active"><a href="#">Home</a></li>
+                            <li class="active"><a href="index.jsp">Home</a></li>
                             <li><a href="#">About</a></li>
-                            <li><a href="#">Contact</a></li>
+                            <li>
+                                <jsp:include page="UserDataInput.jsp"/>
+                            </li>
                         </ul>
                     </nav>
                 </div>
@@ -59,10 +61,16 @@
 
                 <p>
                     <h2>Favorites:</h2>
-                    <c:forEach items="${favorites}" var="item">
-                        <c:out value="${item.catId}"/>
-                        <c:out value="${item.catName}"/><br>
-                    </c:forEach>
+                    <table id="favorites">
+                        <tr><th>Category ID</th><th>Category name</th><th>Link to Allegro</th></tr>
+                        <c:forEach items="${favorites}" var="item">
+                            <tr>
+                                <td><c:out value="${item.catId}"/></td>
+                                <td><c:out value="${item.catName}"/></td>
+                                <td><a href="LinkToAllegroCategory?categoryId=${item.catId}" target="_blank">Open in Allegro</a></td>
+                            </tr>
+                        </c:forEach>
+                    </table>
                 </p>
                 <!--<p class="lead">Cover is a one-page template for building simple and beautiful home pages. Download, edit the text, and add your own fullscreen background photo to make it your own.</p>-->
                 <p class="lead">

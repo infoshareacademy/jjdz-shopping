@@ -1,7 +1,8 @@
-package com.speed.model;
+package com.speed.SearchByBarcode;
 
 
-import javax.ejb.Stateless;
+import com.speed.model.Category;
+
 import java.util.List;
 
 /**

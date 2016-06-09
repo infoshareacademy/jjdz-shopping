@@ -49,7 +49,9 @@
                         <ul class="nav masthead-nav">
                             <li class="active"><a href="index.jsp">Home</a></li>
                             <li><a href="#">About</a></li>
-                            <li><a href="#">Contact</a></li>
+                            <li>
+                                <jsp:include page="UserDataInput.jsp"/>
+                            </li>
                         </ul>
                     </nav>
                 </div>
@@ -61,13 +63,18 @@
                 </p>
 
                 <p>
+                <h2>Found Categories</h2>
+                <table id="found_categories">
+                    <tr><th>Category ID</th><th>Category name</th><th>Add to favorites</th><th>Link to Allegro</th></tr>
                     <c:forEach items="${result}" var="item">
-                        <a href="ShowSubcategoriesServlet?categoryId=${item.catId}">
-                        <c:out value="${item.catId}"/>
-                        <c:out value="${item.catName}"/>
-                        </a>
-                        <a href="AddToFavoritesServlet?categoryId=${item.catId}">Add to Favorites</a><br>
-                    </c:forEach><br>
+                        <tr>
+                                <td><c:out value="${item.catId}"/></td>
+                                <td><a href="ShowSubcategoriesServlet?categoryId=${item.catId}"><c:out value="${item.catName}"/></a></td>
+                                <td><a href="FavoritesDbServlet?categoryId=${item.catId}">Add to Favorites</a></td>
+                                <td><a href="LinkToAllegroCategory?categoryId=${item.catId}" target="_blank">Open in Allegro</a></td>
+                        </tr>
+                    </c:forEach>
+                </table>
                 </p>
                 <!--<p class="lead">Cover is a one-page template for building simple and beautiful home pages. Download, edit the text, and add your own fullscreen background photo to make it your own.</p>-->
                 <p class="lead">

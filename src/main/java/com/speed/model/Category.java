@@ -5,7 +5,6 @@ import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
 import javax.persistence.Table;
-import javax.validation.constraints.NotNull;
 import java.io.Serializable;
 
 /**
@@ -82,6 +81,14 @@ public class Category implements Serializable{
     public void setCatIsProductCatalogueEnabled(int catIsProductCatalogueEnabled) {
         this.catIsProductCatalogueEnabled = catIsProductCatalogueEnabled;
     }
+
+//    public UsersData getUser() {
+//        return user;
+//    }
+//
+//    public void setUser(UsersData user) {
+//        this.user = user;
+//    }
 
     @Override
     public boolean equals(Object o) {

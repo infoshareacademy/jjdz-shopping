@@ -1,7 +1,7 @@
-package com.speed.service;
+package com.speed.SearchByBarcode;
 
 import com.speed.model.Category;
-import com.speed.model.ProductFromBarcode;
+import org.apache.log4j.Logger;
 
 import javax.ejb.EJB;
 import javax.ejb.EJBException;
@@ -17,9 +17,6 @@ import javax.xml.stream.XMLStreamException;
 import java.io.IOException;
 import java.io.InputStream;
 import java.util.List;
-import java.util.regex.Pattern;
-
-import org.apache.log4j.Logger;
 
 /**
  * Created by ewaw on 24.04.16.
@@ -28,10 +25,9 @@ import org.apache.log4j.Logger;
 @MultipartConfig
 public class SearchByBarcodeServlet extends HttpServlet {
 
+    final static Logger logger = Logger.getLogger(SearchByBarcodeServlet.class);
     @EJB
     ProductFromBarcodeApp product;
-
-    final static Logger logger = Logger.getLogger(SearchByBarcodeServlet.class);
 
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
@@ -46,20 +42,19 @@ public class SearchByBarcodeServlet extends HttpServlet {
             pfb = this.product.findProduct(this.product.GetBitMap(fileContent));
 
             List<Category> categories = pfb.getProductCategories();
-            if(categories != null){
+            if (categories != null) {
                 request.setAttribute("result", categories);
 
                 dispatcher = request.getRequestDispatcher("foundCategories.jsp");
 
-            } else{
+            } else {
                 request.setAttribute("result", "Dla " + pfb.getProductName() + " nie znaleziono odpowiedniej kategorii.");
-                dispatcher = request.getRequestDispatcher("foundFileWithBarcode.jsp");}
-        }
-        catch (EJBException e){
+                dispatcher = request.getRequestDispatcher("foundFileWithBarcode.jsp");
+            }
+        } catch (EJBException e) {
             request.setAttribute("message", "Nie podales sciezki do pliku");
             dispatcher = request.getRequestDispatcher("searchByBarcode.jsp");
-        }
-        catch(IOException e){
+        } catch (IOException e) {
             request.setAttribute("message", "Niemozliwy odczyt pliku. Sprobuj podac adres nowego pliku");
             dispatcher = request.getRequestDispatcher("searchByBarcode.jsp");
         } catch (XMLStreamException e) {

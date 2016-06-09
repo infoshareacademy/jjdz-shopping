@@ -3,6 +3,7 @@ package com.speed.parsingutils;
 import com.speed.model.Category;
 import org.apache.log4j.Logger;
 
+import javax.ejb.Stateless;
 import javax.xml.stream.XMLInputFactory;
 import javax.xml.stream.XMLStreamConstants;
 import javax.xml.stream.XMLStreamException;
@@ -102,4 +103,5 @@ public class ParseXML {
 
         return categoryList;
     }
+
 }

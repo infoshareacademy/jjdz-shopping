@@ -1,3 +1,4 @@
+
 <%@ page contentType="text/html;charset=utf-8" %>
 <!DOCTYPE html>
 <html lang="en">
@@ -47,7 +48,12 @@
                         <ul class="nav masthead-nav">
                             <li class="active"><a href="#">Home</a></li>
                             <li><a href="#">About</a></li>
-                            <li><a href="#">Contact</a></li>
+
+                            <li>
+                                <jsp:include page="UserDataInput.jsp"/>
+                            </li>
+
+
                         </ul>
                     </nav>
                 </div>

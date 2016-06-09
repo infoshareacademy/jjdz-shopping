@@ -50,17 +50,7 @@ public class ParseXMLTest {
         assertEquals(categoryList.size(), 0);
     }
 
-    @Test
-    public void willReturnEmptyListWhenFileIsEmpty() throws XMLStreamException {
-        // given
-        ParseXML parser = new ParseXML();
 
-        // when
-        List<Category> categoryList = parser.parsStax("files/emptyFile.xml");
-
-        // then
-        assertEquals(categoryList.size(), 0);
-    }
 
 
     @Test
