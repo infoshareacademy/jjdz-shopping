@@ -16,9 +16,9 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import javax.servlet.http.HttpSession;
 import java.io.IOException;
-import java.util.Random;
+import java.util.HashMap;
+import java.util.Map;
 
 @WebServlet("FrontEnd/googleplus")
 public class GooglePlusServlet extends HttpServlet {
@@ -50,7 +50,12 @@ public class GooglePlusServlet extends HttpServlet {
                 .build(GoogleApi20.instance());
 
         sessionData.setOAuth2Service(service);
-        resp.sendRedirect(service.getAuthorizationUrl());
+        //resp.sendRedirect(service.getAuthorizationUrl());
+
+        Map<String, String> additionalParams = new HashMap<>(1);
+        additionalParams.put("prompt", "select_account");
+        resp.sendRedirect(service.getAuthorizationUrl(additionalParams));
+
     }
 
 
