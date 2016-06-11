@@ -61,20 +61,28 @@
 
             <div class="inner cover">
                 <div class="row">
-                    <div class="col-md-4">
+                    <div class="col-md-6">
                         <a href="searchByBarcode.jsp"><h2>Search by<br>bar code</h2></a>
 
                     </div>
-                    <div class="col-md-4">
+                    <div class="col-md-6">
                         <a href="searchByProductForm.jsp"><h2>Search by<br>product name</h2></a>
                     </div>
-                    <div class="col-md-4">
-                        <h2>Search by<br>category</h2>
-                    </div>
-                    <p>
-                        <a href="PopularProducts">Popular products report</a>
-                    </p>
+                    <%--<div class="col-md-4">--%>
+                        <%--<h2>Search by<br>category</h2>--%>
+                    <%--</div>--%>
+                    <%--<div class="col-md-12"></div>--%>
+
                 </div>
+                <div class="row"><p>&nbsp;</p></div>
+                <div class="row">
+                    <div class="col-md-12">
+                        <%--<p><br><br>--%>
+                        <a href="PopularProducts"><h4>Popular products report</h4></a>
+                        <%--</p>--%>
+                    </div>
+                </div>
+
             </div>
 
 

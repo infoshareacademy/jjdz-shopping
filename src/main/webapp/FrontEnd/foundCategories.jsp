@@ -21,6 +21,8 @@
 
     <!-- Custom styles for this template -->
     <link href="assets/speed.css" rel="stylesheet">
+    <%--Font Awsome icons--%>
+    <link rel="stylesheet" href="../resources/font-awesome-4.6.3/css/font-awesome.min.css">
 
     <!-- Just for debugging purposes. Don't actually copy these 2 lines! -->
     <!--[if lt IE 9]>
@@ -58,9 +60,6 @@
             </div>
 
             <div class="inner cover">
-                <p>
-                    Current path: ${currentPath}
-                </p>
 
                 <p>
                 <h2>Found Categories</h2>
@@ -70,7 +69,7 @@
                         <tr>
                                 <td><c:out value="${item.catId}"/></td>
                                 <td><a href="ShowSubcategoriesServlet?categoryId=${item.catId}"><c:out value="${item.catName}"/></a></td>
-                                <td><a href="FavoritesDbServlet?categoryId=${item.catId}">Add to Favorites</a></td>
+                                <td><a href="FavoritesDbServlet?categoryId=${item.catId}"><i class="fa fa-plus" aria-hidden="true"></i></a></td>
                                 <td><a href="LinkToAllegroCategory?categoryId=${item.catId}" target="_blank">Open in Allegro</a></td>
                         </tr>
                     </c:forEach>

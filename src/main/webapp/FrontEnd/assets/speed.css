@@ -34,6 +34,10 @@ body {
   text-shadow: 0 1px 3px rgba(0,0,0,.5);
 }
 
+table td, table th {
+  padding-right: 20px;
+}
+
 /* Extra markup and styles for table-esque vertical and horizontal centering */
 .site-wrapper {
   display: table;
