@@ -1,0 +1,16 @@
+//nie prawidlowa wersja maven to:
+odpalic w terminalu intelij:
+
+echo 'export PATH="~/bin:$PATH"' >> ~/.bashrc && source ~/.bashrc
+
+mkdir -p ~/bin && curl -s https://bitbucket.org/mjensen/mvnvm/raw/master/mvn > ~/bin/mvn && chmod 0755 ~/bin/mvn
+
+//potem
+echo "mvn_version=3.2.5" > mvnvm.properties  //plik ma byc tak gdzie pom
+
+
+mvn wildfly:run  //startaup
+
+//-------->
+http://localhost:8080/jjee-1.0-SNAPSHOT/
+
