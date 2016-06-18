@@ -31,6 +31,10 @@ public class SessionData implements Serializable {
         return user != null ? userDataDB.find(user) : Optional.empty();
     }
 
+//    public  UsersData getLogedInUser(){
+//        return userDataDB.find(user);
+//    }
+
     public boolean isLoggedIn() {
         return (userToken!=null);
     }

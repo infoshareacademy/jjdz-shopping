@@ -38,8 +38,14 @@ public class FavoritesDbServlet extends HttpServlet{
         Category categoryById = categorySearch.findCategoryById(Integer.parseInt(catId));
         logger.debug("Found category: " + categoryById);
 
+        String addItem = req.getParameter("addItem");
+
         try {
-            favoritesDB.addToFavorites(categoryById);
+            if (addItem.equals("1"))
+                favoritesDB.addToFavorites(categoryById);
+            else
+                favoritesDB.removeFromFavourites(categoryById);
+
             req.setAttribute("favorites", favoritesDB.getFavorites());
             dispatcher = req.getRequestDispatcher("favorites.jsp");
 

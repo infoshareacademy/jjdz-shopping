@@ -51,9 +51,21 @@ public class FavoritesDB {
         UsersData user = usersDataOptional.get();
 
         logger.debug("User: {}", user);
+        logger.debug("Before marge: {}", category );
         category = em.merge(category);
+        logger.debug("After merge: {}", category );
 
         user.getFavorites().add(category);
+    }
+
+    @Transactional
+    public void removeFromFavourites (Category category) throws UserNotAuthorisedExeption {
+        Optional<UsersData> usersDataOptional = sessionData.getUser();
+        if (!usersDataOptional.isPresent()) {
+            throw new UserNotAuthorisedExeption();
+        }
+        UsersData user = usersDataOptional.get();
+        user.getFavorites().remove(category);
     }
 }
 

@@ -21,6 +21,8 @@
 
     <!-- Custom styles for this template -->
     <link href="assets/speed.css" rel="stylesheet">
+    <%--Font Awsome icons--%>
+    <link rel="stylesheet" href="../resources/font-awesome-4.6.3/css/font-awesome.min.css">
 
     <!-- Just for debugging purposes. Don't actually copy these 2 lines! -->
     <!--[if lt IE 9]>
@@ -62,11 +64,12 @@
                 <p>
                     <h2>Favorites:</h2>
                     <table id="favorites">
-                        <tr><th>Category ID</th><th>Category name</th><th>Link to Allegro</th></tr>
+                        <tr><th>Category ID</th><th>Category name</th><th>Remove from favorites</th><th>Link to Allegro</th></tr>
                         <c:forEach items="${favorites}" var="item">
                             <tr>
                                 <td><c:out value="${item.catId}"/></td>
                                 <td><c:out value="${item.catName}"/></td>
+                                <td><a href="FavoritesDbServlet?categoryId=${item.catId}&addItem=0"><i class="fa fa-minus" aria-hidden="true"></i></a></td>
                                 <td><a href="LinkToAllegroCategory?categoryId=${item.catId}" target="_blank">Open in Allegro</a></td>
                             </tr>
                         </c:forEach>
