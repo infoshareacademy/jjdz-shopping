@@ -5,7 +5,9 @@ package com.speed.service;
  */
 import com.github.scribejava.core.model.*;
 import com.github.scribejava.core.oauth.OAuth20Service;
+import com.speed.model.SessionData;
 import com.speed.model.UserDataDB;
+import com.speed.model.UsersData;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -25,6 +27,8 @@ import java.io.IOException;
 
 @WebServlet(urlPatterns = "FrontEnd/oauth2callback", asyncSupported=true)
 public class OAuth2CallbackServlet extends HttpServlet {
+    public static final String GOOGLEAPIS_USERINFO = "https://www.googleapis.com/oauth2/v2/userinfo";
+    public static final String INDEX_JSP = "index.jsp";
     private static Logger logger = LoggerFactory.getLogger(OAuth2CallbackServlet.class);
 
     @Inject
@@ -53,7 +57,7 @@ public class OAuth2CallbackServlet extends HttpServlet {
         OAuth2AccessToken token = oAuth2Service.getAccessToken(code);
 
         OAuthRequest oReq = new OAuthRequest(Verb.GET,
-                "https://www.googleapis.com/oauth2/v2/userinfo",
+                GOOGLEAPIS_USERINFO,
                 oAuth2Service);
         oAuth2Service.signRequest(token, oReq);
         Response oResp = oReq.send();
@@ -70,7 +74,7 @@ public class OAuth2CallbackServlet extends HttpServlet {
         sessionData.logIn(foundUser, token);
 
 
-        resp.sendRedirect("index.jsp");
+        resp.sendRedirect(INDEX_JSP);
     }
 }
 

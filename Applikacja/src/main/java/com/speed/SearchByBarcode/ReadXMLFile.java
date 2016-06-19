@@ -14,6 +14,9 @@ import java.io.*;
  */
 public class ReadXMLFile {
 
+    private static final String MSG_NO_MANUF = "No information about manufacturer";
+    private static final String MSG_NO_NAME = "No information about product name";
+
     public ProductFromBarcode parseXML(String xmlStr, ProductFromBarcode product) throws IOException, ParserConfigurationException, SAXException, NullPointerException {
 
         printXmlContent(xmlStr);
@@ -33,13 +36,13 @@ public class ReadXMLFile {
                 String ownerName = ownerElement.getElementsByTagName("b:Name").item(1).getTextContent();
 
                 if (ownerName == null) {
-                    product.setManufacturerName("No information about manufacturer");
+                    product.setManufacturerName(MSG_NO_MANUF);
                 } else {
                     product.setManufacturerName(ownerName);
                 }
 
                 if (productName == null) {
-                    product.setManufacturerName("No information about product name");
+                    product.setManufacturerName(MSG_NO_NAME);
                 } else {
                     product.setProductName(productName);
                 }

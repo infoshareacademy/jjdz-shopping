@@ -23,8 +23,8 @@ import static org.junit.Assert.assertEquals;
 @RunWith(MockitoJUnitRunner.class)
 public class ProductFromBarcodeAppTest {
 
-    @Mock
-    EntityManager em;
+//    @Mock
+//    EntityManager em;
 
     @Mock
     CategorySearch categorySearch;
@@ -38,10 +38,10 @@ public class ProductFromBarcodeAppTest {
         String expectedGTIN = "5907377860327";
         String expectedProductName = "LED1901 produkt";
         String expectedManucafturerName = "MANTA Spółka Akcyjna";
-        String fileNameNotOK = getClass().getResource("/barcode_tv.png").getPath();
+        String fileNameOK = getClass().getResource("/barcode_tv.png").getPath();
 
         //when
-        ProductFromBarcode actual = cut.findProduct(cut.GetBitMap(fileNameNotOK));
+        ProductFromBarcode actual = cut.findProduct(cut.GetBitMap(fileNameOK));
 
         //then
         assertEquals("Probelm with GTIN", actual.getProductNumber(), expectedGTIN);

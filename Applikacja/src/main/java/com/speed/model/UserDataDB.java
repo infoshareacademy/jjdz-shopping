@@ -1,6 +1,5 @@
 package com.speed.model;
 
-import com.speed.service.UsersData;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 

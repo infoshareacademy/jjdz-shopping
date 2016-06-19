@@ -32,6 +32,9 @@ import java.util.regex.Pattern;
 public class ProductFromBarcodeApp {
 
     final static Logger logger = Logger.getLogger(ProductFromBarcodeApp.class);
+    private static final String REST_API_ADRES = "http://api3.produktywsieci.pl/PublicService.svc/rest/xml/GetProductByGTIN";
+    public static final String MSG_1 = "Error during reading and parsing from file. Reason: ";
+    public static final String MSG_2 = "Error during getting product information. Reason: ";
     @Inject
     public
     CategorySearch categorySearch;
@@ -45,7 +48,7 @@ public class ProductFromBarcodeApp {
             result = reader.decode(myMap);
         } catch (NotFoundException e) {
             e.printStackTrace();
-            throw new IOException("Error during reading and parsing from file. Reason: " + e.getMessage(), e);
+            throw new IOException(MSG_1 + e.getMessage(), e);
         }
 
         ProductFromBarcode product = new ProductFromBarcode();
@@ -53,7 +56,7 @@ public class ProductFromBarcodeApp {
         product.setProductNumber(gtin);
 
         //part 2 - REST API request
-        RestAPIProvider r = new RestAPIProvider("http://api3.produktywsieci.pl/PublicService.svc/rest/xml/GetProductByGTIN");
+        RestAPIProvider r = new RestAPIProvider(REST_API_ADRES);
         String APIkey = "bd9HdzJMoMvpkn@JuVfp@Czozrpc_UM4gvmn";
 
         r.addParam("gs1Key", APIkey);
@@ -64,13 +67,10 @@ public class ProductFromBarcodeApp {
             ReadXMLFile rxm = new ReadXMLFile();
             product = rxm.parseXML(stringWithRestResponse, product);
         } catch (IOException | SAXException | ParserConfigurationException | NullPointerException e) {
-            throw new IOException("Error during getting product information. Reason: " + e.getMessage(), e);
+            throw new IOException(MSG_2 + e.getMessage(), e);
         }
 
         // part 3 - findig allegro categories for product
-
-//        List<Category> categories = FindKeyWord(product.getProductName());
-//        product.setProductCategories(categories);
         FindKeyWord(product);
 
         return product;
@@ -117,10 +117,5 @@ public class ProductFromBarcodeApp {
         }
         return null;
     }
-
-
-//    public String getFilePath() {
-//        return "/home/ewaw/Workspace/jjdz-shopping/src/main/resources/files/barcode.png";
-//    }
 }
 

@@ -1,5 +1,8 @@
 package com.speed.service;
 
+import com.speed.model.SessionData;
+import com.speed.model.UsersData;
+
 import javax.inject.Inject;
 import javax.servlet.*;
 import javax.servlet.annotation.WebFilter;

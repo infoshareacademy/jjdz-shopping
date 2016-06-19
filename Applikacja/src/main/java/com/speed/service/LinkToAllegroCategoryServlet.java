@@ -14,6 +14,7 @@ import java.io.IOException;
 @WebServlet(urlPatterns = "FrontEnd/LinkToAllegroCategory")
 public class LinkToAllegroCategoryServlet extends HttpServlet{
 
+    public static final String ALLEGRO_PL = "http://allegro.pl/";
     @EJB
     CategorySearch categorySearch;
 
@@ -34,11 +35,11 @@ public class LinkToAllegroCategoryServlet extends HttpServlet{
         Category category = categorySearch.findCategoryById(Integer.parseInt(catId));
 
         if(category.getCatParent() == 0){
-            categoryLinkInAllegro = "http://allegro.pl/" +
+            categoryLinkInAllegro = ALLEGRO_PL +
                     category.getCatName().toLowerCase().replace(" ","-").replace("(","").replace(")","") +
                     "?ref=simplified-category-tree";
         } else {
-            categoryLinkInAllegro = "http://allegro.pl/" +
+            categoryLinkInAllegro = ALLEGRO_PL +
                     category.getCatName().toLowerCase().replace(" ","-").replace("(","").replace(")","") +
                     "-" +
                     category.getCatId();

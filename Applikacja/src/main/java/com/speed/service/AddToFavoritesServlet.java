@@ -16,6 +16,7 @@ import java.io.IOException;
 public class AddToFavoritesServlet extends HttpServlet {
 
     final  static Logger logger = Logger.getLogger(ShowSubcategoriesServlet.class);
+    private static final String FAVORITES_JSP = "favorites.jsp";
 
     @EJB
     CategorySearch categorySearch;
@@ -34,7 +35,7 @@ public class AddToFavoritesServlet extends HttpServlet {
 
         req.setAttribute("favorites", favorites.getFavorites());
 
-        RequestDispatcher dispatcher = req.getRequestDispatcher("favorites.jsp");
+        RequestDispatcher dispatcher = req.getRequestDispatcher(FAVORITES_JSP);
         dispatcher.forward(req, resp);
     }
 

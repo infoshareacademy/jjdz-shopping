@@ -82,27 +82,6 @@
             <version>2.5.3</version>
         </dependency>
 
-
-      <!--  <dependency>
-            <groupId>com.gogle.oauth-client</groupId>
-            <artifactId>google-oauth-client</artifactId>
-        </dependency>-->
-
-        <!--dodane przez ss-->
-
-
-
-        <dependency>
-            <groupId>org.jboss.arquillian.junit</groupId>
-            <artifactId>arquillian-junit-container</artifactId>
-            <scope>test</scope>
-        </dependency>
-        <dependency>
-            <groupId>org.wildfly.arquillian</groupId>
-            <artifactId>wildfly-arquillian-container-remote</artifactId>
-            <version>2.0.0.Final</version>
-            <scope>test</scope>
-        </dependency>
         <dependency>
             <groupId>org.jboss.shrinkwrap.resolver</groupId>
             <artifactId>shrinkwrap-resolver-impl-maven</artifactId>
@@ -126,22 +105,9 @@
             <version>2.2.3</version>
         </dependency>
         <dependency>
-            <groupId>javax</groupId>
-            <artifactId>javaee-api</artifactId>
-            <version>7.0</version>
-            <scope>provided</scope>
-        </dependency>
-
-        <dependency>
             <groupId>log4j</groupId>
             <artifactId>log4j</artifactId>
             <version>1.2.17</version>
-        </dependency>
-
-        <dependency>
-            <groupId>org.slf4j</groupId>
-            <artifactId>slf4j-api</artifactId>
-            <version>1.7.5</version>
         </dependency>
 
 
@@ -155,12 +121,6 @@
             <groupId>javax.servlet</groupId>
             <artifactId>javax.servlet-api</artifactId>
             <version>3.1.0</version>
-        </dependency>
-        <dependency>
-            <groupId>javax.servlet</groupId>
-            <artifactId>jstl</artifactId>
-            <version>1.2</version>
-            <scope>provided</scope>
         </dependency>
         <dependency>
             <groupId>net.sourceforge.htmlunit</groupId>
@@ -179,12 +139,6 @@
             <version>2.0.0.Final</version>
             <scope>test</scope>
         </dependency>
-
-        <!--<dependency>-->
-            <!--<groupId>org.slf4j</groupId>-->
-            <!--<artifactId>slf4j-api</artifactId>-->
-            <!--<version>1.7.2</version>-->
-        <!--</dependency>-->
 
         <dependency>
             <groupId>org.slf4j</groupId>
@@ -217,49 +171,6 @@
             <version>7.0</version>
             <scope>provided</scope>
         </dependency>
-
-
-
-
     </dependencies>
-
-    <!--<build>-->
-        <!--<plugins>-->
-            <!--&lt;!&ndash;<plugin>&ndash;&gt;-->
-                <!--&lt;!&ndash;<groupId>org.apache.maven.plugins</groupId>&ndash;&gt;-->
-                <!--&lt;!&ndash;<artifactId>maven-compiler-plugin</artifactId>&ndash;&gt;-->
-                <!--&lt;!&ndash;<configuration>&ndash;&gt;-->
-                    <!--&lt;!&ndash;<source>1.8</source>&ndash;&gt;-->
-                    <!--&lt;!&ndash;<target>1.8</target>&ndash;&gt;-->
-                <!--&lt;!&ndash;</configuration>&ndash;&gt;-->
-            <!--&lt;!&ndash;</plugin>&ndash;&gt;-->
-            <!--<plugin>-->
-                <!--<artifactId>maven-war-plugin</artifactId>-->
-                <!--<version>2.4</version>-->
-                <!--<configuration>-->
-                    <!--<failOnMissingWebXml>false</failOnMissingWebXml>-->
-                <!--</configuration>-->
-            <!--</plugin>-->
-            <!--<plugin>-->
-                <!--<groupId>org.wildfly.plugins</groupId>-->
-                <!--<artifactId>wildfly-maven-plugin</artifactId>-->
-                <!--<version>1.1.0.Alpha7</version>-->
-                <!--&lt;!&ndash;<configuration>&ndash;&gt;-->
-                    <!--&lt;!&ndash;<username>${wildfly.adminUsername}</username>&ndash;&gt;-->
-                    <!--&lt;!&ndash;<password>${wildfly.adminPassword}</password>&ndash;&gt;-->
-                <!--&lt;!&ndash;</configuration>&ndash;&gt;-->
-            <!--</plugin>-->
-            <!--<plugin>-->
-                <!--<artifactId>maven-surefire-plugin</artifactId>-->
-                <!--<version>2.18.1</version>-->
-                <!--&lt;!&ndash;<configuration>&ndash;&gt;-->
-                    <!--&lt;!&ndash;<systemPropertyVariables>&ndash;&gt;-->
-                        <!--&lt;!&ndash;<adminUsername>${wildfly.adminUsername}</adminUsername>&ndash;&gt;-->
-                        <!--&lt;!&ndash;<adminPassword>${wildfly.adminPassword}</adminPassword>&ndash;&gt;-->
-                    <!--&lt;!&ndash;</systemPropertyVariables>&ndash;&gt;-->
-                <!--&lt;!&ndash;</configuration>&ndash;&gt;-->
-            <!--</plugin>-->
-        <!--</plugins>-->
-    <!--</build>-->
 
 </project>

@@ -1,8 +1,9 @@
-package com.speed.service;
+package com.speed.model;
 
 import com.github.scribejava.core.model.OAuth2AccessToken;
 import com.github.scribejava.core.oauth.OAuth20Service;
 import com.speed.model.UserDataDB;
+import com.speed.model.UsersData;
 
 import javax.enterprise.context.SessionScoped;
 import javax.inject.Inject;

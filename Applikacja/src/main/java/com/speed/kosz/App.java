@@ -1,4 +1,4 @@
-package com.speed;
+package com.speed.kosz;
 
 import com.speed.kosz.AppEntryPoint;
 import com.speed.kosz.TV;
