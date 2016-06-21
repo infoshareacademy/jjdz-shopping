@@ -20,7 +20,7 @@ public class PopularProductRepo {
 
     public List<ReportDTO> getPopularProduct() {
         List<ReportDTO> list = em.createQuery("select new com.speed.service.ReportDTO(p.product, count(p)) " +
-                "from ReportPopularProducts p group by p.product", ReportDTO.class)
+                "from ReportPopularProducts as p group by p.product order by count(p) desc, p.product asc", ReportDTO.class)
                 .getResultList();
         System.out.println(list);
         return list;
