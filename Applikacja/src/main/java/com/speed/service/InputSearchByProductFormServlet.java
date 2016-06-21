@@ -19,6 +19,8 @@ import java.util.List;
 public class InputSearchByProductFormServlet extends HttpServlet {
 
     final static Logger logger = Logger.getLogger(InputSearchByProductFormServlet.class);
+    public static final String FOUND_CATEGORIES_JSP = "foundCategories.jsp";
+    public static final String CATEGORIES_NOT_FOUND_JSP = "categoriesNotFound.jsp";
 
     @EJB
     CategorySearch categorySearch;
@@ -39,10 +41,10 @@ public class InputSearchByProductFormServlet extends HttpServlet {
         req.setAttribute("result", result);
 
         if (result.size() > 0) {
-            RequestDispatcher dispatcher = req.getRequestDispatcher("foundCategories.jsp");
+            RequestDispatcher dispatcher = req.getRequestDispatcher(FOUND_CATEGORIES_JSP);
             dispatcher.forward(req, resp);
         } else {
-            RequestDispatcher dispatcher = req.getRequestDispatcher("categoriesNotFound.jsp");
+            RequestDispatcher dispatcher = req.getRequestDispatcher(CATEGORIES_NOT_FOUND_JSP);
             dispatcher.forward(req, resp);
         }
 

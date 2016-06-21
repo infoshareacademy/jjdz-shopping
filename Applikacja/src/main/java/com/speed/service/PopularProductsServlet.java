@@ -15,6 +15,7 @@ import java.util.List;
 @WebServlet(urlPatterns = "FrontEnd/PopularProducts")
 public class PopularProductsServlet extends HttpServlet{
 
+    public static final String POPULAR_PRODUCTS_JSP = "popularProducts.jsp";
     @EJB
     PopularProductRepo popularProductRepo;
 
@@ -25,7 +26,7 @@ public class PopularProductsServlet extends HttpServlet{
 
         req.setAttribute("popularProduct", popularProduct);
 
-        RequestDispatcher dispatcher = req.getRequestDispatcher("popularProducts.jsp");
+        RequestDispatcher dispatcher = req.getRequestDispatcher(POPULAR_PRODUCTS_JSP);
         dispatcher.forward(req, resp);
     }
 }

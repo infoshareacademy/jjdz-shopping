@@ -19,6 +19,9 @@ import java.io.IOException;
 @WebServlet(urlPatterns = "FrontEnd/FavoritesDbServlet")
 public class FavoritesDbServlet extends HttpServlet{
     final  static Logger logger = Logger.getLogger(ShowSubcategoriesServlet.class);
+    private static final String FAVORITES_JSP = "favorites.jsp";
+    private static final String LOGING_FORM_JSP = "LogingForm.jsp";
+    private static final String FOUND_CATEGORIES_JSP = "foundCategories.jsp";
 
     RequestDispatcher dispatcher;
 
@@ -38,16 +41,23 @@ public class FavoritesDbServlet extends HttpServlet{
         Category categoryById = categorySearch.findCategoryById(Integer.parseInt(catId));
         logger.debug("Found category: " + categoryById);
 
+        String addItem = req.getParameter("addItem");
+
         try {
-            favoritesDB.addToFavorites(categoryById);
+            if (addItem.equals("1"))
+                favoritesDB.addToFavorites(categoryById);
+            else
+                favoritesDB.removeFromFavourites(categoryById);
+
             req.setAttribute("favorites", favoritesDB.getFavorites());
-            dispatcher = req.getRequestDispatcher("favorites.jsp");
+            dispatcher = req.getRequestDispatcher(FAVORITES_JSP);
 
             //przekierowanie do logowania jak probujemy dodac ulubione jak nie jestesmy zalogowani
         } catch (UserNotAuthorisedExeption userNotAuthorisedExeption) {
-            dispatcher = req.getRequestDispatcher("LogingForm.jsp");
+            dispatcher = req.getRequestDispatcher(LOGING_FORM_JSP);
         }
 
         dispatcher.forward(req, resp);
+
     }
 }

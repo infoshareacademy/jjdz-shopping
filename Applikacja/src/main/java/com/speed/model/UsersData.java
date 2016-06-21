@@ -1,4 +1,4 @@
-package com.speed.service;
+package com.speed.model;
 
 import com.speed.model.Category;
 

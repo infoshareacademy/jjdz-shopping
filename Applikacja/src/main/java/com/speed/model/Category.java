@@ -12,9 +12,6 @@ import java.io.Serializable;
  * edit piotr
  */
 
-
-
-
 @Entity
 @Table(name="category")
 public class Category implements Serializable{

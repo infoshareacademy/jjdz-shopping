@@ -16,6 +16,8 @@ import java.io.IOException;
 @WebServlet(urlPatterns = "FrontEnd/ShowLoggedUserFavoritesServlet")
 public class ShowLoggedUserFavoritesServlet extends HttpServlet{
     final  static Logger logger = Logger.getLogger(ShowSubcategoriesServlet.class);
+    public static final String LOGING_FORM_JSP = "LogingForm.jsp";
+    public static final String FAVORITES_JSP = "favorites.jsp";
 
     RequestDispatcher dispatcher;
 
@@ -32,9 +34,9 @@ public class ShowLoggedUserFavoritesServlet extends HttpServlet{
         try {
             req.setAttribute("favorites", favoritesDB.getFavorites());
         } catch (UserNotAuthorisedExeption userNotAuthorisedExeption) {
-            dispatcher = req.getRequestDispatcher("LogingForm.jsp");
+            dispatcher = req.getRequestDispatcher(LOGING_FORM_JSP);
         }
-        dispatcher = req.getRequestDispatcher("favorites.jsp");
+        dispatcher = req.getRequestDispatcher(FAVORITES_JSP);
         dispatcher.forward(req, resp);
     }
 }

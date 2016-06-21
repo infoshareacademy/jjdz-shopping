@@ -4,9 +4,7 @@ package com.speed.service;
  * Created by slaw on 14.05.16.
  */
 
-import com.github.scribejava.apis.GoogleApi20;
-import com.github.scribejava.core.builder.ServiceBuilder;
-import com.github.scribejava.core.oauth.OAuth20Service;
+import com.speed.model.SessionData;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -22,6 +20,7 @@ import java.io.IOException;
 public class LogoutServlet extends HttpServlet {
 
 
+    public static final String INDEX_JSP = "index.jsp";
     @Inject
     SessionData sessionData;
 
@@ -35,7 +34,7 @@ public class LogoutServlet extends HttpServlet {
         logger.debug("Loging out");
 
         sessionData.logout();
-        resp.sendRedirect("index.jsp");
+        resp.sendRedirect(INDEX_JSP);
     }
 
 

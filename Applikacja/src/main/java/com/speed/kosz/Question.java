@@ -1,4 +1,4 @@
-package com.speed.model;
+package com.speed.kosz;
 
 import com.speed.kosz.CategoryTemp;
 

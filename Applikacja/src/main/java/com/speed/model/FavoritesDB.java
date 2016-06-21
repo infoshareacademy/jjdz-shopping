@@ -4,9 +4,7 @@
 
 package com.speed.model;
 
-import com.speed.service.SessionData;
 import com.speed.service.UserNotAuthorisedExeption;
-import com.speed.service.UsersData;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -34,15 +32,14 @@ public class FavoritesDB {
         if (!usersDataOptional.isPresent()) {
             throw new UserNotAuthorisedExeption();
         }
-
         UsersData user = usersDataOptional.get();
-        logger.debug("User in getFavorites: {}", user);
+//        logger.debug("User in getFavorites: {}", user);
         return user.getFavorites();
     }
 
     @Transactional
     public void addToFavorites(Category category) throws UserNotAuthorisedExeption {
-        logger.debug("Add cat to favorites: {}", category );
+//        logger.debug("Add cat to favorites: {}", category );
         Optional<UsersData> usersDataOptional = sessionData.getUser();
 
         if (!usersDataOptional.isPresent()) {
@@ -50,10 +47,22 @@ public class FavoritesDB {
         }
         UsersData user = usersDataOptional.get();
 
-        logger.debug("User: {}", user);
+//        logger.debug("User: {}", user);
+//        logger.debug("Before marge: {}", category );
         category = em.merge(category);
+//        logger.debug("After merge: {}", category );
 
         user.getFavorites().add(category);
+    }
+
+    @Transactional
+    public void removeFromFavourites (Category category) throws UserNotAuthorisedExeption {
+        Optional<UsersData> usersDataOptional = sessionData.getUser();
+        if (!usersDataOptional.isPresent()) {
+            throw new UserNotAuthorisedExeption();
+        }
+        UsersData user = usersDataOptional.get();
+        user.getFavorites().remove(category);
     }
 }
 
