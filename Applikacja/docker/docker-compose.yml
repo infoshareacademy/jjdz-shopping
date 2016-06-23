@@ -4,19 +4,22 @@ services:
    image: mysql
    environment:
      MYSQL_ROOT_PASSWORD: root
-     MYSQL_DATABASE: ShopingDB
+     MYSQL_DATABASE: ShoppingDB
    networks:
      - infoshare_network
  jboss:
    build: ./jboss
    ports:
-     - 8080:8080
-     - 9990:9990
-     - 5005:5005
+        - 8080:8080
+        - 9990:9990
+        - 5005:5005
+
    volumes:
-     - ../target/jjdz-shoping.war:/opt/jboss/wildfly/standalone/deployments/jjdz-shoping.war
+     - ../target/jjdz-shopping-1.0-SNAPSHOT.war:/opt/jboss/wildfly/standalone/deployments/jjdz-shopping-1.0-SNAPSHOT.war
    networks:
      - infoshare_network
+
+
 networks:
  infoshare_network:
    driver: bridge
