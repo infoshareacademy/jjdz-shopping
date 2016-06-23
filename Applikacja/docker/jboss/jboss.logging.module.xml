@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<module xmlns="urn:jboss:module:1.1" name="org.jboss.logging">
+    <resources>
+        <resource-root path="jboss-logging-3.3.0.Final.jar"/>
+        <!-- Insert resources here -->
+    </resources>
+    <dependencies>
+        <module name="org.slf4j"/>
+        <module name="ch.qos.logback"/>
+    </dependencies>
+</module>
