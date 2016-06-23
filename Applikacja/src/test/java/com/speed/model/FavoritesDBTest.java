@@ -13,7 +13,7 @@ import java.util.HashSet;
 import java.util.Optional;
 import java.util.Set;
 
-import static org.junit.Assert.*;
+import static org.junit.Assert.assertEquals;
 import static org.mockito.Mockito.when;
 
 /**
@@ -48,8 +48,8 @@ public class FavoritesDBTest {
 
     @Test
     public void testRemoveFromFavourites() throws UserNotAuthorisedExeption {
-        //given
 
+        //given
         UsersData user = new UsersData();
         user.getFavorites().add(category1);
         user.getFavorites().add(category2);
@@ -67,7 +67,6 @@ public class FavoritesDBTest {
     public void testRemovefromEmptyFavorites() throws UserNotAuthorisedExeption {
 
         //given
-
         UsersData user = new UsersData();
         Set<Category> result = new HashSet<>();
         user.getFavorites().addAll(result);
@@ -81,10 +80,18 @@ public class FavoritesDBTest {
 
     }
 
+    @Test(expected = UserNotAuthorisedExeption.class)
+    public void testNotLoggedRemoveFromFavorites() throws UserNotAuthorisedExeption {
+
+        //when
+        when(sessionData.getUser()).thenReturn(Optional.empty());
+        cut.removeFromFavorites(category1);
+
+        // then throw exception
+    }
+
     @Test (expected = UserNotAuthorisedExeption.class)
     public void testNotLoggedAddToFavorites() throws UserNotAuthorisedExeption {
-        //given
-        UsersData user = new UsersData();
 
         //when
         when(sessionData.getUser()).thenReturn(Optional.empty());
@@ -109,6 +116,45 @@ public class FavoritesDBTest {
         //then
         assertEquals("Nie dodaje ulubionych", user.getFavorites(), favorit_Cat_All);
 
+    }
+
+    @Test
+    public void testGetFavorites() throws UserNotAuthorisedExeption {
+        //given
+        UsersData user = new UsersData();
+        user.getFavorites().add(category1);
+        user.getFavorites().add(category2);
+
+        //when
+        when(sessionData.getUser()).thenReturn(Optional.of(user));
+
+        //then
+        assertEquals("Nie pobiera ulubionych z sesji", cut.getFavorites(), favorit_Cat_All);
+
+    }
+
+    @Test
+    public void testGetFavoritesEmpty() throws UserNotAuthorisedExeption {
+        //given
+        UsersData user = new UsersData();
+        Set<Category> favorit_Cat = new HashSet<>();
+
+        //when
+        when(sessionData.getUser()).thenReturn(Optional.of(user));
+
+        //then
+        assertEquals("Ulubione nie sa puste", cut.getFavorites(), favorit_Cat);
+
+    }
+
+    @Test(expected = UserNotAuthorisedExeption.class)
+    public void testGetFavoritesNoLogged() throws UserNotAuthorisedExeption {
+
+        //when
+        when(sessionData.getUser()).thenReturn(Optional.empty());
+        cut.getFavorites();
+
+        //then throw exeption
     }
 
 
