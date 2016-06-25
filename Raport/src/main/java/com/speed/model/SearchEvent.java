@@ -2,6 +2,7 @@ package com.speed.model;
 
 
 
+import javax.persistence.Column;
 import javax.persistence.Embeddable;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
@@ -14,6 +15,9 @@ public class SearchEvent {
     @Size(min = 2)
     private String product;
     private LocalDate date;
+
+    public SearchEvent() {
+    }
 
     public String getProduct() {
         return product;
@@ -30,6 +34,7 @@ public class SearchEvent {
     public void setDate(LocalDate date) {
         this.date = date;
     }
+
 
     @Override
     public String toString() {
