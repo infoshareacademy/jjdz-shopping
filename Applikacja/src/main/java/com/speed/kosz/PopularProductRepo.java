@@ -1,7 +1,6 @@
-package com.speed.repository;
+package com.speed.kosz;
 
-import com.speed.model.ReportPopularProducts;
-import com.speed.service.ReportDTO;
+import com.speed.kosz.ReportDTO;
 
 import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
@@ -19,7 +18,7 @@ public class PopularProductRepo {
 
 
     public List<ReportDTO> getPopularProduct() {
-        List<ReportDTO> list = em.createQuery("select new com.speed.service.ReportDTO(p.product, count(p)) " +
+        List<ReportDTO> list = em.createQuery("select new com.speed.kosz.ReportDTO(p.product, count(p)) " +
                 "from ReportPopularProducts as p group by p.product order by count(p) desc, p.product asc", ReportDTO.class)
                 .getResultList();
         System.out.println(list);

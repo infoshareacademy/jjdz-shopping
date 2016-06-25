@@ -1,6 +1,8 @@
-package com.speed.service;
+package com.speed.kosz;
 
 import com.speed.model.Favorites;
+import com.speed.service.CategorySearch;
+import com.speed.service.ShowSubcategoriesServlet;
 import org.apache.log4j.Logger;
 
 import javax.ejb.EJB;

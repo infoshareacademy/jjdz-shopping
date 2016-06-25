@@ -1,9 +1,8 @@
 package com.speed.service;
 
 import com.speed.model.Category;
-import com.speed.model.ReportPopularProducts;
-import com.speed.parsingutils.ParseXML;
-import com.speed.repository.PopularProductRepo;
+import com.speed.kosz.ReportPopularProducts;
+import com.speed.kosz.PopularProductRepo;
 import org.apache.log4j.Logger;
 
 import javax.ejb.EJB;
@@ -19,8 +18,8 @@ import java.util.*;
 @Stateless
 public class CategorySearch {
 
-    @EJB
-    PopularProductRepo popularProductRepo;
+//    @EJB
+//    PopularProductRepo popularProductRepo;
 
     final static Logger logger = Logger.getLogger(CategorySearch.class);
 
@@ -40,10 +39,10 @@ public class CategorySearch {
     }
 
     public List<Category> searchCategoryByGivenProduct(String searchedProduct) {
-        ReportPopularProducts reportPopularProducts = new ReportPopularProducts();
-        reportPopularProducts.setProduct(searchedProduct);
-        em.persist(reportPopularProducts);
-
+//        ReportPopularProducts reportPopularProducts = new ReportPopularProducts();
+//        reportPopularProducts.setProduct(searchedProduct);
+//        em.persist(reportPopularProducts);
+//TODO Tu będzie metoda wywołująca POSTa informująca moduł raportowy o zajściu zdarzenia - nastąpiło wyszukanie produktu
 
 
         List<Category> foundCategories = new ArrayList<>();
