@@ -56,7 +56,7 @@ public class FavoritesDBTest {
 
         //when
         when(sessionData.getUser()).thenReturn(Optional.of(user));
-        cut.removeFromFavorites(category1);
+        cut.removeFromFavourites(category1);
 
         //then
         assertEquals("Nie usuwa ulubionych", user.getFavorites(), favorit_Cat);
@@ -73,7 +73,7 @@ public class FavoritesDBTest {
 
         //when
         when(sessionData.getUser()).thenReturn(Optional.of(user));
-        cut.removeFromFavorites(category1);
+        cut.removeFromFavourites(category1);
 
         //then
         assertEquals("Nie usuwa ulubionych", user.getFavorites(), result);
@@ -85,7 +85,7 @@ public class FavoritesDBTest {
 
         //when
         when(sessionData.getUser()).thenReturn(Optional.empty());
-        cut.removeFromFavorites(category1);
+        cut.removeFromFavourites(category1);
 
         // then throw exception
     }
