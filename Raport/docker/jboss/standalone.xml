@@ -143,8 +143,8 @@
                         <password>sa</password>
                     </security>
                 </datasource>
-                <datasource jndi-name="java:/datasources/ShoppingDB" pool-name="ShoppingDB" enabled="true" use-java-context="true">
-                    <connection-url>jdbc:mysql://sql:3306/ShoppingDB?autoReconnect=true&amp;useUnicode=true&amp;characterEncoding=UTF-8 </connection-url>
+                <datasource jndi-name="java:/datasources/ShoppingRaportDB" pool-name="ShoppingRaportDB" enabled="true" use-java-context="true">
+                    <connection-url>jdbc:mysql://sql:3306/ShoppingRaportDB?autoReconnect=true&amp;useUnicode=true&amp;characterEncoding=UTF-8 </connection-url>
                     <driver>mysql</driver>
                     <security>
                         <user-name>root</user-name>
