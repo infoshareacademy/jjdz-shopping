@@ -32,10 +32,10 @@ ADD http://central.maven.org/maven2/mysql/mysql-connector-java/5.1.39/mysql-conn
 
 WORKDIR $JBOSS_HOME
 
-EXPOSE 18080
+EXPOSE 28080
 
-EXPOSE 19990
+EXPOSE 29990
 
-EXPOSE 15005
+EXPOSE 25005
 
 CMD ["/opt/jboss/wildfly/bin/standalone.sh", "-b", "0.0.0.0", "-bmanagement", "0.0.0.0"]

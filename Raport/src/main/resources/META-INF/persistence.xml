@@ -4,9 +4,9 @@
              version="2.0">
     <persistence-unit name="ShoppingDB" >
         <!--<provider>org.hibernate.ejb.HibernatePersistence</provider>-->
-        <jta-data-source>java:/datasources/ShoppingDB</jta-data-source>
+        <jta-data-source>java:/datasources/ShoppingRaportDB</jta-data-source>
         <properties>
-            <property name="hibernate.dialect" value="org.hibernate.dialect.H2Dialect"/>
+            <property name="hibernate.dialect" value="org.hibernate.dialect.MySQL5Dialect"/>
             <property name="hibernate.hbm2ddl.auto" value="create-drop"/>
             <property name="hibernate.show_sql" value="true"/>
             <property name="hibernate.format_sql" value="true"/>

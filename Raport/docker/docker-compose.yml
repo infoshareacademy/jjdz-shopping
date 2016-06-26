@@ -4,20 +4,21 @@ services:
    image: mysql
    environment:
      MYSQL_ROOT_PASSWORD: root
-     MYSQL_DATABASE: ShoppingDB
+     MYSQL_DATABASE: ShoppingRaportDB
    networks:
      - infoshare_network
    ports:
-     - 13306:3306
+     - 23306:3306
  jboss:
    build: ./jboss
    ports:
-        - 18080:8080
-        - 19990:9990
-        - 15005:5005
+        - 28080:8080
+        - 29990:9990
+        - 25005:5005
 
    volumes:
-     - ../target/jjdz-shopping-1.0-SNAPSHOT.war:/opt/jboss/wildfly/standalone/deployments/jjdz-shopping-1.0-SNAPSHOT.war
+#   gdzie jest war
+     - ../target/shopping.war:/opt/jboss/wildfly/standalone/deployments/shopping.war
    networks:
      - infoshare_network
 
