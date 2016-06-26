@@ -23,6 +23,8 @@ public class CategorySearch {
 //    @EJB
 //    PopularProductRepo popularProductRepo;
 
+    @EJB
+    ClientReport clientReport;
     final static Logger logger = Logger.getLogger(CategorySearch.class);
 
     private List<Category> parsedCategories;
@@ -47,7 +49,6 @@ public class CategorySearch {
 //TODO Tu będzie metoda wywołująca POSTa informująca moduł raportowy o zajściu zdarzenia - nastąpiło wyszukanie produktu
 
         SearchEvent searchEvent = new SearchEvent();
-        ClientReport clientReport = new ClientReport();
 
         searchEvent.setProduct(searchedProduct);
         searchEvent.setDate(LocalDate.now());

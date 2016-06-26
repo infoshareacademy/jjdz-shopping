@@ -44,7 +44,7 @@ public class GooglePlusServlet extends HttpServlet {
         OAuth20Service service = new ServiceBuilder()
                 .apiKey(CLIENT_ID)
                 .apiSecret(CLIENT_SECRET)
-                .callback("http://localhost:8080/jjdz-shopping-1.0-SNAPSHOT/FrontEnd/oauth2callback")
+                .callback("http://localhost:18080/jjdz-shopping-1.0-SNAPSHOT/FrontEnd/oauth2callback")
                 .scope("openid profile email " +
                         "https://www.googleapis.com/auth/plus.login " +
                         "https://www.googleapis.com/auth/plus.me")

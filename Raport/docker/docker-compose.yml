@@ -1,6 +1,6 @@
 version: '2'
 services:
- sql:
+ sql-report:
    image: mysql
    environment:
      MYSQL_ROOT_PASSWORD: root
@@ -9,7 +9,7 @@ services:
      - infoshare_network
    ports:
      - 23306:3306
- jboss:
+ jboss-report:
    build: ./jboss
    ports:
         - 28080:8080

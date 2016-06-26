@@ -2,6 +2,11 @@ package com.speed.model;
 
 
 
+import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
+import com.fasterxml.jackson.databind.annotation.JsonSerialize;
+import com.fasterxml.jackson.datatype.jsr310.deser.LocalDateDeserializer;
+import com.fasterxml.jackson.datatype.jsr310.ser.LocalDateSerializer;
+
 import javax.persistence.Embeddable;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
@@ -13,6 +18,8 @@ public class SearchEvent {
     @NotNull
     @Size(min = 2)
     private String product;
+    @JsonSerialize(using = LocalDateSerializer.class)
+    @JsonDeserialize(using = LocalDateDeserializer.class)
     private LocalDate date;
 
     public SearchEvent() {
