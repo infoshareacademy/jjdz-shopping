@@ -3,6 +3,7 @@ package com.speed.service;
 import com.speed.model.Category;
 import com.speed.kosz.ReportPopularProducts;
 import com.speed.kosz.PopularProductRepo;
+import com.speed.model.SearchEvent;
 import org.apache.log4j.Logger;
 
 import javax.ejb.EJB;
@@ -10,6 +11,7 @@ import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 import javax.xml.stream.XMLStreamException;
+import java.time.LocalDate;
 import java.util.*;
 
 /**
@@ -44,6 +46,12 @@ public class CategorySearch {
 //        em.persist(reportPopularProducts);
 //TODO Tu będzie metoda wywołująca POSTa informująca moduł raportowy o zajściu zdarzenia - nastąpiło wyszukanie produktu
 
+        SearchEvent searchEvent = new SearchEvent();
+        ClientReport clientReport = new ClientReport();
+
+        searchEvent.setProduct(searchedProduct);
+        searchEvent.setDate(LocalDate.now());
+        clientReport.sendEvent(searchEvent);
 
         List<Category> foundCategories = new ArrayList<>();
 
