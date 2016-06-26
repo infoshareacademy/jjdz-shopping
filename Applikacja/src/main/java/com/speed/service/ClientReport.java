@@ -10,7 +10,7 @@ import java.net.URI;
 
 public class ClientReport {
 
-    private final String baseUrl = "http://localhost:8080/shopping";
+    private final String baseUrl = "http://localhost:28080/shopping";
 
     public void sendEvent(SearchEvent searchEvent){
         URI uri = UriBuilder.fromUri(baseUrl)
