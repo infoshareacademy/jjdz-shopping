@@ -32557,3 +32557,9 @@ Caused by: java.lang.Exception: "WFLYCTL0216: Management resource '[(\"deploymen
 2016-06-19 16:48:41 DEBUG LogicalConnectionManagedImpl:124 - Initiating JDBC connection release from afterStatement
 2016-06-19 16:48:41 DEBUG JdbcCoordinatorImpl:189 - HHH000420: Closing un-released batch
 2016-06-19 16:48:41 DEBUG LogicalConnectionManagedImpl:137 - Initiating JDBC connection release from afterTransaction
+2016-06-26 14:43:02 INFO  stdout:71 - sessionData.getUser() = null
+2016-06-26 14:43:02 DEBUG OAuth2CallbackServlet:44 - Checking if user consented
+2016-06-26 14:43:02 DEBUG OAuth2CallbackServlet:53 - OK the user have consented so lets find out about the user
+2016-06-26 14:46:09 INFO  stdout:71 - sessionData.getUser() = null
+2016-06-26 14:46:09 DEBUG OAuth2CallbackServlet:44 - Checking if user consented
+2016-06-26 14:46:09 DEBUG OAuth2CallbackServlet:53 - OK the user have consented so lets find out about the user
