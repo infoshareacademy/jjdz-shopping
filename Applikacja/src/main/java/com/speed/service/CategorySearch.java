@@ -22,6 +22,7 @@ public class CategorySearch {
     private static final String ALLEGRO_XML = "files/allegro.xml";
     @EJB
     ClientReport clientReport;
+
     @PersistenceContext
     EntityManager em;
     private List<Category> parsedCategories;

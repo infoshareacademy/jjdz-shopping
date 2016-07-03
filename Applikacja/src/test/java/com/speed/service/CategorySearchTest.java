@@ -28,21 +28,10 @@ public class CategorySearchTest {
     @Mock
     SearchEvent searchEvent;
 
-//    @Mock
-//    EntityManager em;
-
     @InjectMocks
     CategorySearch categorySearch;
 
 
-//    @Before
-//    public void init_cat() {
-//    stowrzyc liste dla categorii rower???
-//    }
-
-    //    @Before
-//    public void init_event(){
-//    }
     private Category category1 = new Category(1111, 2222, "LED");
     private Category category2 = new Category(3333, 1111, "LED_A");
     private Category category3 = new Category(4444, 1111, "LED_B");
@@ -74,13 +63,46 @@ public class CategorySearchTest {
         assertTrue(foundCategories.size() == 0);
     }
 
+
+    @Test
+    public void findCategoryChildrenforRowerSearch() throws Exception {
+//        given
+        String searchedProduct = "Rower";
+        List<Category> CategoriesRower = categorySearch.searchCategoryByGivenProduct(searchedProduct);
+        Category category = CategoriesRower.get(1);
+        int catId = category.getCatId();
+
+//        when
+        List<Category> result = categorySearch.findCategoryChildren(catId);
+
+//        then
+        for (Category cat : result)
+            assertEquals(cat.getCatParent(), catId);
+    }
+
+    @Test
+    public void catgoryShouldBeFoundByIdforRowerSearch() throws Exception {
+//        given
+        String searchedProduct = "Rower";
+        List<Category> CategoriesRower = categorySearch.searchCategoryByGivenProduct(searchedProduct);
+        Category category = CategoriesRower.get(1);
+        int catId = category.getCatId();
+
+//        when
+        Category cat = categorySearch.findCategoryById(catId);
+
+//        then
+        assertEquals(cat, category);
+    }
+
+
+
     @Before
     public void init_cat() {
         Categories.add(category1);
         Categories.add(category2);
         Categories.add(category3);
     }
-
 
     @Test
     public void findCategoryChildrenforLED() throws Exception {
@@ -95,6 +117,7 @@ public class CategorySearchTest {
 //        then
         assertEquals(result, Categories);
     }
+
 
     @Test
     public void findCategoryNoChildren() {
@@ -111,7 +134,32 @@ public class CategorySearchTest {
 
 
     @Test
-    public void findCategoryById() throws Exception {
+    public void catgoryShouldBeFoundById() throws Exception {
+//        given
+        categorySearch.setParsedCategories(Categories);
+        int catId = category1.getCatId();
+
+//        when
+        Category category = categorySearch.findCategoryById(catId);
+
+//        then
+        assertEquals(category, category1);
+    }
+
+
+    @Test
+    public void showPathforRowerSearch() {
+//        given
+        String searchedProduct = "Rower";
+        List<Category> CategoriesRower = categorySearch.searchCategoryByGivenProduct(searchedProduct);
+        Category category = CategoriesRower.get(1);
+        int catId = category.getCatId();
+
+//        when
+        StringBuilder builder = categorySearch.showPath(catId);
+
+//        then
+        assertThat(builder.toString().toLowerCase(), containsString(searchedProduct.toLowerCase()));
 
     }
 
