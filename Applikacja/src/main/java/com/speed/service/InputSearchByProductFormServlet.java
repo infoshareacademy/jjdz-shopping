@@ -2,7 +2,7 @@ package com.speed.service;
 
 
 import com.speed.model.Category;
-import com.speed.model.ReportPopularProducts;
+import com.speed.kosz.ReportPopularProducts;
 import org.apache.log4j.Logger;
 
 import javax.ejb.EJB;
@@ -25,8 +25,8 @@ public class InputSearchByProductFormServlet extends HttpServlet {
     @EJB
     CategorySearch categorySearch;
 
-    @EJB
-    ReportPopularProducts reportPopularProducts;
+//    @EJB
+//    ReportPopularProducts reportPopularProducts;
 
 
     @Override

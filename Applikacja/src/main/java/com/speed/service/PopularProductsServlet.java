@@ -1,6 +1,7 @@
 package com.speed.service;
 
-import com.speed.repository.PopularProductRepo;
+import com.speed.kosz.ReportDTO;
+import com.speed.kosz.PopularProductRepo;
 
 import javax.ejb.EJB;
 import javax.servlet.RequestDispatcher;
@@ -16,15 +17,15 @@ import java.util.List;
 public class PopularProductsServlet extends HttpServlet{
 
     public static final String POPULAR_PRODUCTS_JSP = "popularProducts.jsp";
-    @EJB
-    PopularProductRepo popularProductRepo;
+//    @EJB
+//    PopularProductRepo popularProductRepo;
 
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 
-        List<ReportDTO> popularProduct = popularProductRepo.getPopularProduct();
-
-        req.setAttribute("popularProduct", popularProduct);
+//        List<ReportDTO> popularProduct = popularProductRepo.getPopularProduct();
+//TODO popularProduct musi tu być pobrany z modułu raportowego
+//        req.setAttribute("popularProduct", popularProduct);
 
         RequestDispatcher dispatcher = req.getRequestDispatcher(POPULAR_PRODUCTS_JSP);
         dispatcher.forward(req, resp);

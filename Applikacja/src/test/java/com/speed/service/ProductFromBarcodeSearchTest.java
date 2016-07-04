@@ -3,6 +3,7 @@ package com.speed.service;
 import com.speed.SearchByBarcode.ProductFromBarcode;
 import com.speed.SearchByBarcode.ProductFromBarcodeApp;
 import com.speed.model.Category;
+import com.speed.model.SearchEvent;
 import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -25,8 +26,13 @@ public class ProductFromBarcodeSearchTest {
     @Mock
     EntityManager em;
 
+    @Mock
+    ClientReport clientReport;
+
     @InjectMocks
     CategorySearch categorySearch;
+
+
 
     ProductFromBarcodeApp cut;
 
