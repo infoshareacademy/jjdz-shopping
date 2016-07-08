@@ -31,6 +31,10 @@ public class UsersData implements Serializable{
 //        this.id = 1L;
     }
 
+    public UsersData(String userEmail) {
+        this.userEmail = userEmail;
+    }
+
     public UsersData() {
     }
 
