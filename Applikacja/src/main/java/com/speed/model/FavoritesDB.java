@@ -24,6 +24,7 @@ public class FavoritesDB {
 
     @Inject
     SessionData sessionData;
+
     private Logger logger = LoggerFactory.getLogger(FavoritesDB.class);
 
     public Set<Category> getFavorites() throws UserNotAuthorisedExeption {
@@ -33,25 +34,18 @@ public class FavoritesDB {
             throw new UserNotAuthorisedExeption();
         }
         UsersData user = usersDataOptional.get();
-//        logger.debug("User in getFavorites: {}", user);
         return user.getFavorites();
     }
 
     @Transactional
     public void addToFavorites(Category category) throws UserNotAuthorisedExeption {
-//        logger.debug("Add cat to favorites: {}", category );
         Optional<UsersData> usersDataOptional = sessionData.getUser();
 
         if (!usersDataOptional.isPresent()) {
             throw new UserNotAuthorisedExeption();
         }
         UsersData user = usersDataOptional.get();
-
-//        logger.debug("User: {}", user);
-//        logger.debug("Before marge: {}", category );
         category = em.merge(category);
-//        logger.debug("After merge: {}", category );
-
         user.getFavorites().add(category);
     }
 

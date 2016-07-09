@@ -1,8 +1,6 @@
 package com.speed.service;
 
 import com.speed.model.Category;
-import com.speed.kosz.ReportPopularProducts;
-import com.speed.kosz.PopularProductRepo;
 import com.speed.model.SearchEvent;
 import org.apache.log4j.Logger;
 
@@ -12,74 +10,66 @@ import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 import javax.xml.stream.XMLStreamException;
 import java.time.LocalDate;
-import java.util.*;
+import java.util.ArrayList;
+import java.util.List;
 
 /**
  * Created by damian on 22.04.16.
  */
 @Stateless
 public class CategorySearch {
-
-//    @EJB
-//    PopularProductRepo popularProductRepo;
-
+    final static Logger logger = Logger.getLogger(CategorySearch.class);
+    private static final String ALLEGRO_XML = "files/allegro.xml";
     @EJB
     ClientReport clientReport;
-    final static Logger logger = Logger.getLogger(CategorySearch.class);
-
-    private List<Category> parsedCategories;
 
     @PersistenceContext
     EntityManager em;
+    private List<Category> parsedCategories;
 
     public CategorySearch() throws XMLStreamException {
-//        this.parsedCategories = new ParseXML().parsStax("files/allegro.xml");
-        this.parsedCategories = new CategoryParserManager().parseAndPersist("files/allegro.xml");
-//        this.parsedCategories = new ArrayList<>();
+        this.parsedCategories = new CategoryParserManager().parseAndPersist(ALLEGRO_XML);
     }
 
     public List<Category> getParsedCategories() {
         return parsedCategories;
     }
 
-    public List<Category> searchCategoryByGivenProduct(String searchedProduct) {
-//        ReportPopularProducts reportPopularProducts = new ReportPopularProducts();
-//        reportPopularProducts.setProduct(searchedProduct);
-//        em.persist(reportPopularProducts);
-//TODO Tu będzie metoda wywołująca POSTa informująca moduł raportowy o zajściu zdarzenia - nastąpiło wyszukanie produktu
+    public void setParsedCategories(List<Category> parsedCategories) {
+        this.parsedCategories = parsedCategories;
+    }
 
+
+    public List<Category> searchCategoryByGivenProduct(String searchedProduct) {
+
+//metoda wywołująca POSTa informująca moduł raportowy o zajściu zdarzenia - nastąpiło wyszukanie produktu
+        List<Category> foundCategories = new ArrayList<>();
         SearchEvent searchEvent = new SearchEvent();
 
         searchEvent.setProduct(searchedProduct);
         searchEvent.setDate(LocalDate.now());
         clientReport.sendEvent(searchEvent);
 
-        List<Category> foundCategories = new ArrayList<>();
-
         for (Category cat : parsedCategories) {
             if (cat.getCatName().toLowerCase().contains(searchedProduct.toLowerCase())) {
                 foundCategories.add(cat);
             }
         }
-
         return foundCategories;
     }
 
     public List<Category> findCategoryChildren(int catId){
 
         List<Category> subcategories = new ArrayList<>();
-
         for (Category cat : parsedCategories) {
             if (cat.getCatParent() == catId){
                 subcategories.add(cat);
             }
         }
-
         return subcategories;
     }
 
     public Category findCategoryById(int catId){
-
         Category category = null;
 
         for (Category cat : parsedCategories){
@@ -87,7 +77,6 @@ public class CategorySearch {
                 category = cat;
             }
         }
-
         return  category;
     }
 
@@ -97,11 +86,11 @@ public class CategorySearch {
         StringBuilder builder = new StringBuilder();
 
         do {
-            int currentCatId = findCategoryById(catId).getCatId();
-            currentPath = findCategoryById(currentCatId).getCatName();
+            Category currentCategory = findCategoryById(catId);
+            currentPath = currentCategory.getCatName();
             builder.insert(0, " >> ");
             builder.insert(0, currentPath);
-            catId = findCategoryById(currentCatId).getCatParent();
+            catId = currentCategory.getCatParent();
         } while (catId != 0);
 
         return  builder;

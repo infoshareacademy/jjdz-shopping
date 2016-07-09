@@ -1,3 +1,4 @@
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -73,6 +74,11 @@
                                 <input type="text" name="searchedProduct" class="form-control" placeholder="Search for...">
                                 <!--<span class="input-group-btn">-->
                                     <input type="submit" value="OK">
+
+                                <c:if test="${message != null}">
+                                    <br>
+                                    <div style="background-color: red;">${message}</div>
+                                </c:if>
                                 <!--</span>-->
                             </form>
                         </div><!-- /input-group -->

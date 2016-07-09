@@ -35,7 +35,6 @@ public class ReportController {
     @Consumes({MediaType.APPLICATION_JSON})
     public Response createSearchLog(@NotNull @Valid SearchEvent event){
 
-
         Long id = service.save(event);
 
         return Response.created(

@@ -17,9 +17,9 @@ import java.util.List;
 @WebServlet(urlPatterns = "FrontEnd/ShowSubcategoriesServlet")
 public class ShowSubcategoriesServlet extends HttpServlet {
 
-    final  static Logger logger = Logger.getLogger(ShowSubcategoriesServlet.class);
-    public static final String CATEGORIES_NOT_FOUND_JSP = "categoriesNotFound.jsp";
-    public static final String FOUND_CATEGORIES_JSP = "foundCategories.jsp";
+    private final static Logger logger = Logger.getLogger(ShowSubcategoriesServlet.class);
+    private static final String CATEGORIES_NOT_FOUND_JSP = "categoriesNotFound.jsp";
+    private static final String FOUND_CATEGORIES_JSP = "foundCategories.jsp";
 
     @EJB
     CategorySearch categorySearch;
