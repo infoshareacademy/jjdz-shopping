@@ -51,8 +51,8 @@ public class UserDataDB {
         return Optional.of(foundUsers.iterator().next());
     }
 
-    public List<String> getUsersEmails(){
-        List<String> list = em.createQuery("select new com.speed.model.UsersData(p.userEmail) from UsersData as p group by p.userEmail").getResultList();
+    public List<UsersData> getUsersEmails(){
+        List<UsersData> list = em.createQuery("select new com.speed.model.UsersData(p.userEmail) from UsersData as p group by p.userEmail", UsersData.class).getResultList();
         System.out.println(list);
         return list;
     }

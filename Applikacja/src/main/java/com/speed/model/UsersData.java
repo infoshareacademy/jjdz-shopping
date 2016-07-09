@@ -1,5 +1,6 @@
 package com.speed.model;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.speed.model.Category;
 
 import javax.persistence.*;
@@ -20,7 +21,10 @@ public class UsersData implements Serializable{
     private String userEmail;
     @ManyToMany(fetch = FetchType.EAGER, cascade = CascadeType.MERGE)
 //            (mappedBy = "user")
+    @JsonIgnore
     private Set<Category> favorites = new HashSet<>();
+
+    @JsonIgnore
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;

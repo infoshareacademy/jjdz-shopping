@@ -1,6 +1,7 @@
 package com.speed.controller;
 
 import com.speed.model.UserDataDB;
+import com.speed.model.UsersData;
 
 import javax.ejb.Stateless;
 import javax.inject.Inject;
@@ -19,7 +20,7 @@ public class ApplicationController {
     @GET
     @Path("/usersEmails")
     @Produces("application/json")
-    public List<String> getUsers(){
+    public List<UsersData> getUsers(){
         return userDataDB.getUsersEmails();
     }
 }
