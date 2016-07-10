@@ -1,24 +1,39 @@
 package com.speed.service;
 
 import com.speed.model.ReportDTO;
+import com.speed.model.UsersData;
 
+import javax.ejb.EJB;
+import javax.ejb.Stateless;
 import javax.inject.Inject;
 import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.PrintWriter;
+import java.util.Date;
 import java.util.List;
 
+@Stateless
 public class ReportFile {
 
-    @Inject
-    PopularProductsReport report;
+    @EJB
+    ClientApplication clientApplication;
 
+    @EJB
+    PopularProductsReport popularProductsReport;
 
+    public void saveUsersToFile() throws FileNotFoundException {
+        List<UsersData> usersDataList = clientApplication.askForEmails();
+        PrintWriter pw = new PrintWriter(new FileOutputStream("UsersEmails_" + new Date() + ".txt"));
+        for (UsersData line : usersDataList){
+            pw.println(line.toString());
+        }
+        pw.close();
+    }
 
-    public void saveToFile() throws FileNotFoundException {
-        List<ReportDTO> listToFile = report.getPopularProduct();
-        PrintWriter pw = new PrintWriter(new FileOutputStream("test.txt"));
-        for (ReportDTO line : listToFile){
+    public void saveReportToFile() throws FileNotFoundException {
+        List<ReportDTO> popularProducts = popularProductsReport.getPopularProduct();
+        PrintWriter pw = new PrintWriter(new FileOutputStream("PopularProducts_" + new Date() + ".txt"));
+        for (ReportDTO line : popularProducts){
             pw.println(line.toString());
         }
         pw.close();
