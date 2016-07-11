@@ -15,8 +15,9 @@ import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
+import static org.hamcrest.CoreMatchers.containsString;
 import static org.junit.Assert.assertEquals;
-import static org.junit.Assert.assertTrue;
+import static org.junit.Assert.assertThat;
 import static org.mockito.Mockito.when;
 
 
@@ -39,7 +40,7 @@ public class ReportFileTest {
 
 
     @Test
-    public void ReportToBeSaveToFile() throws Exception {
+    public void DefinedReportSavedToFile() throws Exception {
 //        given
         ReportDTO dto1 = new ReportDTO("rower", 1L);
         ReportDTO dto2 = new ReportDTO("led", 2L);
@@ -70,7 +71,7 @@ public class ReportFileTest {
     }
 
     @Test
-    public void UsersToBeSaveToFile() throws Exception {
+    public void DefinedUsersSaveToFile() throws Exception {
 //        given
         UsersData user1 = new UsersData("user1@email.pl");
         UsersData user2 = new UsersData("user2@email.pl");
@@ -101,7 +102,7 @@ public class ReportFileTest {
     }
 
     @Test
-    public void EMReportToBeSaveToFile() throws Exception {
+    public void ReportToBeSaveToFile() throws Exception {
 //        given
         List<ReportDTO> ReportDTOs = new ArrayList<>();
 
@@ -111,14 +112,15 @@ public class ReportFileTest {
         Reportfile.saveReportToFile();
         File f = new File(REPORT_FILE_PATH);
 
+
 //        then
-        assertTrue(REPORT_FILE_PATH, f.exists());
+        assertThat(f.getName(), containsString("PopularProducts"));
 
 
     }
 
     @Test
-    public void EMUsersToBeSaveToFile() throws Exception {
+    public void UsersToBeSaveToFile() throws Exception {
 //        given
         List<UsersData> Users = new ArrayList<>();
 
@@ -129,7 +131,7 @@ public class ReportFileTest {
         File f = new File(USERS_FILE_PATH);
 
 //        then
-        assertTrue(USERS_FILE_PATH, f.exists());
+        assertThat(f.getName(), containsString("UsersEmails"));
 
     }
 
