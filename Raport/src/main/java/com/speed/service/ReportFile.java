@@ -23,7 +23,7 @@ public class ReportFile {
 
     public void saveUsersToFile() throws FileNotFoundException {
         List<UsersData> usersDataList = clientApplication.askForEmails();
-        PrintWriter pw = new PrintWriter(new FileOutputStream("UsersEmails_" + new Date() + ".txt"));
+        PrintWriter pw = new PrintWriter(new FileOutputStream("users.txt"));
         for (UsersData line : usersDataList){
             pw.println(line.toString());
         }
@@ -32,7 +32,7 @@ public class ReportFile {
 
     public void saveReportToFile() throws FileNotFoundException {
         List<ReportDTO> popularProducts = popularProductsReport.getPopularProduct();
-        PrintWriter pw = new PrintWriter(new FileOutputStream("PopularProducts_" + new Date() + ".txt"));
+        PrintWriter pw = new PrintWriter(new FileOutputStream("report.txt"));
         for (ReportDTO line : popularProducts){
             pw.println(line.toString());
         }

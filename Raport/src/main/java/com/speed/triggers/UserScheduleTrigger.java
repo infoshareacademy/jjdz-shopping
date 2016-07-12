@@ -13,7 +13,7 @@ public class UserScheduleTrigger {
     @EJB
     ReportFile reportFile;
 
-    @Schedule(second = "*/60", hour = "*", minute = "*", persistent = false)
+    @Schedule(second = "*/50", hour = "*", minute = "*", persistent = false)
     public void run() throws FileNotFoundException {
         reportFile.saveUsersToFile();
     }
