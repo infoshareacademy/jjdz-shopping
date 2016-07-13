@@ -29,6 +29,7 @@ import java.io.IOException;
 public class OAuth2CallbackServlet extends HttpServlet {
     public static final String GOOGLEAPIS_USERINFO = "https://www.googleapis.com/oauth2/v2/userinfo";
     public static final String INDEX_JSP = "index.jsp";
+//    public static final String
     private static Logger logger = LoggerFactory.getLogger(OAuth2CallbackServlet.class);
 
     @Inject
@@ -66,7 +67,7 @@ public class OAuth2CallbackServlet extends HttpServlet {
                 oResp.getBody().getBytes()));
         JsonObject profile = reader.readObject();
 
-        UsersData user = new UsersData(profile.getString("name"),profile.getString("email"));
+        UsersData user = new UsersData(profile.getString("name"),profile.getString("email"),"0");
 
         UsersData foundUser = userDataDB.findOrSave(user);
 

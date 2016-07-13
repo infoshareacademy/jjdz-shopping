@@ -52,7 +52,7 @@ public class UserDataDB {
     }
 
     public List<UsersData> getUsersEmails(){
-        List<UsersData> list = em.createQuery("select new com.speed.model.UsersData(p.userEmail) from UsersData as p group by p.userEmail", UsersData.class).getResultList();
+        List<UsersData> list = em.createQuery("select new com.speed.model.UsersData(p.userName, p.userEmail, p.reportFrequency ) from UsersData as p group by  p.userEmail", UsersData.class).getResultList();
         System.out.println(list);
         return list;
     }

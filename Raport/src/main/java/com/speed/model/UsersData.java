@@ -14,17 +14,30 @@ public class UsersData implements Serializable{
 
     private String userName;
     private String userEmail;
+    private String reportFrequency;
 
-    public UsersData(String userName, String userEmail) {
-        this.userName = userName;
-        this.userEmail = userEmail;
-    }
+//    public UsersData(String userName, String userEmail) {
+//        this.userName = userName;
+//        this.userEmail = userEmail;
+//    }
 
     public UsersData(String userEmail) {
         this.userEmail = userEmail;
     }
 
     public UsersData() {
+    }
+
+
+
+
+
+    public String getReportFrequency() {
+        return reportFrequency;
+    }
+
+    public void setReportFrequency(String reportFrequency) {
+        this.reportFrequency = reportFrequency;
     }
 
     public String getUserName() {
@@ -48,6 +61,7 @@ public class UsersData implements Serializable{
         return "UsersData{" +
                 "userName='" + userName + '\'' +
                 ", userEmail='" + userEmail + '\'' +
+                ", reportFrequency=" + reportFrequency +
                 '}';
     }
 }

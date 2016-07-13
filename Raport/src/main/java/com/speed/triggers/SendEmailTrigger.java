@@ -35,8 +35,8 @@ public class SendEmailTrigger {
 
         }
 
-        reportemail.sendReport("report.txt",Adresses);
-
+//        reportemail.sendReport("report.txt",Adresses);
+        System.out.println("wysylam email");
 
     }
 }
