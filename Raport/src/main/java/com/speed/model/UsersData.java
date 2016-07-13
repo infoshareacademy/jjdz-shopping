@@ -2,10 +2,7 @@ package com.speed.model;
 
 
 
-import javax.persistence.*;
 import java.io.Serializable;
-import java.util.HashSet;
-import java.util.Set;
 
 /**
  * Created by slaw on 15.05.16.
@@ -17,7 +14,6 @@ public class UsersData implements Serializable{
 
     private String userName;
     private String userEmail;
-
 
     public UsersData(String userName, String userEmail) {
         this.userName = userName;
@@ -45,5 +41,13 @@ public class UsersData implements Serializable{
 
     public void setUserEmail(String userEmail) {
         this.userEmail = userEmail;
+    }
+
+    @Override
+    public String toString() {
+        return "UsersData{" +
+                "userName='" + userName + '\'' +
+                ", userEmail='" + userEmail + '\'' +
+                '}';
     }
 }
