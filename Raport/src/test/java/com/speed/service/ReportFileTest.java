@@ -1,7 +1,6 @@
 package com.speed.service;
 
 import com.speed.model.ReportDTO;
-import com.speed.model.UsersData;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.mockito.InjectMocks;
@@ -12,7 +11,6 @@ import java.io.BufferedReader;
 import java.io.File;
 import java.io.FileReader;
 import java.util.ArrayList;
-import java.util.Date;
 import java.util.List;
 
 import static org.hamcrest.CoreMatchers.containsString;
@@ -53,7 +51,7 @@ public class ReportFileTest {
 
 //        when
         when(report.getPopularProduct()).thenReturn(ReportDTOs);
-        String REPORT_FILE_PATH = "PopularProducts_" + new Date() + ".txt";
+        String REPORT_FILE_PATH = "report.txt";
         Reportfile.saveReportToFile();
         File file = new File(REPORT_FILE_PATH);
 
@@ -70,36 +68,36 @@ public class ReportFileTest {
 
     }
 
-    @Test
-    public void DefinedUsersSaveToFile() throws Exception {
-//        given
-        UsersData user1 = new UsersData("user1@email.pl");
-        UsersData user2 = new UsersData("user2@email.pl");
+////    @Test
+//    public void DefinedUsersSaveToFile() throws Exception {
+////        given
+//        UsersData user1 = new UsersData("user1@email.pl");
+//        UsersData user2 = new UsersData("user2@email.pl");
+//
+//        List<UsersData> Users = new ArrayList<>();
+//        Users.add(user1);
+//        Users.add(user2);
+//
+//        List<String> ListFromFile = new ArrayList<>();
+//
+////        when
+//        when(clientApplication.askForEmails()).thenReturn(Users);
+//        Reportfile.saveUsersToFile();
+//        String USERS_FILE_PATH = "UsersEmails_" + new Date() + ".txt";
+//        File file = new File(USERS_FILE_PATH);
+//
+//        BufferedReader br = new BufferedReader(new FileReader(file));
+//        String line;
+//        while ((line = br.readLine()) != null) {
+//            ListFromFile.add(line);
+//        }
+//        br.close();
+//
+////        then
+//        assertEquals(Users.get(0).toString(), ListFromFile.get(0));
 
-        List<UsersData> Users = new ArrayList<>();
-        Users.add(user1);
-        Users.add(user2);
 
-        List<String> ListFromFile = new ArrayList<>();
-
-//        when
-        when(clientApplication.askForEmails()).thenReturn(Users);
-        Reportfile.saveUsersToFile();
-        String USERS_FILE_PATH = "UsersEmails_" + new Date() + ".txt";
-        File file = new File(USERS_FILE_PATH);
-
-        BufferedReader br = new BufferedReader(new FileReader(file));
-        String line;
-        while ((line = br.readLine()) != null) {
-            ListFromFile.add(line);
-        }
-        br.close();
-
-//        then
-        assertEquals(Users.get(0).toString(), ListFromFile.get(0));
-
-
-    }
+//    }
 
     @Test
     public void ReportToBeSaveToFile() throws Exception {
@@ -108,31 +106,31 @@ public class ReportFileTest {
 
 //        when
         when(report.getPopularProduct()).thenReturn(ReportDTOs);
-        String REPORT_FILE_PATH = "PopularProducts_" + new Date() + ".txt";
+        String REPORT_FILE_PATH = "report.txt";
         Reportfile.saveReportToFile();
         File f = new File(REPORT_FILE_PATH);
 
 
 //        then
-        assertThat(f.getName(), containsString("PopularProducts"));
+        assertThat(f.getName(), containsString("report"));
 
 
     }
 
-    @Test
-    public void UsersToBeSaveToFile() throws Exception {
-//        given
-        List<UsersData> Users = new ArrayList<>();
-
-//        when
-        when(clientApplication.askForEmails()).thenReturn(Users);
-        Reportfile.saveUsersToFile();
-        String USERS_FILE_PATH = "UsersEmails_" + new Date() + ".txt";
-        File f = new File(USERS_FILE_PATH);
-
-//        then
-        assertThat(f.getName(), containsString("UsersEmails"));
-
-    }
+//    @Test
+//    public void UsersToBeSaveToFile() throws Exception {
+////        given
+//        List<UsersData> Users = new ArrayList<>();
+//
+////        when
+//        when(clientApplication.askForEmails()).thenReturn(Users);
+//        Reportfile.saveUsersToFile();
+//        String USERS_FILE_PATH = "UsersEmails_" + new Date() + ".txt";
+//        File f = new File(USERS_FILE_PATH);
+//
+////        then
+//        assertThat(f.getName(), containsString("UsersEmails"));
+//
+//    }
 
 }

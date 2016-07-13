@@ -1,4 +1,4 @@
-package com.speed.service;
+package com.speed.mailservice;
 
 import org.apache.commons.mail.DefaultAuthenticator;
 import org.apache.commons.mail.EmailAttachment;

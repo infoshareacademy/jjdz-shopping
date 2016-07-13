@@ -1,6 +1,5 @@
 package com.speed.triggers;
 
-import com.speed.mailservice.SendEmail;
 import com.speed.service.ReportFile;
 import org.apache.commons.mail.EmailException;
 
@@ -15,12 +14,10 @@ public class ReportScheduleTrigger {
     @EJB
     ReportFile reportFile;
 
-    @EJB
-    SendEmail sendEmail;
 
     @Schedule(second = "*/60", hour = "*", minute = "*", persistent = false)
     public void run() throws FileNotFoundException, EmailException {
         reportFile.saveReportToFile();
-        sendEmail.sendEmail();
+
     }
 }

@@ -2,7 +2,7 @@ package com.speed.triggers;
 
 import com.speed.model.UsersData;
 import com.speed.service.ClientApplication;
-import com.speed.service.ReportEmail;
+import com.speed.mailservice.ReportEmail;
 import org.apache.commons.mail.EmailException;
 
 import javax.ejb.EJB;
@@ -15,14 +15,14 @@ import java.util.List;
  * Created by slawekskel on 7/12/16.
  */
 @Stateless
-public class ReportTriggerOpt1 {
+public class SendEmailTrigger {
 
 
     @EJB
     ClientApplication clientApplication;
 
     @Schedule(second = "*/40", hour = "*", minute = "*", persistent = false)
-    public void run() throws EmailException {
+    public void sendEmailReport() throws EmailException {
 
         ReportEmail reportemail = new ReportEmail();
 
@@ -35,7 +35,7 @@ public class ReportTriggerOpt1 {
 
         }
 
-        reportemail.sendReport("PopularProducts_Tue Jul 12 15:24:00 GMT 2016.txt",Adresses);
+        reportemail.sendReport("report.txt",Adresses);
 
 
     }
