@@ -30,6 +30,7 @@ public class OAuth2CallbackServlet extends HttpServlet {
     public static final String GOOGLEAPIS_USERINFO = "https://www.googleapis.com/oauth2/v2/userinfo";
     public static final String INDEX_JSP = "index.jsp";
     public static final String  REPORT_FREQUENCY_DEFAULT = "0";
+    public static final String USER_TYPE_DEFAULT = "0";
 
 
     private static Logger logger = LoggerFactory.getLogger(OAuth2CallbackServlet.class);
@@ -69,7 +70,7 @@ public class OAuth2CallbackServlet extends HttpServlet {
                 oResp.getBody().getBytes()));
         JsonObject profile = reader.readObject();
 
-        UsersData user = new UsersData(profile.getString("name"),profile.getString("email"),REPORT_FREQUENCY_DEFAULT);
+        UsersData user = new UsersData(profile.getString("name"),profile.getString("email"),REPORT_FREQUENCY_DEFAULT, USER_TYPE_DEFAULT);
 
         UsersData foundUser = userDataDB.findOrSave(user);
 

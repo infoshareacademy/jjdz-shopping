@@ -22,6 +22,8 @@ public class UsersData implements Serializable{
     private String userEmail;
     @Column(name = "reportFrequency")
     private String reportFrequency;
+    @Column(name = "userType")
+    private String userType;
 
     @ManyToMany(fetch = FetchType.EAGER, cascade = CascadeType.MERGE)
 //            (mappedBy = "user")
@@ -39,10 +41,11 @@ public class UsersData implements Serializable{
 
     }
 
-    public UsersData(String userName, String userEmail, String reportFrequency) {
+    public UsersData(String userName, String userEmail, String reportFrequency, String userType) {
         this.userName = userName;
         this.userEmail = userEmail;
         this.reportFrequency = reportFrequency;
+        this.userType = userType;
     }
 
     public UsersData(String userEmail) {
@@ -53,6 +56,13 @@ public class UsersData implements Serializable{
     public UsersData() {
     }
 
+    public String getUserType() {
+        return userType;
+    }
+
+    public void setUserType(String userType) {
+        this.userType = userType;
+    }
 
     public void setReportFrequency(String reportFrequency) {
         this.reportFrequency = reportFrequency;

@@ -1,7 +1,6 @@
 package com.speed.model;
 
 
-
 import java.io.Serializable;
 
 /**
@@ -9,12 +8,12 @@ import java.io.Serializable;
  */
 
 
-
-public class UsersData implements Serializable{
+public class UsersData implements Serializable {
 
     private String userName;
     private String userEmail;
     private String reportFrequency;
+    private String userType;
 
 //    public UsersData(String userName, String userEmail) {
 //        this.userName = userName;
@@ -29,8 +28,13 @@ public class UsersData implements Serializable{
     }
 
 
+    public String getUserType() {
+        return userType;
+    }
 
-
+    public void setUserType(String userType) {
+        this.userType = userType;
+    }
 
     public String getReportFrequency() {
         return reportFrequency;
@@ -61,7 +65,8 @@ public class UsersData implements Serializable{
         return "UsersData{" +
                 "userName='" + userName + '\'' +
                 ", userEmail='" + userEmail + '\'' +
-                ", reportFrequency=" + reportFrequency +
+                ", reportFrequency='" + reportFrequency + '\'' +
+                ", userType='" + userType + '\'' +
                 '}';
     }
 }
