@@ -47,7 +47,7 @@
                     <nav>
                         <ul class="nav masthead-nav">
                             <li class="active"><a href="#">Home</a></li>
-                            <li><a href="#">About</a></li>
+                            <%--<li><a href="reportSchedule.jsp">Settings</a></li>--%>
 
                             <li>
                                 <jsp:include page="UserDataInput.jsp"/>

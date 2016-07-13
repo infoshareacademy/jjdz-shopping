@@ -11,11 +11,11 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 
-@WebServlet(urlPatterns = "FrontEnd/UserScheduleInfo")
+@WebServlet(urlPatterns = "FrontEnd/UserScheduleUpdate")
 public class UserScheduleServlet extends HttpServlet {
 
-//    final public static String REPORT_SCHEDULE = "reportSchedule.jsp";
-    final public static String REPORT_SCHEDULE = "searchByProductForm.jsp";
+    final public static String REPORT_SCHEDULE = "reportSchedule.jsp";
+//    final public static String REPORT_SCHEDULE = "searchByProductForm.jsp";
 
     @EJB
     ScheduleDbService scheduleDbService;

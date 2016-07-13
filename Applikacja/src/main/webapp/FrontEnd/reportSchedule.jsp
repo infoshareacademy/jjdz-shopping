@@ -48,7 +48,7 @@
                     <nav>
                         <ul class="nav masthead-nav">
                             <li class="active"><a href="#">Home</a></li>
-                            <li><a href="#">User settings</a></li>
+                            <%--<li><a href="#">Settings</a></li>--%>
 
                             <li>
                                 <jsp:include page="UserDataInput.jsp"/>
@@ -76,12 +76,12 @@
                     <c:when test="${userdata.reportFrequency == '0'}">
 
                         <div class="btn-group" role="group">
-                            <button type="button" class="btn btn-default active"><a href="FrontEnd/LinkToAllegroCategory?userScheduleParam=${"0"}?userEmail=${userdata.userEmail}"> OFF </a> </button>
+                            <button type="button" class="btn btn-default active"> OFF  </button>
                         </div>
                     </c:when>
                     <c:otherwise>
                         <div class="btn-group" role="group">
-                            <button type="button" class="btn btn-default "> OFF </button>
+                            <button type="button" class="btn btn-default "><a href="UserScheduleUpdate?userScheduleParam=${"0"}&userEmail=${userdata.userEmail}"> OFF </a></button>
                         </div>
                     </c:otherwise>
                 </c:choose>
@@ -90,12 +90,12 @@
                     <c:when test="${userdata.reportFrequency == '1'}">
 
                         <div class="btn-group" role="group">
-                            <button type="button" class="btn btn-default active"><a href="FrontEnd/LinkToAllegroCategory?userScheduleParam=${"1"}?userEmail=${userdata.userEmail}"> 1 min </a> </button>
+                            <button type="button" class="btn btn-default active"> 1 min </button>
                         </div>
                     </c:when>
                     <c:otherwise>
                         <div class="btn-group" role="group">
-                            <button type="button" class="btn btn-default "> 1 min </button>
+                            <button type="button" class="btn btn-default "><a href="UserScheduleUpdate?userScheduleParam=${"1"}&userEmail=${userdata.userEmail}"> 1 min </a></button>
                         </div>
                     </c:otherwise>
                 </c:choose>
@@ -104,12 +104,12 @@
                     <c:when test="${userdata.reportFrequency == '2'}">
 
                         <div class="btn-group" role="group">
-                            <button type="button" class="btn btn-default active"><a href="FrontEnd/LinkToAllegroCategory?userScheduleParam=${"2"}?userEmail=${userdata.userEmail}"> 2 min </a> </button>
+                            <button type="button" class="btn btn-default active"> 2 min </button>
                         </div>
                     </c:when>
                     <c:otherwise>
                         <div class="btn-group" role="group">
-                            <button type="button" class="btn btn-default "> 2 min </button>
+                            <button type="button" class="btn btn-default "><a href="UserScheduleUpdate?userScheduleParam=${"2"}&userEmail=${userdata.userEmail}"> 2 min </a></button>
                         </div>
                     </c:otherwise>
                 </c:choose>
@@ -118,12 +118,12 @@
                     <c:when test="${userdata.reportFrequency == '3'}">
 
                         <div class="btn-group" role="group">
-                            <button type="button" class="btn btn-default active"><a href="FrontEnd/LinkToAllegroCategory?userScheduleParam=${"3"}?userEmail=${userdata.userEmail}"> 3 min </a> </button>
+                            <button type="button" class="btn btn-default active"> 3 min </button>
                         </div>
                     </c:when>
                     <c:otherwise>
                         <div class="btn-group" role="group">
-                            <button type="button" class="btn btn-default "> 3 min </button>
+                            <button type="button" class="btn btn-default "><a href="UserScheduleUpdate?userScheduleParam=${"3"}&userEmail=${userdata.userEmail}"> 3 min </a></button>
                         </div>
                     </c:otherwise>
                 </c:choose>

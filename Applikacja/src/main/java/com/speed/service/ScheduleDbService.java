@@ -15,11 +15,11 @@ public class ScheduleDbService {
     EntityManager em;
 
     public void updateUserReportSchedule(String userScheduleParam, String userEmail){
-        UsersData user= em.find(UsersData.class , 1);
-        em.createQuery("update UsersData set reportFrequency = :userScheduleParam where userEmail = :userEmail")
-                .executeUpdate();
+        UsersData user= em.find(UsersData.class, 1L);
 
-//        em.createQuery("update UsersData p set p.reportFrequency = userScheduleParam WHERE p.userEmail= :userEmail");
-//        System.out.println(userScheduleParam);
+        Query query = em.createQuery("update UsersData u set u.reportFrequency = :userScheduleParam where u.userEmail = :userEmail");
+        query.setParameter("userScheduleParam", userScheduleParam);
+        query.setParameter("userEmail", userEmail);
+        query.executeUpdate();
     }
 }
