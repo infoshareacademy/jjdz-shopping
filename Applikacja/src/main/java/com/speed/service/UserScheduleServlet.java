@@ -1,7 +1,5 @@
 package com.speed.service;
 
-import com.speed.model.UsersData;
-
 import javax.ejb.EJB;
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
@@ -14,7 +12,7 @@ import java.io.IOException;
 @WebServlet(urlPatterns = "FrontEnd/UserScheduleUpdate")
 public class UserScheduleServlet extends HttpServlet {
 
-    final public static String REPORT_SCHEDULE = "reportSchedule.jsp";
+    private final static String REPORT_SCHEDULE = "reportSchedule.jsp";
 //    final public static String REPORT_SCHEDULE = "searchByProductForm.jsp";
 
     @EJB
