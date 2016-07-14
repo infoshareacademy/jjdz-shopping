@@ -10,25 +10,23 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
+import java.util.List;
 
-@WebServlet(urlPatterns = "FrontEnd/UserScheduleUpdate")
-public class UserScheduleServlet extends HttpServlet {
+@WebServlet(urlPatterns = "FrontEnd/AllUsersData")
+public class AllUsersDataServlet extends HttpServlet {
 
-    private final static String REPORT_SCHEDULE = "index.jsp";
+    private final static String ADMIN_PANEL = "adminPanel.jsp";
 
     @EJB
-    ScheduleDbService scheduleDbService;
+    AllUsersDbService allUsersDbService;
 
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 
-        String userScheduleParam = req.getParameter("userScheduleParam");
-        String userEmail = req.getParameter("userEmail");
+        List<UsersData> allUsers = allUsersDbService.allUsersData();
+        req.setAttribute("allUsers", allUsers);
 
-        scheduleDbService.updateUserReportSchedule(userScheduleParam, userEmail);
-
-        RequestDispatcher dispatcher = req.getRequestDispatcher(REPORT_SCHEDULE);
+        RequestDispatcher dispatcher = req.getRequestDispatcher(ADMIN_PANEL);
         dispatcher.forward(req, resp);
-
     }
 }

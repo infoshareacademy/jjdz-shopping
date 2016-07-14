@@ -50,7 +50,6 @@
                     <nav>
                         <ul class="nav masthead-nav">
                             <li class="active"><a href="index.jsp">Home</a></li>
-                            <li><a href="#">About</a></li>
                             <li>
                                 <jsp:include page="UserDataInput.jsp"/>
                             </li>

@@ -47,9 +47,7 @@
                     <h3 class="masthead-brand">SPEeD Team</h3>
                     <nav>
                         <ul class="nav masthead-nav">
-                            <li class="active"><a href="#">Home</a></li>
-                            <%--<li><a href="#">Settings</a></li>--%>
-
+                            <li class="active"><a href="index.jsp">Home</a></li>
                             <li>
                                 <jsp:include page="UserDataInput.jsp"/>
                             </li>
@@ -128,10 +126,6 @@
                     </c:otherwise>
                 </c:choose>
 
-
-
-
-
             </div>
 
 
@@ -142,7 +136,7 @@
             </div>
 
         </div>
-
+        </div>
     </div>
 
 </div>
