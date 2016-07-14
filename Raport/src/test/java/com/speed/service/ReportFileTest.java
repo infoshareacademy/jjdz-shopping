@@ -14,9 +14,7 @@ import java.io.FileReader;
 import java.util.ArrayList;
 import java.util.List;
 
-import static org.hamcrest.CoreMatchers.containsString;
 import static org.junit.Assert.assertEquals;
-import static org.junit.Assert.assertThat;
 import static org.mockito.Mockito.when;
 
 
@@ -97,40 +95,6 @@ public class ReportFileTest {
 //        then
         assertEquals(Users.get(0).toString(), ListFromFile.get(0));
 
-
-    }
-
-    @Test
-    public void ReportToBeSaveToFile() throws Exception {
-//        given
-        List<ReportDTO> ReportDTOs = new ArrayList<>();
-
-//        when
-        when(report.getPopularProduct()).thenReturn(ReportDTOs);
-        String REPORT_FILE_PATH = "report.txt";
-        Reportfile.saveReportToFile();
-        File f = new File(REPORT_FILE_PATH);
-
-
-//        then
-        assertThat(f.getName(), containsString("report"));
-
-
-    }
-
-    @Test
-    public void UsersToBeSaveToFile() throws Exception {
-//        given
-        List<UsersData> Users = new ArrayList<>();
-
-//        when
-        when(clientApplication.askForEmails()).thenReturn(Users);
-        Reportfile.saveUsersToFile();
-        String USERS_FILE_PATH = "users.txt";
-        File f = new File(USERS_FILE_PATH);
-
-//        then
-        assertThat(f.getName(), containsString("users"));
 
     }
 
