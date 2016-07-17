@@ -20,7 +20,7 @@ public class UserScheduleServlet extends HttpServlet {
     ScheduleDbService scheduleDbService;
 
     @Override
-    protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+    protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 
         String userScheduleParam = req.getParameter("userScheduleParam");
         String userEmail = req.getParameter("userEmail");

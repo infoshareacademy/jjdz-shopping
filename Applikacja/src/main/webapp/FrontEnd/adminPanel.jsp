@@ -77,64 +77,111 @@
                                 <td><c:out value="${user.userType}"/></td>
                         </tr>
                         <tr>
-                            <div class="btn-group btn-group-justified" role="group" aria-label="...">
+                            <td>
+                                <form name="myform" action="UserScheduleUpdate" method="POST">
+                                    <div align="left"><br>
+                                        <c:choose>
+                                            <c:when test="${user.reportFrequency == '0'}">
+                                                <input type="radio" name="userScheduleParam" value="0" checked> OFF<br>
+                                                <input type="radio" name="userScheduleParam" value="1"> Every 1 minute <br>
+                                                <input type="radio" name="userScheduleParam" value="2"> Every 2 minutes <br>
+                                                <input type="radio" name="userScheduleParam" value="3"> Every 3 minutes <br>
+                                                <input type="hidden" name="userEmail" value="${user.userEmail}">
+                                            </c:when>
+                                        </c:choose>
+                                        <c:choose>
+                                            <c:when test="${user.reportFrequency == '1'}">
+                                                <input type="radio" name="userScheduleParam" value="0"> OFF<br>
+                                                <input type="radio" name="userScheduleParam" value="1" checked> Every 1 minute <br>
+                                                <input type="radio" name="userScheduleParam" value="2"> Every 2 minutes <br>
+                                                <input type="radio" name="userScheduleParam" value="3"> Every 3 minutes <br>
+                                                <input type="hidden" name="userEmail" value="${user.userEmail}">
+                                            </c:when>
+                                        </c:choose>
+                                        <c:choose>
+                                            <c:when test="${user.reportFrequency == '2'}">
+                                                <input type="radio" name="userScheduleParam" value="0"> OFF<br>
+                                                <input type="radio" name="userScheduleParam" value="1"> Every 1 minute <br>
+                                                <input type="radio" name="userScheduleParam" value="2" checked> Every 2 minutes <br>
+                                                <input type="radio" name="userScheduleParam" value="3"> Every 3 minutes <br>
+                                                <input type="hidden" name="userEmail" value="${user.userEmail}">
+                                            </c:when>
+                                        </c:choose>
+                                        <c:choose>
+                                            <c:when test="${user.reportFrequency == '3'}">
+                                                <input type="radio" name="userScheduleParam" value="0"> OFF<br>
+                                                <input type="radio" name="userScheduleParam" value="1"> Every 1 minute <br>
+                                                <input type="radio" name="userScheduleParam" value="2"> Every 2 minutes <br>
+                                                <input type="radio" name="userScheduleParam" value="3" checked> Every 3 minutes <br>
+                                                <input type="hidden" name="userEmail" value="${user.userEmail}">
+                                            </c:when>
+                                        </c:choose>
+                                        <input type="submit" value="Save changes">
+                                    </div>
+                                </form>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <div class="btn-group btn-group-justified" role="group" aria-label="...">
 
-                                <c:choose>
-                                <c:when test="${user.reportFrequency == '0'}">
+                                    <c:choose>
+                                    <c:when test="${user.reportFrequency == '0'}">
 
-                                <div class="btn-group" role="group">
-                                    <button type="button" class="btn btn-default active"> OFF  </button>
-                                </div>
-                                </c:when>
-                                <c:otherwise>
-                                <div class="btn-group" role="group">
-                                    <button type="button" class="btn btn-default "><a href="UserScheduleUpdate?userScheduleParam=${"0"}&userEmail=${user.userEmail}"> OFF </a></button>
-                                </div>
-                                </c:otherwise>
-                                </c:choose>
+                                    <div class="btn-group" role="group">
+                                        <button type="button" class="btn btn-default active"> OFF  </button>
+                                    </div>
+                                    </c:when>
+                                    <c:otherwise>
+                                    <div class="btn-group" role="group">
+                                        <button type="button" class="btn btn-default "><a href="UserScheduleUpdate?userScheduleParam=${"0"}&userEmail=${user.userEmail}"> OFF </a></button>
+                                    </div>
+                                    </c:otherwise>
+                                    </c:choose>
 
-                                <c:choose>
-                                <c:when test="${user.reportFrequency == '1'}">
+                                    <c:choose>
+                                    <c:when test="${user.reportFrequency == '1'}">
 
-                                <div class="btn-group" role="group">
-                                    <button type="button" class="btn btn-default active"> 1 min </button>
-                                </div>
-                                </c:when>
-                                <c:otherwise>
-                                <div class="btn-group" role="group">
-                                    <button type="button" class="btn btn-default "><a href="UserScheduleUpdate?userScheduleParam=${"1"}&userEmail=${user.userEmail}"> 1 min </a></button>
-                                </div>
-                                </c:otherwise>
-                                </c:choose>
+                                    <div class="btn-group" role="group">
+                                        <button type="button" class="btn btn-default active"> 1 min </button>
+                                    </div>
+                                    </c:when>
+                                    <c:otherwise>
+                                    <div class="btn-group" role="group">
+                                        <button type="button" class="btn btn-default "><a href="UserScheduleUpdate?userScheduleParam=${"1"}&userEmail=${user.userEmail}"> 1 min </a></button>
+                                    </div>
+                                    </c:otherwise>
+                                    </c:choose>
 
-                                <c:choose>
-                                <c:when test="${user.reportFrequency == '2'}">
+                                    <c:choose>
+                                    <c:when test="${user.reportFrequency == '2'}">
 
-                                <div class="btn-group" role="group">
-                                    <button type="button" class="btn btn-default active"> 2 min </button>
-                                </div>
-                                </c:when>
-                                <c:otherwise>
-                                <div class="btn-group" role="group">
-                                    <button type="button" class="btn btn-default "><a href="UserScheduleUpdate?userScheduleParam=${"2"}&userEmail=${user.userEmail}"> 2 min </a></button>
-                                </div>
-                                </c:otherwise>
-                                </c:choose>
+                                    <div class="btn-group" role="group">
+                                        <button type="button" class="btn btn-default active"> 2 min </button>
+                                    </div>
+                                    </c:when>
+                                    <c:otherwise>
+                                    <div class="btn-group" role="group">
+                                        <button type="button" class="btn btn-default "><a href="UserScheduleUpdate?userScheduleParam=${"2"}&userEmail=${user.userEmail}"> 2 min </a></button>
+                                    </div>
+                                    </c:otherwise>
+                                    </c:choose>
 
-                                <c:choose>
-                                <c:when test="${user.reportFrequency == '3'}">
+                                    <c:choose>
+                                    <c:when test="${user.reportFrequency == '3'}">
 
-                                <div class="btn-group" role="group">
-                                    <button type="button" class="btn btn-default active"> 3 min </button>
+                                    <div class="btn-group" role="group">
+                                        <button type="button" class="btn btn-default active"> 3 min </button>
+                                    </div>
+                                    </c:when>
+                                    <c:otherwise>
+                                    <div class="btn-group" role="group">
+                                        <button type="button" class="btn btn-default "><a href="UserScheduleUpdate?userScheduleParam=${"3"}&userEmail=${user.userEmail}"> 3 min </a></button>
+                                    </div>
+                                    </c:otherwise>
+                                    </c:choose>
                                 </div>
-                                </c:when>
-                                <c:otherwise>
-                                <div class="btn-group" role="group">
-                                    <button type="button" class="btn btn-default "><a href="UserScheduleUpdate?userScheduleParam=${"3"}&userEmail=${user.userEmail}"> 3 min </a></button>
-                                </div>
-                                </c:otherwise>
-                                </c:choose>
-                            </div>
+                            </td>
                         </tr>
                     </c:forEach>
                 </table>
