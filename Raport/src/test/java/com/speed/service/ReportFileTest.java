@@ -1,6 +1,7 @@
 package com.speed.service;
 
 import com.speed.model.ReportDTO;
+import com.speed.model.UsersData;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.mockito.InjectMocks;
@@ -13,9 +14,7 @@ import java.io.FileReader;
 import java.util.ArrayList;
 import java.util.List;
 
-import static org.hamcrest.CoreMatchers.containsString;
 import static org.junit.Assert.assertEquals;
-import static org.junit.Assert.assertThat;
 import static org.mockito.Mockito.when;
 
 
@@ -68,69 +67,35 @@ public class ReportFileTest {
 
     }
 
-////    @Test
-//    public void DefinedUsersSaveToFile() throws Exception {
-////        given
-//        UsersData user1 = new UsersData("user1@email.pl");
-//        UsersData user2 = new UsersData("user2@email.pl");
-//
-//        List<UsersData> Users = new ArrayList<>();
-//        Users.add(user1);
-//        Users.add(user2);
-//
-//        List<String> ListFromFile = new ArrayList<>();
-//
-////        when
-//        when(clientApplication.askForEmails()).thenReturn(Users);
-//        Reportfile.saveUsersToFile();
-//        String USERS_FILE_PATH = "UsersEmails_" + new Date() + ".txt";
-//        File file = new File(USERS_FILE_PATH);
-//
-//        BufferedReader br = new BufferedReader(new FileReader(file));
-//        String line;
-//        while ((line = br.readLine()) != null) {
-//            ListFromFile.add(line);
-//        }
-//        br.close();
-//
-////        then
-//        assertEquals(Users.get(0).toString(), ListFromFile.get(0));
-
-
-//    }
-
     @Test
-    public void ReportToBeSaveToFile() throws Exception {
+    public void DefinedUsersSaveToFile() throws Exception {
 //        given
-        List<ReportDTO> ReportDTOs = new ArrayList<>();
+        UsersData user1 = new UsersData("user1@email.pl");
+        UsersData user2 = new UsersData("user2@email.pl");
+
+        List<UsersData> Users = new ArrayList<>();
+        Users.add(user1);
+        Users.add(user2);
+
+        List<String> ListFromFile = new ArrayList<>();
 
 //        when
-        when(report.getPopularProduct()).thenReturn(ReportDTOs);
-        String REPORT_FILE_PATH = "report.txt";
-        Reportfile.saveReportToFile();
-        File f = new File(REPORT_FILE_PATH);
+        when(clientApplication.askForEmails()).thenReturn(Users);
+        Reportfile.saveUsersToFile();
+        String USERS_FILE_PATH = "users.txt";
+        File file = new File(USERS_FILE_PATH);
 
+        BufferedReader br = new BufferedReader(new FileReader(file));
+        String line;
+        while ((line = br.readLine()) != null) {
+            ListFromFile.add(line);
+        }
+        br.close();
 
 //        then
-        assertThat(f.getName(), containsString("report"));
+        assertEquals(Users.get(0).toString(), ListFromFile.get(0));
 
 
     }
-
-//    @Test
-//    public void UsersToBeSaveToFile() throws Exception {
-////        given
-//        List<UsersData> Users = new ArrayList<>();
-//
-////        when
-//        when(clientApplication.askForEmails()).thenReturn(Users);
-//        Reportfile.saveUsersToFile();
-//        String USERS_FILE_PATH = "UsersEmails_" + new Date() + ".txt";
-//        File f = new File(USERS_FILE_PATH);
-//
-////        then
-//        assertThat(f.getName(), containsString("UsersEmails"));
-//
-//    }
 
 }

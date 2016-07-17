@@ -74,12 +74,12 @@
                     <c:when test="${userdata.reportFrequency == '0'}">
 
                         <div class="btn-group" role="group">
-                            <button type="button" class="btn btn-default active"> OFF  </button>
+                            <FORM><INPUT TYPE ="button" class="btn btn-default active" onClick="history.go(0)" VALUE="OFF"></FORM>
                         </div>
                     </c:when>
                     <c:otherwise>
                         <div class="btn-group" role="group">
-                            <button type="button" class="btn btn-default "><a href="UserScheduleUpdate?userScheduleParam=${"0"}&userEmail=${userdata.userEmail}"> OFF </a></button>
+                            <a href="UserScheduleUpdate?userScheduleParam=${"0"}&userEmail=${userdata.userEmail}"><FORM><INPUT TYPE ="button" class="btn btn-default" onclick="myFunction()" VALUE="OFF"></FORM></a>
                         </div>
                     </c:otherwise>
                 </c:choose>
@@ -88,12 +88,12 @@
                     <c:when test="${userdata.reportFrequency == '1'}">
 
                         <div class="btn-group" role="group">
-                            <button type="button" class="btn btn-default active"> 1 min </button>
+                            <button type="button" class="btn btn-default active" onClick="history.go(0)" VALUE="Refresh"> 1 min </button>
                         </div>
                     </c:when>
                     <c:otherwise>
                         <div class="btn-group" role="group">
-                            <button type="button" class="btn btn-default "><a href="UserScheduleUpdate?userScheduleParam=${"1"}&userEmail=${userdata.userEmail}"> 1 min </a></button>
+                            <a href="UserScheduleUpdate?userScheduleParam=${"1"}&userEmail=${userdata.userEmail}"><button type="button" class="btn btn-default" onClick="history.go(0)" VALUE="Refresh"> 1 min </button></a>
                         </div>
                     </c:otherwise>
                 </c:choose>
@@ -107,7 +107,7 @@
                     </c:when>
                     <c:otherwise>
                         <div class="btn-group" role="group">
-                            <button type="button" class="btn btn-default "><a href="UserScheduleUpdate?userScheduleParam=${"2"}&userEmail=${userdata.userEmail}"> 2 min </a></button>
+                            <a href="UserScheduleUpdate?userScheduleParam=${"2"}&userEmail=${userdata.userEmail}"><button type="button" class="btn btn-default "> 2 min </button></a>
                         </div>
                     </c:otherwise>
                 </c:choose>
@@ -121,7 +121,7 @@
                     </c:when>
                     <c:otherwise>
                         <div class="btn-group" role="group">
-                            <button type="button" class="btn btn-default "><a href="UserScheduleUpdate?userScheduleParam=${"3"}&userEmail=${userdata.userEmail}"> 3 min </a></button>
+                            <a href="UserScheduleUpdate?userScheduleParam=${"3"}&userEmail=${userdata.userEmail}"><button type="button" class="btn btn-default " onclick="myFunction()"> 3 min </button></a>
                         </div>
                     </c:otherwise>
                 </c:choose>
@@ -139,6 +139,27 @@
         </div>
     </div>
 
+        <FORM><INPUT TYPE ="button" class="btn btn-default active" onClick="history.go(0)" VALUE="refresh"></FORM>
+
+
+        <c:choose>
+            <c:when test="${userdata.reportFrequency == '0'}">
+                <FORM><INPUT TYPE ="button" class="btn btn-default active" onClick="history.go(0)" VALUE="OFF"></FORM>
+            </c:when>
+            <c:when test="${userdata.reportFrequency == '1'}">
+                <FORM><INPUT TYPE ="button" class="btn btn-default active" onClick="history.go(0)" VALUE="1"></FORM>
+            </c:when>
+            <c:when test="${userdata.reportFrequency == '2'}">
+                <FORM><INPUT TYPE ="button" class="btn btn-default active" onClick="history.go(0)" VALUE="2"></FORM>
+            </c:when>
+            <c:otherwise>
+                3
+            </c:otherwise>
+
+        </c:choose>
+
+
+</div>
 </div>
 
 <!-- Bootstrap core JavaScript
@@ -149,5 +170,13 @@
 <script src="../../dist/js/bootstrap.min.js"></script>
 <!-- IE10 viewport hack for Surface/desktop Windows 8 bug -->
 <script src="../../assets/js/ie10-viewport-bug-workaround.js"></script>
+
+<script>
+    function myFunction() {
+        setTimeout(function(){ alert("Hello"); }, 3000);
+    }
+</script>
+
+
 </body>
 </html>
