@@ -23,10 +23,20 @@ public class AllUsersDataServlet extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 
-        List<UsersData> allUsers = allUsersDbService.allUsersData();
-        req.setAttribute("allUsers", allUsers);
+        String receivedUserEmail = req.getParameter("userEmail");
+        String userType = allUsersDbService.userTypeByEmail(receivedUserEmail).get(0).getUserType();
 
-        RequestDispatcher dispatcher = req.getRequestDispatcher(ADMIN_PANEL);
-        dispatcher.forward(req, resp);
+        if(userType.equals("1")){
+            List<UsersData> allUsers = allUsersDbService.allUsersData();
+            req.setAttribute("receivedUserEmail", receivedUserEmail);
+            req.setAttribute("allUsers", allUsers);
+
+            RequestDispatcher dispatcher = req.getRequestDispatcher(ADMIN_PANEL);
+            dispatcher.forward(req, resp);
+        } else {
+            RequestDispatcher dispatcher = req.getRequestDispatcher(ADMIN_PANEL);
+            dispatcher.forward(req, resp);
+        }
+
     }
 }

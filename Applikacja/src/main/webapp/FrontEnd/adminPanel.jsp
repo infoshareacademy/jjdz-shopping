@@ -60,6 +60,9 @@
 
             <div class="inner cover">
 
+                <c:choose>
+                    <c:when test = "${userdata.userEmail == receivedUserEmail}">
+
                 <div class="row">
                     <h4>Admin Panel - Schedule manager</h4>
                 </div>
@@ -136,11 +139,15 @@
                     </c:forEach>
                 </table>
                 </p>
-                <!--<p class="lead">Cover is a one-page template for building simple and beautiful home pages. Download, edit the text, and add your own fullscreen background photo to make it your own.</p>-->
                 <p class="lead">
-                    <!--<a href="#" class="btn btn-lg btn-default">Wprowadz kod kreskowy</a>-->
-                    <!--<a href="#" class="btn btn-lg btn-default">Wprowadz słowo kluczowe</a>-->
                 </p>
+                    </c:when>
+                    <c:otherwise>
+                        <div class="row">
+                            <h4>You ${receivedUserEmail} are not authorized to access Schedule manager.</h4>
+                        </div>
+                    </c:otherwise>
+                </c:choose>
             </div>
 
             <div class="mastfoot">

@@ -14,17 +14,6 @@ public class AllUsersDbService {
     @PersistenceContext
     EntityManager em;
 
-//    public void updateUserReportSchedule(String userScheduleParam, String userEmail){
-
-
-//        UsersData user= em.find(UsersData.class, 1L);
-//
-//        Query query = em.createQuery("update UsersData u set u.reportFrequency = :userScheduleParam where u.userEmail = :userEmail");
-//        query.setParameter("userScheduleParam", userScheduleParam);
-//        query.setParameter("userEmail", userEmail);
-//        query.executeUpdate();
-//    }
-
     public List<UsersData> allUsersData() {
 
         List<UsersData> allUsers = em.createQuery("select new com.speed.model.UsersData(u.userName, u.userEmail, u.reportFrequency, u.userType)" +
@@ -32,5 +21,15 @@ public class AllUsersDbService {
                 .getResultList();
         System.out.println("allUsers: " + allUsers);
         return  allUsers;
+    }
+
+    public List<UsersData> userTypeByEmail(String userEmail){
+//        UsersData user= em.find(UsersData.class, 1L);
+
+        Query query = em.createQuery("select u from UsersData as u where u.userEmail = :userEmail");
+        query.setParameter("userEmail", userEmail);
+        List<UsersData> userType = (List<UsersData>) query.getResultList();
+        System.out.println("User type found by mail: " + userType);
+        return userType;
     }
 }

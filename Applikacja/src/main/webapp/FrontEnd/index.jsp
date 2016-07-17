@@ -36,19 +36,14 @@
 <body>
 
 <div class="site-wrapper">
-
     <div class="site-wrapper-inner">
-
         <div class="cover-container">
-
             <div class="masthead clearfix">
                 <div class="inner">
                     <h3 class="masthead-brand">SPEeD Team</h3>
                     <nav>
                         <ul class="nav masthead-nav">
                             <li class="active"><a href="#">Home</a></li>
-                            <%--<li><a href="reportSchedule.jsp">Settings</a></li>--%>
-
                             <li>
                                 <jsp:include page="UserDataInput.jsp"/>
                             </li>
@@ -58,7 +53,6 @@
                     </nav>
                 </div>
             </div>
-
             <div class="inner cover">
                 <div class="row">
                     <div class="col-md-6">
@@ -68,35 +62,21 @@
                     <div class="col-md-6">
                         <a href="searchByProductForm.jsp"><h2>Search by<br>product name</h2></a>
                     </div>
-                    <%--<div class="col-md-4">--%>
-                        <%--<h2>Search by<br>category</h2>--%>
-                    <%--</div>--%>
-                    <%--<div class="col-md-12"></div>--%>
-
                 </div>
                 <div class="row"><p>&nbsp;</p></div>
                 <div class="row">
                     <div class="col-md-12">
-                        <%--<p><br><br>--%>
                         <a href="PopularProducts"><h4>Popular products report</h4></a>
-                        <%--</p>--%>
                     </div>
                 </div>
-
             </div>
-
-
-
             <div class="mastfoot">
                 <div class="inner">
                     <p>Product searcher made by SPEeD Team <a href="http://getbootstrap.com">Bootstrap</a>, by <a href="https://twitter.com/mdo">@mdo</a>.</p>
                 </div>
             </div>
-
         </div>
-
     </div>
-
 </div>
 
 <!-- Bootstrap core JavaScript
