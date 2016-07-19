@@ -4,10 +4,12 @@
 
 package com.speed.model;
 
+import com.speed.service.TempFavoriteCategoryDbService;
 import com.speed.service.UserNotAuthorisedExeption;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
+import javax.ejb.EJB;
 import javax.ejb.Stateless;
 import javax.inject.Inject;
 import javax.persistence.EntityManager;
@@ -24,6 +26,9 @@ public class FavoritesDB {
 
     @Inject
     SessionData sessionData;
+
+    @EJB
+    TempFavoriteCategoryDbService tempFavoriteCategoryDbService;
 
     private Logger logger = LoggerFactory.getLogger(FavoritesDB.class);
 
@@ -42,11 +47,25 @@ public class FavoritesDB {
         Optional<UsersData> usersDataOptional = sessionData.getUser();
 
         if (!usersDataOptional.isPresent()) {
+            addToTempFavorites(category);
             throw new UserNotAuthorisedExeption();
         }
         UsersData user = usersDataOptional.get();
         category = em.merge(category);
         user.getFavorites().add(category);
+    }
+
+    private void addToTempFavorites(Category category) {
+
+        TempFavoriteCategory tempFavoriteCategory = new TempFavoriteCategory();
+
+        tempFavoriteCategory.setCatId(category.getCatId());
+        tempFavoriteCategory.setCatName(category.getCatName());
+        tempFavoriteCategory.setCatParent(category.getCatParent());
+        tempFavoriteCategory.setCatPosition(category.getCatPosition());
+        tempFavoriteCategory.setCatIsProductCatalogueEnabled(category.getCatIsProductCatalogueEnabled());
+
+        tempFavoriteCategoryDbService.addTempFavorite(tempFavoriteCategory);
     }
 
     @Transactional

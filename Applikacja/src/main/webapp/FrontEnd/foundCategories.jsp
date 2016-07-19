@@ -69,7 +69,14 @@
                         <tr>
                                 <td><c:out value="${item.catId}"/></td>
                                 <td><a href="ShowSubcategoriesServlet?categoryId=${item.catId}"><c:out value="${item.catName}"/></a></td>
-                                <td><a href="FavoritesDbServlet?categoryId=${item.catId}&addItem=1"><i class="fa fa-plus" aria-hidden="true"></i></a></td>
+                                <c:choose>
+                                    <c:when test="${userdata == null}">
+                                        <td><a href="FavoritesDbServlet?categoryId=${item.catId}&addItem=1&userLogged=0"><i class="fa fa-plus" aria-hidden="true"></i></a></td>
+                                    </c:when>
+                                    <c:otherwise>
+                                        <td><a href="FavoritesDbServlet?categoryId=${item.catId}&addItem=1"><i class="fa fa-plus" aria-hidden="true"></i></a></td>
+                                    </c:otherwise>
+                                </c:choose>
                                 <td><a href="LinkToAllegroCategory?categoryId=${item.catId}" target="_blank">Open in Allegro</a></td>
                         </tr>
                     </c:forEach>

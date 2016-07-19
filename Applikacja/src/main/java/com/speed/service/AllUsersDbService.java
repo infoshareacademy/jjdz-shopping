@@ -29,7 +29,6 @@ public class AllUsersDbService {
         Query query = em.createQuery("select u from UsersData as u where u.userEmail = :userEmail");
         query.setParameter("userEmail", userEmail);
         List<UsersData> userType = (List<UsersData>) query.getResultList();
-        System.out.println("User type found by mail: " + userType);
         return userType;
     }
 }
