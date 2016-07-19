@@ -39,8 +39,9 @@
     <div class="site-wrapper-inner">
         <div class="cover-container">
             <div class="masthead clearfix">
+                <h4 class="text-left col-md-12">SPEeD Team</h4>
                 <div class="inner">
-                    <h3 class="masthead-brand">SPEeD Team</h3>
+
                     <nav>
                         <ul class="nav masthead-nav">
                             <li class="active"><a href="#">Home</a></li>
@@ -72,7 +73,7 @@
             </div>
             <div class="mastfoot">
                 <div class="inner">
-                    <p>Product searcher made by SPEeD Team <a href="http://getbootstrap.com">Bootstrap</a>, by <a href="https://twitter.com/mdo">@mdo</a>.</p>
+                    <p>Product searcher made by SPEeD Team </p>
                 </div>
             </div>
         </div>
