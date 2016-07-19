@@ -42,12 +42,13 @@
         <div class="cover-container">
 
             <div class="masthead clearfix">
+                <h4 class="text-left col-md-12">SPEeD Team</h4>
                 <div class="inner">
-                    <h3 class="masthead-brand">SPEeD Team</h3>
+
                     <nav>
                         <ul class="nav masthead-nav">
                             <li ><a href="index.jsp">Home</a></li>
-                            <li><a href="#">About</a></li>
+
                             <li>
                                 <jsp:include page="UserDataInput.jsp"/>
                             </li>
@@ -69,18 +70,25 @@
                 <div class="row">
                     <div class="col-md-12">
                         <div class="input-group">
-                            <form method="POST" action="SearchByProductServlet">
 
-                                <input type="text" name="searchedProduct" class="form-control" placeholder="Search for...">
-                                <!--<span class="input-group-btn">-->
-                                    <input type="submit" value="OK">
+
+
+                            <form class="navbar-form navbar-left" role="search" method="POST" action="SearchByProductServlet">
+
+                                <div class="form-group">
+                                    <input type="text" name="searchedProduct" class="form-control" placeholder="Search for ..."/>
+                                </div>
+                                <button type="submit" class="btn btn-default">Submit</button>
 
                                 <c:if test="${message != null}">
                                     <br>
                                     <div style="background-color: red;">${message}</div>
                                 </c:if>
-                                <!--</span>-->
+
                             </form>
+
+
+
                         </div><!-- /input-group -->
                     </div><!-- /.col-md-12 -->
                 </div><!-- /.row -->
@@ -89,8 +97,7 @@
 
             <div class="mastfoot">
                 <div class="inner">
-                    <p>Product searcher made by SPEeD Team <a href="http://getbootstrap.com">Bootstrap</a>, by <a
-                            href="https://twitter.com/mdo">@mdo</a>.</p>
+                    <p>Product searcher made by SPEeD Team </p>
                 </div>
             </div>
 

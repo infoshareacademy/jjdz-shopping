@@ -41,43 +41,37 @@
         <div class="cover-container">
 
             <div class="masthead clearfix">
+                <h4 class="text-left col-md-12">SPEeD Team</h4>
                 <div class="inner">
-                    <h3 class="masthead-brand">SPEeD Team</h3>
+
                     <nav>
                         <ul class="nav masthead-nav">
-                            <li class="active"><a href="index.jsp">Home</a></li>
+                            <li class=><a href="index.jsp">Home</a></li>
                         </ul>
                     </nav>
                 </div>
             </div>
 
             <div class="inner cover">
-                <div class="row">
-                    <div class="col-md-12">
-                        <div class="input-group">
-                            <p>Log by google+</p>
-                        </div><!-- /input-group -->
-                    </div><!-- /.col-md-12 -->
-                </div><!-- /.row -->
-                <div class="row">
-                    <div class="col-md-12">
-                        <div class="input-group">
-                            <form method="GET" action="googleplus">
-                               <%-- <input type="hidden" name="referrer" value="${param.referrer}">--%>
 
-                                    <input type="submit" value="OK">
-                                <!--</span>-->
-                            </form>
-                        </div><!-- /input-group -->
-                    </div><!-- /.col-md-12 -->
-                </div><!-- /.row -->
+                <div class="row">
+
+                                <form method="GET" action="googleplus">
+                                    <div class="col-md-6">
+                                        <button  type="submit" class="btn btn-primary navbar-left btn-danger btn-sm">
+                                            <img class="img-responsive img-rounded" src="assets/google.png">
+                                        </button>
+                                    </div>
+                                </form>
+
+
+                </div>
             </div>
 
 
             <div class="mastfoot">
                 <div class="inner">
-                    <p>Product searcher made by SPEeD Team <a href="http://getbootstrap.com">Bootstrap</a>, by <a
-                            href="https://twitter.com/mdo">@mdo</a>.</p>
+                    <p>Product searcher made by SPEeD Team </p>
                 </div>
             </div>
 

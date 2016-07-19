@@ -45,11 +45,12 @@
         <div class="cover-container">
 
             <div class="masthead clearfix">
+                <h4 class="text-left col-md-12">SPEeD Team</h4>
                 <div class="inner">
-                    <h3 class="masthead-brand">SPEeD Team</h3>
+
                     <nav>
                         <ul class="nav masthead-nav">
-                            <li class="active"><a href="index.jsp">Home</a></li>
+                            <li><a href="index.jsp">Home</a></li>
                             <li>
                                 <jsp:include page="UserDataInput.jsp"/>
                             </li>
@@ -61,6 +62,8 @@
             <div class="inner cover">
 
 
+<c:choose>
+    <c:when test = "${userdata.userEmail != null}">
 
                         <div class="row">
                             <h3>Select your report schedule plan </h3>
@@ -112,17 +115,27 @@
                                         </form>
                                     </td>
                                 </tr>
-
-
                         </table>
 
+        </c:when>
+                        <c:otherwise>
+
+                            <div class="row">
+                                <h3>Setting will be available after login</h3>
+                            </div>
+
+                        </c:otherwise>
 
 
-            </div>
+    </c:choose>
+
+
+
+        </div>
 
             <div class="mastfoot">
                 <div class="inner">
-                    <p>Product searcher made by SPEeD Team</p>
+                    <p>Product searcher made by SPEeD Team </p>
                 </div>
             </div>
 

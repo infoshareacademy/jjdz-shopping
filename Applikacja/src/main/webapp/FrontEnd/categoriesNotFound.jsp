@@ -43,8 +43,9 @@
         <div class="cover-container">
 
             <div class="masthead clearfix">
+                <h4 class="text-left col-md-12">SPEeD Team</h4>
                 <div class="inner">
-                    <h3 class="masthead-brand">SPEeD Team</h3>
+
                     <nav>
                         <ul class="nav masthead-nav">
                             <li class="active"><a href="index.jsp">Home</a></li>
