@@ -56,7 +56,16 @@ public class FavoritesDB {
     }
 
     private void addToTempFavorites(Category category) {
-        tempFavoriteCategoryDbService.addTempFavorite(category);
+
+        TempFavoriteCategory tempFavoriteCategory = new TempFavoriteCategory();
+
+        tempFavoriteCategory.setCatId(category.getCatId());
+        tempFavoriteCategory.setCatName(category.getCatName());
+        tempFavoriteCategory.setCatParent(category.getCatParent());
+        tempFavoriteCategory.setCatPosition(category.getCatPosition());
+        tempFavoriteCategory.setCatIsProductCatalogueEnabled(category.getCatIsProductCatalogueEnabled());
+
+        tempFavoriteCategoryDbService.addTempFavorite(tempFavoriteCategory);
     }
 
     @Transactional

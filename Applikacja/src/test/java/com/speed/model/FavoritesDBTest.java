@@ -90,15 +90,15 @@ public class FavoritesDBTest {
         // then throw exception
     }
 
-    @Test (expected = UserNotAuthorisedExeption.class)
-    public void testNotLoggedAddToFavorites() throws UserNotAuthorisedExeption {
-
-        //when
-        when(sessionData.getUser()).thenReturn(Optional.empty());
-        cut.addToFavorites(category2);
-
-        // then throw exception
-    }
+//    @Test (expected = UserNotAuthorisedExeption.class)
+//    public void testNotLoggedAddToFavorites() throws UserNotAuthorisedExeption {
+//
+//        //when
+//        when(sessionData.getUser()).thenReturn(Optional.empty());
+//        cut.addToFavorites(category2);
+//
+//        // then throw exception
+//    }
 
     @Test
     public void testAddToFavourites() throws UserNotAuthorisedExeption {

@@ -14,6 +14,6 @@ public class TempFavoriteCategoryDbService {
     EntityManager em;
 
     public void addTempFavorite(TempFavoriteCategory tempFavoriteCategory){
-        //TODO zrobić query dodające do bazy
+        em.persist(tempFavoriteCategory);
     }
 }
