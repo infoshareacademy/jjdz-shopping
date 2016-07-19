@@ -5,9 +5,7 @@ package com.speed.service;
  */
 import com.github.scribejava.core.model.*;
 import com.github.scribejava.core.oauth.OAuth20Service;
-import com.speed.model.SessionData;
-import com.speed.model.UserDataDB;
-import com.speed.model.UsersData;
+import com.speed.model.*;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -24,6 +22,7 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import java.io.ByteArrayInputStream;
 import java.io.IOException;
+import java.util.List;
 
 @WebServlet(urlPatterns = "FrontEnd/oauth2callback", asyncSupported=true)
 public class OAuth2CallbackServlet extends HttpServlet {
@@ -40,6 +39,12 @@ public class OAuth2CallbackServlet extends HttpServlet {
 
     @EJB
     UserDataDB userDataDB;
+
+    @EJB
+    TempFavoriteCategoryDbService tempFavoriteCategoryDbService;
+
+    @EJB
+    FavoritesDB favoritesDB;
 
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp)
@@ -77,6 +82,24 @@ public class OAuth2CallbackServlet extends HttpServlet {
         logger.debug("user information [name:{}, email:{}] token: {} - end",profile.getString("name"),profile.getString("email"), token);
         sessionData.logIn(foundUser, token);
 
+        //TODO sprawdzenie tempFavDB czy są jakies wpisy. Jak tak to dodać.
+        List<TempFavoriteCategory> tempFavoriteCategories = tempFavoriteCategoryDbService.getTempFavoriteCategory();
+        if(!tempFavoriteCategories.isEmpty()){
+            //TODO konwersja z tempFavoriteCategories na category
+            Category category = new Category();
+
+            category.setCatId(tempFavoriteCategories.get(0).getCatId());
+            category.setCatName(tempFavoriteCategories.get(0).getCatName());
+            category.setCatParent(tempFavoriteCategories.get(0).getCatParent());
+            category.setCatPosition(tempFavoriteCategories.get(0).getCatPosition());
+            category.setCatIsProductCatalogueEnabled(tempFavoriteCategories.get(0).getCatIsProductCatalogueEnabled());
+
+            try {
+                favoritesDB.addToFavorites(category);
+            } catch (UserNotAuthorisedExeption userNotAuthorisedExeption) {
+                userNotAuthorisedExeption.printStackTrace();
+            }
+        }
 
         resp.sendRedirect(INDEX_JSP);
     }
