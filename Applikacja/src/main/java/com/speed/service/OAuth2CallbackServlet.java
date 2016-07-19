@@ -82,10 +82,11 @@ public class OAuth2CallbackServlet extends HttpServlet {
         logger.debug("user information [name:{}, email:{}] token: {} - end",profile.getString("name"),profile.getString("email"), token);
         sessionData.logIn(foundUser, token);
 
-        //TODO sprawdzenie tempFavDB czy są jakies wpisy. Jak tak to dodać.
+        // sprawdzenie tempFavDB czy są jakies wpisy. Jak tak to dodaje użytkownikowi po zalogowaniu
         List<TempFavoriteCategory> tempFavoriteCategories = tempFavoriteCategoryDbService.getTempFavoriteCategory();
         if(!tempFavoriteCategories.isEmpty()){
-            //TODO konwersja z tempFavoriteCategories na category
+
+            // konwersja z tempFavoriteCategories na category
             Category category = new Category();
 
             category.setCatId(tempFavoriteCategories.get(0).getCatId());
@@ -96,6 +97,7 @@ public class OAuth2CallbackServlet extends HttpServlet {
 
             try {
                 favoritesDB.addToFavorites(category);
+                tempFavoriteCategoryDbService.cleanTempFavoriteDB();
             } catch (UserNotAuthorisedExeption userNotAuthorisedExeption) {
                 userNotAuthorisedExeption.printStackTrace();
             }
