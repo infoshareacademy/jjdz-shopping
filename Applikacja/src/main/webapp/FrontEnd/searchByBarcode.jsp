@@ -67,7 +67,7 @@
                         <form class="navbar-form navbar-left" role="search" method="POST" action="SearchByBarcode" enctype="multipart/form-data">
 
                             <div class="form-group">
-                                <input type="file" name="barcodeImg">
+                                <input class="filestyle" type="file" name="barcodeImg">
                             </div>
                             <button type="submit" class="btn btn-default">Submit</button>
 
@@ -102,5 +102,6 @@
     <script src="../../dist/js/bootstrap.min.js"></script>
     <!-- IE10 viewport hack for Surface/desktop Windows 8 bug -->
     <script src="../../assets/js/ie10-viewport-bug-workaround.js"></script>
+    <script type="text/javascript" src="assets/bootstrap-filestyle.min.js"> </script>
   </body>
 </html>
