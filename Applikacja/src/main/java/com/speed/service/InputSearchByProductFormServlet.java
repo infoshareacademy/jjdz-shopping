@@ -35,6 +35,16 @@ public class InputSearchByProductFormServlet extends HttpServlet {
 //        logger.debug("START w servlecie");
 
         String searchedProduct = req.getParameter("searchedProduct");
+//        byte[] bytes = searchedProduct.getBytes();
+//        searchedProduct = new String(bytes, "UTF-8");
+
+
+//        String searchedProduct = req.getParameter("searchedProduct"); // HÃ©lÃ¨ne
+//        searchedProduct  = Charset.forName("UTF-8").encode(searchedProduct)
+//        searchedProduct = URLDecoder.decode( searchedProduct, "UTF-8" );
+
+
+//        String searchedProduct = req.getParameter("searchedProduct");
 //        logger.debug("getParameter: " + searchedProduct);
 
         List<Category> result = categorySearch.searchCategoryByGivenProduct(searchedProduct);

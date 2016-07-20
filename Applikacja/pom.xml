@@ -103,6 +103,16 @@
             <artifactId>javase</artifactId>
             <version>3.2.1</version>
         </dependency>
+
+
+        <!-- -&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;-->
+        <dependency>
+            <groupId>com.liferay</groupId>
+            <artifactId>org.hibernate.core</artifactId>
+            <version>3.6.10.LIFERAY-PATCHED-1</version>
+        </dependency>
+        <!--&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;-->
+
         <dependency>
             <groupId>javax.xml.bind</groupId>
             <artifactId>jaxb-api</artifactId>
@@ -176,11 +186,7 @@
             <!--<scope>provided</scope>-->
         </dependency>
 
-        <dependency>
-            <groupId>com.google.code.maven-play-plugin.org.hibernate</groupId>
-            <artifactId>hibernate-core</artifactId>
-            <version>3.6.1.Final-patched-play-1.2</version>
-        </dependency>
+
 
     </dependencies>
 

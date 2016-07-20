@@ -6,14 +6,18 @@
         <!--<provider>org.hibernate.ejb.HibernatePersistence</provider>-->
         <jta-data-source>java:/datasources/ShoppingDB</jta-data-source>
         <properties>
-            <!--<property name="hibernate.dialect" value="com.speed.model.CustomMySQLDialect"/>-->
 
-
-            <property name="hibernate.dialect" value="org.hibernate.dialect.MySQL5Dialect"/>
-            <property name="hibernate.hbm2ddl.auto" value="create-drop"/>
-            <property name="hibernate.show_sql" value="true"/>
+            <!--<property name="hibernate.dialect" value="org.hibernate.dialect.MySQL5Dialect"/>-->
+            <!--<property name="hibernate.hbm2ddl.auto" value="create-drop"/>-->
+            <!--<property name="hibernate.show_sql" value="true"/>-->
             <property name="hibernate.format_sql" value="true"/>
+
+            <property name="hibernate.show_sql" value="true" />
+            <property name="hibernate.hbm2ddl.auto" value="create-drop" />
+            <property name="hibernate.dialect" value="com.speed.model.CustomMySQLDialect"/>
+
         </properties>
+
     </persistence-unit>
 </persistence>
 

@@ -6,11 +6,14 @@
         <!--<jta-data-source>java:jboss/datasources/ExampleDS</jta-data-source>-->
         <jta-data-source>java:/datasources/ShoppingRaportDB</jta-data-source>
         <properties>
-            <property name="hibernate.dialect" value="org.hibernate.dialect.MySQL5Dialect"/>
-            <!--<property name="hibernate.dialect" value="org.hibernate.dialect.H2Dialect"/>-->
-            <property name="hibernate.hbm2ddl.auto" value="create-drop"/>
-            <property name="hibernate.show_sql" value="true"/>
+
             <property name="hibernate.format_sql" value="true"/>
+            <property name="hibernate.show_sql" value="true" />
+            <property name="hibernate.hbm2ddl.auto" value="create-drop" />
+            <property name="hibernate.dialect" value="com.speed.model.CustomMySQLDialect"/>
+
+
+
         </properties>
     </persistence-unit>
 </persistence>
