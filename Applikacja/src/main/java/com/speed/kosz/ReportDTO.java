@@ -1,13 +1,5 @@
 package com.speed.kosz;
 
-import com.speed.model.Category;
-import com.speed.model.Favorites;
-
-import javax.persistence.Entity;
-import javax.persistence.Id;
-import javax.persistence.OneToMany;
-import java.util.List;
-
 /**
  * Created by piotr on 14.05.16.
  */
@@ -31,7 +23,7 @@ public class ReportDTO {
 
     @Override
     public String toString() {
-        return "ReportDTO{" +
+        return "PopularProduktInfo{" +
                 "product='" + product + '\'' +
                 ", count=" + count +
                 '}';

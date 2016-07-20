@@ -23,7 +23,7 @@ public class ReportDTO {
 
     @Override
     public String toString() {
-        return "ReportDTO{" +
+        return "PopularProduktInfo{" +
                 "product='" + product + '\'' +
                 ", count=" + count +
                 '}';
