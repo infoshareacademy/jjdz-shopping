@@ -1,4 +1,4 @@
-package com.speed.repository;
+package com.speed.kosz.repository;
 
 
 import com.speed.model.Category;

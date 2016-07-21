@@ -2,6 +2,7 @@ package com.speed.service;
 
 
 import com.speed.model.Category;
+import org.apache.commons.lang.StringEscapeUtils;
 import org.apache.log4j.Logger;
 
 import javax.ejb.EJB;
@@ -35,17 +36,9 @@ public class InputSearchByProductFormServlet extends HttpServlet {
 //        logger.debug("START w servlecie");
 
         String searchedProduct = req.getParameter("searchedProduct");
-//        byte[] bytes = searchedProduct.getBytes();
-//        searchedProduct = new String(bytes, "UTF-8");
 
+        searchedProduct= StringEscapeUtils.unescapeHtml(searchedProduct).replaceAll(";","");
 
-//        String searchedProduct = req.getParameter("searchedProduct"); // HÃ©lÃ¨ne
-//        searchedProduct  = Charset.forName("UTF-8").encode(searchedProduct)
-//        searchedProduct = URLDecoder.decode( searchedProduct, "UTF-8" );
-
-
-//        String searchedProduct = req.getParameter("searchedProduct");
-//        logger.debug("getParameter: " + searchedProduct);
 
         List<Category> result = categorySearch.searchCategoryByGivenProduct(searchedProduct);
         RequestDispatcher dispatcher;
