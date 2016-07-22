@@ -56,20 +56,33 @@
             </div>
             <div class="inner cover">
                 <div class="row">
+
                     <div class="col-md-6">
-                        <a href="searchByBarcode.jsp"><h2>Search by<br>bar code</h2></a>
+                        <a href="searchByBarcode.jsp" class="btn btn-success" role="button">
+
+                            <h2>&nbsp&nbsp Search by &nbsp <br>&nbsp&nbsp bar code  &nbsp&nbsp&nbsp </h2>
+
+                            <span class="glyphicon glyphicon-barcode" style="font-size: 35px;"></span>
+                        </a>
 
                     </div>
+
                     <div class="col-md-6">
-                        <a href="searchByProductForm.jsp"><h2>Search by<br>product name</h2></a>
+                        <a href="searchByProductForm.jsp" class="btn  btn-success" role="button">
+
+                            <h2>Search by<br>product name</h2>
+                            <span class="glyphicon glyphicon-shopping-cart" style="font-size: 35px;"></span>
+
+                        </a>
                     </div>
+
                 </div>
                 <div class="row"><p>&nbsp;</p></div>
-                <div class="row">
+                <!-- <div class="row">
                     <div class="col-md-12">
                         <a href="PopularProducts"><h4>Popular products report</h4></a>
                     </div>
-                </div>
+                </div> -->
             </div>
             <div class="mastfoot">
                 <div class="inner">
@@ -84,9 +97,9 @@
 ================================================== -->
 <!-- Placed at the end of the document so the pages load faster -->
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
-<script>window.jQuery || document.write('<script src="../../assets/js/vendor/jquery.min.js"><\/script>')</script>
-<script src="../../dist/js/bootstrap.min.js"></script>
+<script>window.jQuery || document.write('<script src="assets/jquery.min.js"><\/script>')</script>
+<script src="assets/bootstrap.min.js"></script>
 <!-- IE10 viewport hack for Surface/desktop Windows 8 bug -->
-<script src="../../assets/js/ie10-viewport-bug-workaround.js"></script>
+<script src="assets/ie10-viewport-bug-workaround.js"></script>
 </body>
 </html>
