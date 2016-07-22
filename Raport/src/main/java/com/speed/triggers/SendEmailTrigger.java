@@ -39,7 +39,7 @@ public class SendEmailTrigger {
         }
 
        reportemail.sendReport("report.txt",Adresses);
-        System.out.println("wysylam email 1");
+        System.out.println("Sending email 1-->");
 
     }
 
@@ -62,7 +62,7 @@ public class SendEmailTrigger {
         }
 
         reportemail.sendReport("report.txt",Adresses);
-        System.out.println("wysylam email 2");
+        System.out.println("Sending email 2-->");
 
     }
 
@@ -84,7 +84,7 @@ public class SendEmailTrigger {
         }
 
         reportemail.sendReport("report.txt",Adresses);
-        System.out.println("wysylam email 3");
+        System.out.println("Sending email 3-->");
 
     }
 

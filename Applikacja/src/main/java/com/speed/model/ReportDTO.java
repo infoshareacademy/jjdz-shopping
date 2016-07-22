@@ -1,4 +1,4 @@
-package com.speed.kosz;
+package com.speed.model;
 
 /**
  * Created by piotr on 14.05.16.

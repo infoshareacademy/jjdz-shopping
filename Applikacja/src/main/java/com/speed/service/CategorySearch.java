@@ -42,7 +42,7 @@ public class CategorySearch {
 
     public List<Category> searchCategoryByGivenProduct(String searchedProduct) {
 
-//metoda wywołująca POSTa informująca moduł raportowy o zajściu zdarzenia - nastąpiło wyszukanie produktu
+
         List<Category> foundCategories = new ArrayList<>();
         SearchEvent searchEvent = new SearchEvent();
 

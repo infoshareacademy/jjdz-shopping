@@ -27,9 +27,6 @@ public class InputSearchByProductFormServlet extends HttpServlet {
     @EJB
     CategorySearch categorySearch;
 
-//    @EJB
-//    ReportPopularProducts reportPopularProducts;
-
 
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
