@@ -56,4 +56,17 @@ public class UserDataDB {
         System.out.println(list);
         return list;
     }
+
+    public void addAdmin() {
+        UsersData usersData = new UsersData();
+
+        usersData.setUserName("Super Speed");
+        usersData.setUserEmail("superuser.speed@gmail.com");
+        usersData.setReportFrequency("0");
+        usersData.setUserType("1");
+
+        usersData.toString();
+
+        em.persist(usersData);
+    }
 }
