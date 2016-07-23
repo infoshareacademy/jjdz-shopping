@@ -32,7 +32,7 @@ public class ReportFile {
         List<ReportDTO> popularProducts = popularProductsReport.getPopularProduct();
         PrintWriter pw = new PrintWriter(new FileOutputStream("report.txt"));
         for (ReportDTO line : popularProducts){
-            pw.append(line.toString());
+            pw.append(line.toString()+"\n");
 
         }
         pw.close();
